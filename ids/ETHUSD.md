@@ -13,10 +13,13 @@ This ID correlates with a bytes32 version of the old uint256 request ID for the 
 
 # Data Specifications
 
+
+
 ## Description
 
 ## Granularity
 
+1000000 (6 decimals)
 
 ## Example Value (w/ date)
 
