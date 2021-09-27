@@ -14,27 +14,27 @@ Make a PR in this repo to signal to miners that the data is ready to mined and t
 
 #### Request ID: 
 
-bytes32 request ID or structure for creating the ID (e.g. what to hash)
+    bytes32 request ID or structure for creating the ID (e.g. what to hash)
 
 
 #### Data Specifications
 
-Technical Specifications of the value(s) requested
+    Technical Specifications of the value(s) requested
 
 
 #### Description
 
-Lamen terms description of the ID and it's implications
+    Lamen terms description of the ID and it's implications
 
 
 #### Granularity
 
-Multiplier to use (if numeric) for putting on-chain
+    Multiplier to use (if numeric) for putting on-chain
 
 
 #### Example Value (w/ date)
 
-An example piece of data (e.g. "9/27/21 - 9000000")
+    An example piece of data (e.g. "9/27/21 - 9000000")
 
 #### Dispute Considerations
 
