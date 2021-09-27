@@ -16,7 +16,6 @@ This ID correlates with a bytes32 version of the old uint256 request ID for the 
 Currently it is is the 3 month rolling average of the USPCE for AMPL as specified here: https://docs.google.com/document/d/1RFCApk1PznMhSRVhiyFl_vBDPA4mP2n1dTmfqjvuTNw/edit
 
 
-
 ## Description
 
 This is the price target feed for the Ampleforth protocol. It corresponds to their needs and is subject to change with voting.  Currently, it is a three month rolling average of the USPCE, a number which can be found on various government websited.  The data is only updated monthly and is usually manually entered. 
@@ -38,4 +37,4 @@ This is data for the Ampleforth protocol and is subject to change its requiremen
 
 # Notes
 
-
+-
