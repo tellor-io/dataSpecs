@@ -1,9 +1,10 @@
 ---
-Title: ETH/USD feed
+Title: BTC/USD feed
 Author: Brenda Loya
-Created: 2021-09-09
+Created: 2021-09-27
 ---
-# Data Spec ID: (to be filled in by Tellor Team) 1
+# Data Spec ID: 2
+
 # Request ID: 
 
 0x0000000000000000000000000000000000000000000000000000000000000001
