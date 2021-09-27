@@ -38,11 +38,11 @@ Make a PR in this repo to signal to miners that the data is ready to mined and t
 
 #### Dispute Considerations
 
-Considerations that parties should consider before reporting the data w/ regard to what will be considered a valid dispute
+    Considerations that parties should consider before reporting the data w/ regard to what will be considered a valid dispute
 
 #### Notes
 
-Any further notes or thoughts on the feed
+    Any further notes or thoughts on the feed
 
 
 ## Maintainers <a name="maintainers"> </a> 
