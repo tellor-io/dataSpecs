@@ -1,0 +1,118 @@
+{
+  "queries": {
+    "qid-0001": {
+      "uid": "qid-0001",
+      "name": "ETH/USD Current Price",
+      "data": "What is the current price of ETH in USD?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 1,
+      "asset": "eth",
+      "currency": "usd",
+      "price_type": "current"
+    },
+    "qid-0002": {
+      "uid": "qid-0002",
+      "name": "BTC/USD Current Price",
+      "data": "What is the current price of BTC in USD?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 2,
+      "asset": "btc",
+      "currency": "usd",
+      "price_type": "current"
+    },
+    "qid-0003": {
+      "uid": "qid-0003",
+      "name": "BNB/USD Current Price",
+      "data": "What is the current price of BNB in USD?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 3,
+      "asset": "bnb",
+      "currency": "usd",
+      "price_type": "current"
+    },
+    "qid-0004": {
+      "uid": "qid-0004",
+      "name": "BTC/USD 24hr TWAP Price",
+      "data": "What is the twap_24hr price of BTC in USD?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 4,
+      "asset": "btc",
+      "currency": "usd",
+      "price_type": "24 hour time-weighted average"
+    },
+    "qid-0005": {
+      "uid": "qid-0005",
+      "name": "ETH/BTC Current Price",
+      "data": "What is the current price of ETH in BTC?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 5,
+      "asset": "eth",
+      "currency": "btc",
+      "price_type": "current"
+    },
+    "qid-0010": {
+      "uid": "qid-0010",
+      "name": "AMPL/USD Custom Price",
+      "data": "What is the 24hr TWAP/VWAP price of AMPL in USD as specified by ampleforth governance?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 10,
+      "asset": "ampl",
+      "currency": "usd",
+      "price_type": "custom time-weighted average"
+    },
+    "qid-0041": {
+      "uid": "qid-0041",
+      "name": "USPCE Value (3 Month Rollng Average)",
+      "data": "What is the 3 month rolling average value of the USPCE as specified by ampleforth governance?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 41
+    },
+    "qid-0050": {
+      "uid": "qid-0050",
+      "name": "TRB/USD Current Price",
+      "data": "What is the current price of TRB in USD?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 50,
+      "asset": "trb",
+      "currency": "usd",
+      "price_type": "current"
+    },
+    "qid-0059": {
+      "uid": "qid-0059",
+      "name": "ETH/JPY Current Price",
+      "data": "What is the current price of ETH in JPY?",
+      "response_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
+      "legacy_request_id": 59,
+      "asset": "eth",
+      "currency": "jpy",
+      "price_type": "current"
+    }
+  }
+}

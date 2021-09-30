@@ -1,0 +1,70 @@
+{
+  "title": "QueryRegistry",
+  "description": "A class for constructing the official query registry",
+  "type": "object",
+  "properties": {
+    "queries": {
+      "title": "Queries",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/OracleQuery"
+      }
+    }
+  },
+  "required": [
+    "queries"
+  ],
+  "definitions": {
+    "ResponseType": {
+      "title": "ResponseType",
+      "description": "Specify format of Query Response",
+      "type": "object",
+      "properties": {
+        "abi_type": {
+          "title": "Abi Type",
+          "type": "string"
+        },
+        "packed": {
+          "title": "Packed",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "abi_type"
+      ]
+    },
+    "OracleQuery": {
+      "title": "OracleQuery",
+      "description": "Base class for all tellorX queries",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "title": "Uid",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "data": {
+          "title": "Data",
+          "type": "string",
+          "format": "binary"
+        },
+        "response_type": {
+          "$ref": "#/definitions/ResponseType"
+        },
+        "legacy_request_id": {
+          "title": "Legacy Request Id",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "uid",
+        "name",
+        "response_type"
+      ]
+    }
+  }
+}
