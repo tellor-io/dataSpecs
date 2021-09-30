@@ -8,9 +8,9 @@ Make a PR in this repo to signal to miners that the data is ready to mined and t
 
 ### Fields:
 
-#### Data Spec ID
+#### Question ID
 
-    To be filled in by team
+    (name of file) can be guessed, but ultimately will be filled in by team
 
 #### Request ID: 
 
