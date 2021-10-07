@@ -1,117 +1,150 @@
 {
   "queries": {
-    "qid-0001": {
-      "uid": "qid-0001",
-      "name": "ETH/USD Current Price",
-      "data": "What is the current price of ETH in USD?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
+    "qid-1": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-1",
+      "name": "ETH/USD current price",
       "legacy_request_id": 1,
+      "legacy_question": "what is the current value of eth in usd (warning:deprecated)",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
       "asset": "eth",
       "currency": "usd",
       "price_type": "current"
     },
-    "qid-0002": {
-      "uid": "qid-0002",
-      "name": "BTC/USD Current Price",
-      "data": "What is the current price of BTC in USD?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
+    "qid-2": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-2",
+      "name": "BTC/USD current price",
       "legacy_request_id": 2,
+      "legacy_question": "what is the current value of btc in usd (warning:deprecated)",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
       "asset": "btc",
       "currency": "usd",
       "price_type": "current"
     },
-    "qid-0003": {
-      "uid": "qid-0003",
-      "name": "BNB/USD Current Price",
-      "data": "What is the current price of BNB in USD?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
-      "legacy_request_id": 3,
-      "asset": "bnb",
-      "currency": "usd",
-      "price_type": "current"
-    },
-    "qid-0004": {
-      "uid": "qid-0004",
-      "name": "BTC/USD 24hr TWAP Price",
-      "data": "What is the twap_24hr price of BTC in USD?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
-      "legacy_request_id": 4,
-      "asset": "btc",
-      "currency": "usd",
-      "price_type": "24 hour time-weighted average"
-    },
-    "qid-0005": {
-      "uid": "qid-0005",
-      "name": "ETH/BTC Current Price",
-      "data": "What is the current price of ETH in BTC?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
-      "legacy_request_id": 5,
-      "asset": "eth",
-      "currency": "btc",
-      "price_type": "current"
-    },
-    "qid-0010": {
-      "uid": "qid-0010",
-      "name": "AMPL/USD Custom Price",
-      "data": "What is the 24hr TWAP/VWAP price of AMPL in USD as specified by ampleforth governance?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
+    "qid-10": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-10",
+      "name": "AMPL/USD custom price",
       "legacy_request_id": 10,
+      "legacy_question": "what is the custom value of ampl in usd (warning:deprecated)",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
       "asset": "ampl",
       "currency": "usd",
-      "price_type": "custom time-weighted average"
+      "price_type": "custom"
     },
-    "qid-0041": {
-      "uid": "qid-0041",
-      "name": "USPCE Value (3 Month Rollng Average)",
-      "data": "What is the 3 month rolling average value of the USPCE as specified by ampleforth governance?",
-      "response_type": {
+    "qid-31": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-31",
+      "name": "MATIC/USD current price",
+      "legacy_request_id": 31,
+      "legacy_question": "what is the current value of matic in usd (warning:deprecated)",
+      "value_type": {
         "abi_type": "ufixed256x6",
         "packed": false
       },
-      "legacy_request_id": 41
+      "asset": "matic",
+      "currency": "usd",
+      "price_type": "current"
     },
-    "qid-0050": {
-      "uid": "qid-0050",
-      "name": "TRB/USD Current Price",
-      "data": "What is the current price of TRB in USD?",
-      "response_type": {
-        "abi_type": "ufixed256x6",
-        "packed": false
-      },
+    "qid-50": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-50",
+      "name": "TRB/USD current price",
       "legacy_request_id": 50,
+      "legacy_question": "what is the current value of trb in usd (warning:deprecated)",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      },
       "asset": "trb",
       "currency": "usd",
       "price_type": "current"
     },
-    "qid-0059": {
-      "uid": "qid-0059",
-      "name": "ETH/JPY Current Price",
-      "data": "What is the current price of ETH in JPY?",
-      "response_type": {
+    "qid-59": {
+      "type": "LegacyPriceQuery",
+      "uid": "qid-59",
+      "name": "ETH/JPY current price",
+      "legacy_request_id": 59,
+      "legacy_question": "what is the current value of eth in jpy (warning:deprecated)",
+      "value_type": {
         "abi_type": "ufixed256x6",
         "packed": false
       },
-      "legacy_request_id": 59,
       "asset": "eth",
       "currency": "jpy",
+      "price_type": "current"
+    },
+    "qid-41": {
+      "type": "LegacyQuery",
+      "uid": "qid-41",
+      "name": "USPCE manual value",
+      "legacy_request_id": 41,
+      "legacy_question": "what is the manual value of the USPCE",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      }
+    },
+    "qid-53": {
+      "type": "LegacyQuery",
+      "uid": "qid-53",
+      "name": "BTCDOMINANCE value",
+      "legacy_request_id": 53,
+      "legacy_question": "what is the current value of BTCDOMINANCE",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      }
+    },
+    "qid-56": {
+      "type": "LegacyQuery",
+      "uid": "qid-56",
+      "name": "VIXEOD value",
+      "legacy_request_id": 56,
+      "legacy_question": "what is the current value of VIXEOD",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      }
+    },
+    "qid-57": {
+      "type": "LegacyQuery",
+      "uid": "qid-57",
+      "name": "DEFITVL value",
+      "legacy_request_id": 57,
+      "legacy_question": "what is the current value of DEFITVL",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      }
+    },
+    "qid-58": {
+      "type": "LegacyQuery",
+      "uid": "qid-58",
+      "name": "DEFIMCAP value",
+      "legacy_request_id": 58,
+      "legacy_question": "what is the current value of DEFIMCAP",
+      "value_type": {
+        "abi_type": "ufixed256x6",
+        "packed": false
+      }
+    },
+    "qid-101": {
+      "type": "PriceQuery",
+      "uid": "qid-101",
+      "name": "Price Query",
+      "asset": "",
+      "currency": "",
       "price_type": "current"
     }
   }
