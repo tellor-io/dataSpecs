@@ -1,20 +1,20 @@
 # Tellor Data Specifications
 
-Data specifications for requestID's
+This repository contains data specifications for Query IDs. Query IDs are used as unique identifiers for data reported to and retrieved from the Tellor Oracle. In TellorX, `queryID` replaces the legacy `requestID` (tellor3 and earlier). Query ID is the common naming convention across this repository, the [oracle contracts](https://github.com/tellor-io/tellorX/blob/main/contracts/Oracle.sol) themselves, and the [Python telliot client](https://tellor-io.github.io/pytelliot/examples/legacy_query_example/).
 
 ## Adding New ID's
 
-Make a PR in this repo to signal to miners that the data is ready to mined and to show them what data they need to put on for a given requestID. 
+Make a PR in this repo to signal to reporters that the data is ready to reported and to show them how to assemble the corresponding queryID. 
 
 ### Fields:
 
 #### Question ID
 
-    (name of file) can be guessed, but ultimately will be filled in by team
+    (name of file) can be guessed, but ultimately will be filled in by team.
 
-#### Request ID: 
+#### Query ID: 
 
-    bytes32 request ID or structure for creating the ID (e.g. what to hash)
+    bytes32 query ID or structure for creating the ID (e.g. what to hash)
 
 
 #### Data Specifications
