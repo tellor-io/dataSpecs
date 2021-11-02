@@ -116,7 +116,7 @@ All query descriptors shall comply with the following specifications:
 
 6. The remaining `name`/`value` pairs shall be query `parameters`, provided in the specified order.
 
-7. There shall be optional query parameters.  All query parameters shall be specified in the descriptor.
+7. There shall be no optional query parameters.  All query parameters shall be specified in the descriptor.
 
 ## Contract Interfaces
 
