@@ -111,7 +111,7 @@ All query descriptors shall comply with the following specifications:
 4. The top level object is ordered so that `name`/`value` pairs must be provided in the specified order.
 
 5. The first `name`/`value` pair shall provide the Query Type
-   - The `name` shall be equal to `type`.  
+   - The `name` shall be the word `"type"`.  
    - The `value` shall be the name of a valid `QueryType`.
 
 6. The remaining `name`/`value` pairs shall be query `parameters`, provided in the specified order.
