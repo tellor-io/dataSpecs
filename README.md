@@ -127,13 +127,12 @@ Both values are easily computed from the QueryType Descriptor JSON string.
 
 ### QueryData
 
-The value of `_queryData` in contract calls shall be the UTF-8 encoded version
-of the query `descriptor.
+The `bytes` value of `_queryData` in contract calls shall be the UTF-8 encoded version of the query `descriptor` string.
 
 
 ### QueryID
 
-The value of `_queryID` in contract calls shall be the `keccak` hash of `_queryData`, with a single exception for the `LegacyRequest` type.
+The `bytes32` value of `_queryID` in contract calls shall be the `keccak` hash of `_queryData`, with a single exception for the `LegacyRequest` type.
 
 The `LegacyRequest` provides support for users of the Tellor network prior
 to TellorX.  In this case, the `_queryID` shall be set to the `request_id` defined
