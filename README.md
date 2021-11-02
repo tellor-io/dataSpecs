@@ -15,7 +15,7 @@ The following `QueryType`s are currently supported:
 - TextQuery
 - CoinPrice (Under development)
 
-A `QueryType` can have multiple Query `parameter`s that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
+A `QueryType` can have multiple Query `parameters` that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
 
 Please submit a PR to this repository or contact the team if you would like to define a new `QueryType`. 
 
@@ -23,7 +23,7 @@ Please submit a PR to this repository or contact the team if you would like to d
 
 Queries are uniquely identified by a special JSON string called the Query `Descriptor`.  In order to properly interact with the oracle, the `Descriptor` string must be provided *exactly* as defined by the [Query Descriptor Specification](#query-descriptor-specifications).
 
-The following is an example descriptor for a Legacy Query.  The `type` of query is a `LegacyRequest`.  The `LegacyRequest` query has a single integer parameter, called `legacy_id`.
+The following is an example descriptor for a legacy query.  The `type` of query is a `LegacyRequest`.  The `LegacyRequest` query has a single integer parameter, called `legacy_id`.
 
     {"type":"LegacyRequest","legacy_id":1}
 
@@ -44,7 +44,7 @@ Further details of the `QueryType` specification shall be provided in a file nam
 
 ## Description
 
-A general description of the QueryType, including its purpose and suggested sue cases.
+A general description of the QueryType, including its purpose and suggested use cases.
 
 ## Query Parameters
 
@@ -79,6 +79,11 @@ The ABI type shall be specified as a valid ETH ABI grammar string. Examples incl
 The response type shall also include whether the data shall be ABI encoded in
 packed (`packed=True`) or (`packed=False`) unpacked format. 
 We currently recommend using unpacked formats only.
+
+The response type for all LegacyRequest queries is a 256-bit unsigned integer, with 6 decimals of precision, i.e.:
+
+    abi_type="ufixed256x6"
+    packed=False
 
 
 ## Data Specifications
