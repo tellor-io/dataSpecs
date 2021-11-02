@@ -31,7 +31,7 @@ For further details, refer to [Query Descriptor Specifications](#query-descripto
 the query of interest.
 
 
-# Requirements for `QueryType` Specifications
+# Requirements for QueryType Specifications
 
 Every `QueryType` Specification shall provide the following:
 
@@ -141,11 +141,8 @@ in [Legacy Data Feed IDs](https://docs.tellor.io/tellor/integration/data-ids).
 
 # Adding New Query Types
 
-Make a PR in this repo to define the new Query specification.
-
-to signal to reporters that the data is ready to reported and to show them how to assemble the corresponding queryID. 
-
-
+Make a PR in this repo to define the new `QueryType` specification following the 
+[Requirements for QueryType Specifications](#requirements-for-querytype-specifications).
 
 # Maintainers <a name="maintainers"> </a> 
 This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people)
