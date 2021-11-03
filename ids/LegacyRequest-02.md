@@ -1,25 +1,25 @@
 ---
-Title: ETH/USD feed
+Title: BTC/USD feed
 Author: Brenda Loya
 Created: 2021-09-27
 ---
-# Question ID (qid): 001
+# Question ID (qid): 002
 
 # Query ID: 
 
 0x0000000000000000000000000000000000000000000000000000000000000002
 
-This ID correlates with a bytes32 version of the old uint256 request ID for the ETH/USD feed (2).
+This ID correlates with a bytes32 version of the old uint256 request ID for the BTC/USD feed.
 
 
 # Data Specifications
 
-A current ETH/USD price.
+A current BTC/USD price.
 
 
 ## Description
 
-This is the ID for a valid ETH/USD price.  It does not specify which exchanges, but does not mean a price on any exchange.  Rather, it is the ambiguous current price which represents what parties would agree on as a given price for the current timestamp. 
+This is the ID for a valid BTC/USD price.  It does not specify which exchanges, but does not mean a price on any exchange.  Rather, it is the ambiguous current price which represents what parties would agree on as a given price for the current timestamp. 
 
 
 ## Granularity
@@ -28,7 +28,7 @@ This is the ID for a valid ETH/USD price.  It does not specify which exchanges, 
 
 ## Example Value (w/ date)
 
-9/27/21 - 3000000000
+9/27/21 - 43229000000
 
 
 # Dispute Considerations
@@ -38,4 +38,3 @@ Be sure to use multiple exchanges, as one exchange could potentially slip out of
 # Notes
 
 -
-
