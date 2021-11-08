@@ -53,7 +53,7 @@ A description of the query parameters shall include:
   - `Description`
   - `Data Type`
   - `Value Specifications`
-- The parameter order required by the query `Descriptor`.
+- The parameter order required by the query `Descriptor`
 - Valid Parameter Sets
   - A list of valid parameter sets that are expected to be supported by reporters
 - Active Parameter Sets (optional)
@@ -114,7 +114,7 @@ All query descriptors shall comply with the following specifications:
 
 5. The first `name`/`value` pair shall provide the Query Type
    - The `name` shall be the word `"type"`.  
-   - The `value` shall be the name of a valid `QueryType`.
+   - The `value` shall be the name of a valid `QueryType`
 
 6. The remaining `name`/`value` pairs shall be query `parameters`, provided in the specified order.
 
@@ -153,16 +153,16 @@ Join our Discord or Telegram:
 [<img src="./public/telegram.png" width="24" height="24">](https://t.me/tellor)
 [<img src="./public/discord.png" width="24" height="24">](https://discord.gg/g99vE5Hb)
 
-Check out our issues log here on Github or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io)
+Check out our issues log here on Github or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
 
 
 # Disclaimer  
 
-This is just a guide.  Tellor is decentralized, as with the voting, so nothing is promised.  Mine or use the data at your own risk
+This is just a guide.  Tellor is decentralized, as with the voting, so nothing is promised.  Mine or use the data at your own risk.
 
-Any API examples are only examples and not an endorsement.  It is the reporter's job to find valid data sources
+Any API examples are only examples and not an endorsement.  It is the reporter's job to find valid data sources.
 
-Work in a collaborative manner on discord.  If a value is a little stale or a slightly off, be sure to just ping reminders to update or get it off.  It's hard to say what is or is not a good value unless it's painfully obvious, so as the system continues to work out the tweaks, please keep a wide margin of error before starting disputes
+Work in a collaborative manner on discord.  If a value is a little stale or a slightly off, be sure to just ping reminders to update or get it off.  It's hard to say what is or is not a good value unless it's painfully obvious, so as the system continues to work out the tweaks, please keep a wide margin of error before starting disputes.
 
 It's hard to say "if 10% off" or any hard line value.  Sometimes ETH moves 10% in 5 minutes, so both could be valid.  You really have to use judgement, and even more so you have to realize that disputes are handled by a community consensus, not some formula.
 
