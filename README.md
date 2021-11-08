@@ -1,13 +1,13 @@
 # Tellor Data Specifications
 
+
 This repository contains the query specifications for interacting with the TellorX oracle.
 
 A Query specifies how to pose a question to the TellorX oracle, instructions for reporters on how to respond, including the format of the response, and any special dispute considerations.
 
 # Query Types
 
-TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured
-ABI type string.  
+TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured ABI type string.  
 
 The following `QueryType`s are currently supported:
 
@@ -27,9 +27,7 @@ The following is an example descriptor for a legacy query.  The `type` of query 
 
     {"type":"LegacyRequest","legacy_id":1}
 
-For further details, refer to [Query Descriptor Specifications](#query-descriptor-specifications) and the `QueryType` specifications for
-the query of interest.
-
+For further details, refer to [Query Descriptor Specifications](#query-descriptor-specifications) and the `QueryType` specifications forthe query of interest.
 
 # Requirements for QueryType Specifications
 
@@ -76,19 +74,12 @@ The ABI type shall be specified as a valid ETH ABI grammar string. Examples incl
     bytes64
     (int8,bytes,ufixed32x9,bool)[2]
 
-The response type shall also include whether the data shall be ABI encoded in
-packed (`packed=True`) or (`packed=False`) unpacked format. 
-We currently recommend using unpacked formats only.
+The response type shall also include whether the data shall be ABI encoded in packed (`packed=True`) or (`packed=False`) unpacked format. We currently recommend using unpacked formats only.
 
 The response type for all LegacyRequest queries is a 256-bit unsigned integer, with 6 decimals of precision, i.e.:
 
     abi_type="ufixed256x6"
     packed=False
-
-
-## Data Specifications
-
-Technical data specifications
 
 
 ## Example
@@ -97,11 +88,9 @@ An example demonstrating detailed usage.
 
 ## Dispute Considerations
 
-Considerations that parties should consider before reporting the data w/ regard to what will be considered a valid dispute
+Note that following this guide does not prevent you from being disputed or guaruntee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
-## Notes
-
-### Why JSON? 
+## Why JSON? 
 
 JSON's a well known standard, but we ultimately chose it for three reasons: 
 
@@ -147,9 +136,7 @@ The `bytes` value of `_queryData` in contract calls shall be the UTF-8 encoded v
 
 The `bytes32` value of `_queryID` in contract calls shall be the `keccak` hash of `_queryData`, with a single exception for the `LegacyRequest` type.
 
-The `LegacyRequest` provides support for users of the Tellor network prior
-to TellorX.  In this case, the `_queryID` shall be set to the `request_id` defined
-in [Legacy Data Feed IDs](https://docs.tellor.io/tellor/integration/data-ids).
+The `LegacyRequest` provides support for users of the Tellor network prior to TellorX.  In this case, the `_queryID` shall be set to the `request_id` defined in [Legacy Data Feed IDs](https://docs.tellor.io/tellor/integration/data-ids).
  
 
 # Adding New Query Types
@@ -177,7 +164,7 @@ Any API examples are only examples and not an endorsement.  It is the reporter's
 
 Work in a collaborative manner on discord.  If a value is a little stale or a slightly off, be sure to just ping reminders to update or get it off.  It's hard to say what is or is not a good value unless it's painfully obvious, so as the system continues to work out the tweaks, please keep a wide margin of error before starting disputes
 
-It's hard to say "if 10% off" or any hard line value.  Sometimes ETH moves 10% in 5 minutes, so both could be valid.  You really have to use judgement, and even more so you have to realize that disputes are handled by a community consensus, not some formula
+It's hard to say "if 10% off" or any hard line value.  Sometimes ETH moves 10% in 5 minutes, so both could be valid.  You really have to use judgement, and even more so you have to realize that disputes are handled by a community consensus, not some formula.
 
 
 # Copyright
