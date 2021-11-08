@@ -101,7 +101,15 @@ Considerations that parties should consider before reporting the data w/ regard 
 
 ## Notes
 
-Any further notes or thoughts on the query type/
+### Why JSON? 
+
+JSON's a well known standard, but we ultimately chose it for three reasons: 
+
+1.  Human Readable/ Understandable
+
+2.  Machine Readable  
+
+3.  Programming Language Agnostic
 
 
 # Query Descriptor Specifications
