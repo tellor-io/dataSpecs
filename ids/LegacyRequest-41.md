@@ -19,7 +19,7 @@ Currently it is is the 3 month rolling average of the USPCE for AMPL as specifie
 
 ## Description
 
-This is the price target feed for the Ampleforth protocol. It corresponds to their needs and is subject to change with voting.  Currently, it is a three month rolling average of the USPCE, a number which can be found on various government websited.  The data is only updated monthly and is usually manually entered. 
+This is the price target feed for the Ampleforth protocol. It corresponds to their needs and is subject to change with voting.  Currently, it is a three month rolling average of the USPCE, a number which can be found on various government websites.  The data is only updated monthly and is usually manually entered. 
 
 
 ## Granularity
