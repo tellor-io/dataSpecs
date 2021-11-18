@@ -19,6 +19,7 @@ The token is uniquely identified by a contract address and an EVM chain ID.
 ## Response Type
 
 `abi_type`: `ufixed256x18` (18 decimals of precision)
+
 `packed`: `false`
 
 ## Example
