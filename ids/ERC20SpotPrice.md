@@ -6,18 +6,18 @@
 
 ## Query Description
 
-This query returns the ERC-20 Token Spot Price in either USD or the native currency of the EVM chain.
+This query returns an ERC-20 token spot price in either USD or the native currency of the EVM chain.
 The token is uniquely identified by a contract address and an EVM chain ID.
 
 ## Query Parameters
 
-This query accepts 3 parameters, in the following order:
+This query accepts 3 parameters, in the following order.  All parameters are mandatory.
 
 1. **address** (string): Token contract address
 2. **chain_id** (integer): Token chain ID
 3. **currency** (string) Selected currency, one of the following values:
-   - *native*: returns the price in the native currency of the chain (e.g. ETH for chain_id = 1)
-   - *usd*: returns the price in USD
+   - `native`: returns the price in the native currency of the chain (e.g. ETH for chain_id = 1)
+   - `usd`: returns the price in USD
 
 ## Response Type
 
@@ -32,7 +32,9 @@ The query response will consist of a single 256-bit value in the following forma
 
 *Query Descriptor:*
 
+    ```json
     {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
+    ```
 
 *queryID:*
 
@@ -42,7 +44,9 @@ The query response will consist of a single 256-bit value in the following forma
 
 *Query Descriptor:*
 
+    ```json
     {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
+    ```
 
 *queryID:*
 
