@@ -1,12 +1,12 @@
-# ERC-20 Token Spot Price
+# ERC-20 Token Spot Price in USD
 
 ## Query Name
 
- `ERC20SpotPrice`
+ `ERC20SpotPriceUSD`
 
 ## Query Description
 
-This query will return the spot price for an ERC-20 Token.
+This query will return the spot price for an ERC-20 Token in US Dollars.
 The token is uniquely identified by a contract address and an EVM chain ID.
 
 ## Query Parameters
