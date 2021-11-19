@@ -1,32 +1,52 @@
-# ERC-20 Token Spot Price in USD
+# ERC-20 Token Spot Price Feeds
 
 ## Query Name
 
- `ERC20SpotPriceUSD`
+- `ERC20SpotPrice`
 
 ## Query Description
 
-This query will return the spot price for an ERC-20 Token in US Dollars.
+This query returns the ERC-20 Token Spot Price in either USD or the native currency of the EVM chain.
 The token is uniquely identified by a contract address and an EVM chain ID.
 
 ## Query Parameters
 
-| Name        | Data Type   |  Description                                 |
-| ----------- | ----------- | -------------------------------------------- |
-| `address`   | str         |  Contract address (beginning with `0x`)      |
-| `chain_id`  | int         |  EVM Chain ID                                |
+This query accepts 3 parameters, in the following order:
+
+1. **address** (string): Token contract address
+2. **chain_id** (integer): Token chain ID
+3. **currency** (string) Selected currency, one of the following values:
+   - *native*: returns the price in the native currency of the chain (e.g. ETH for chain_id = 1)
+   - *usd*: returns the price in USD
 
 ## Response Type
 
-`abi_type`: `ufixed256x18` (18 decimals of precision)
+The query response will consist of a single 256-bit value in the following format:
 
-`packed`: `false`
+- `abi_type`: ufixed256x18 (18 decimals of precision)
+- `packed`: false
 
-## Example
+## Examples
 
-The following is an example query descriptor for the TRB spot price on mainnet:
+### TRB/ETH Spot Price
 
-`{"type":"ERC20SpotPrice","address":0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id",1}`
+*Query Descriptor:*
+
+    {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
+
+*queryID:*
+
+    `0xa5e36e716292c57ff85d462666fa9064f2dd7f0f169cfb771d4b2c23c26ab944`
+
+### TRB/USD Spot Price
+
+*Query Descriptor:*
+
+    {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
+
+*queryID:*
+
+     `0x2c8932428647ecc49f97a319c2ebfc2f6e667cf8ee0e96d9eb1ebf1dbb777492`
 
 ## Dispute Considerations
 
