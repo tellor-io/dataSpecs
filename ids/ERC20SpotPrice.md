@@ -32,9 +32,9 @@ The query response will consist of a single 256-bit value in the following forma
 
 *Query Descriptor:*
 
-    ```json
-    {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
-    ```
+```json
+{"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
+```
 
 *queryID:*
 
@@ -44,9 +44,9 @@ The query response will consist of a single 256-bit value in the following forma
 
 *Query Descriptor:*
 
-    ```json
-    {"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
-    ```
+```json
+{"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
+```
 
 *queryID:*
 
