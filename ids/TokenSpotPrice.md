@@ -1,12 +1,12 @@
-# ERC-20 Token Spot Price Feeds
+# Token Spot Price Feeds
 
 ## Query Name
 
-- `ERC20SpotPrice`
+- `TokenSpotPrice`
 
 ## Query Description
 
-This query returns an ERC-20 token spot price in either USD or the native currency of the EVM chain.
+This query returns an token spot price in either USD or the native currency of the EVM chain.
 The token is uniquely identified by a contract address and an EVM chain ID.
 
 ## Query Parameters
@@ -33,24 +33,24 @@ The query response will consist of a single 256-bit value in the following forma
 *Query Descriptor:*
 
 ```json
-{"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
+{"type":"TokenSpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"native"}
 ```
 
 *queryID:*
 
-    `0xa5e36e716292c57ff85d462666fa9064f2dd7f0f169cfb771d4b2c23c26ab944`
+    `0xb77c3f01bfbf486f4bdc5e5aae007ebbdaf47dc7cb0572d6a2cc473ad957f69a`
 
 ### TRB/USD Spot Price
 
 *Query Descriptor:*
 
 ```json
-{"type":"ERC20SpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
+{"type":"TokenSpotPrice","address":"0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0","chain_id":1,"currency":"usd"}
 ```
 
 *queryID:*
 
-     `0x2c8932428647ecc49f97a319c2ebfc2f6e667cf8ee0e96d9eb1ebf1dbb777492`
+     `0xc83928d2035b30eb2ed0fa81b1dd45051360813e46f6a91fcdefe11a0653250c`
 
 ## Dispute Considerations
 
