@@ -12,17 +12,13 @@ This query returns the spot price of an asset in a specified currency.
 
 The `SpotPrice` query has two parameters, which specify the pricing pair.  
 
-1. **asset** (string): Asset ID
+1. **asset** (string): Asset ID (see [Asset List](data/assets.json))
 2. **currency** (string) Selected currency
 
 The `asset`/`currency` pair must be selected from the list of supported
 spot price pairs located in the following file:
 
-    dataSpecs/price/data/spot_price_pairs.json
-
-A list of Asset IDs is provided in:
-
-    dataSpecs/price/data/assets.json
+- [Spot Price Pairs](data/spot_price_pairs.json)
 
 To request new spot price pair, please reach out to the Tellor team in discord, or
 [submit an issue](https://github.com/tellor-io/telliot-core/issues),
