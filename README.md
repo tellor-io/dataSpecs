@@ -11,9 +11,8 @@ TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryTyp
 
 The following `QueryType`s are currently supported:
 
-- LegacyRequest
-- TextQuery
-- CoinPrice (Under development)
+- [Pricing Queries](price/README.md)
+- [Legacy Queries](legacy/README.md)
 
 A `QueryType` can have multiple Query `parameters` that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
 
