@@ -8,7 +8,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":1}` |
-| Manual | `False` |
 | Query ID | `0x0000000000000000000000000000000000000000000000000000000000000001` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a317d` |
 
@@ -20,7 +19,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":2}` |
-| Manual | `False` |
 | Query ID | `0x0000000000000000000000000000000000000000000000000000000000000002` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a327d` |
 
@@ -32,7 +30,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":10}` |
-| Manual | `False` |
 | Query ID | `0x000000000000000000000000000000000000000000000000000000000000000a` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a31307d` |
 
@@ -44,7 +41,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":41}` |
-| Manual | `True` |
 | Query ID | `0x0000000000000000000000000000000000000000000000000000000000000029` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a34317d` |
 
@@ -56,7 +52,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":50}` |
-| Manual | `False` |
 | Query ID | `0x0000000000000000000000000000000000000000000000000000000000000032` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a35307d` |
 
@@ -68,6 +63,6 @@
 | Active | `True` |
 | Type | `LegacyRequest` |
 | Descriptor | `{"type":"LegacyRequest","legacy_id":59}` |
-| Manual | `False` |
 | Query ID | `0x000000000000000000000000000000000000000000000000000000000000003b` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a35397d` |
+
