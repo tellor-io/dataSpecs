@@ -70,7 +70,7 @@
 
 | Parameter | Value |
 | --- | --- |
-| Tag | `ohm-eth` |
+| Tag | `ohm-eth-spot` |
 | Active | `True` |
 | Type | `SpotPrice` |
 | Descriptor | `{"type":"SpotPrice","asset":"ohm","currency":"eth"}` |
