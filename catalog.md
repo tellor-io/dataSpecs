@@ -71,7 +71,7 @@
 | Parameter | Value |
 | --- | --- |
 | Tag | `ohm-eth-spot` |
-| Active | `True` |
+| Active | `False` |
 | Type | `SpotPrice` |
 | Descriptor | `{"type":"SpotPrice","asset":"ohm","currency":"eth"}` |
 | Query ID | `0x0136f215d1f75daabc0c0726ad4356debeb9bc95b24344165145a56684995966` |
