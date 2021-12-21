@@ -66,3 +66,13 @@
 | Query ID | `0x000000000000000000000000000000000000000000000000000000000000003b` |
 | Query data | `0x7b2274797065223a224c656761637952657175657374222c226c65676163795f6964223a35397d` |
 
+## OHM/ETH spot price
+
+| Parameter | Value |
+| --- | --- |
+| Tag | `ohm-eth-spot` |
+| Active | `False` |
+| Type | `SpotPrice` |
+| Descriptor | `{"type":"SpotPrice","asset":"ohm","currency":"eth"}` |
+| Query ID | `0x0136f215d1f75daabc0c0726ad4356debeb9bc95b24344165145a56684995966` |
+| Query data | `0x7b2274797065223a2253706f745072696365222c226173736574223a226f686d222c2263757272656e6379223a22657468227d` |
