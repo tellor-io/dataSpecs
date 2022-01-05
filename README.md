@@ -26,7 +26,7 @@ The following is an example descriptor for a legacy query.  The `type` of query 
 
     {"type":"LegacyRequest","legacy_id":1}
 
-For further details, refer to [Query Descriptor Specifications](#query-descriptor-specifications) and the `QueryType` specifications forthe query of interest.
+For further details, refer to [Query Descriptor Specifications](#query-descriptor-specifications) and the `QueryType` specifications for the query of interest.
 
 # Requirements for QueryType Specifications
 
