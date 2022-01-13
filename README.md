@@ -5,6 +5,9 @@ This repository contains the query specifications for interacting with the Tello
 
 A Query specifies how to pose a question to the TellorX oracle, instructions for reporters on how to respond, including the format of the response, and any special dispute considerations.
 
+
+Check out our queryBuilder tool:  [Query Builder](https://queryidbuilder.herokuapp.com/)
+
 # Query Types
 
 TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured ABI type string.  

@@ -10,17 +10,11 @@ This query returns the result for a given option ID (a specific prediction marke
 
 ## Query Parameters
 
-The `diva` query has one parameter, which specifies the requested data.  
+The `divaProtocolPolygon` query has one parameter, which specifies the requested data.  
 
 1. **optionID** (uint256): ID of the prediction market
 
-The `asset`/`currency` pair must be selected from the list of supported
-spot price pairs located in the following file:
-
-- [Spot Price Pairs](data/spot_price_pairs.json)
-
-To request new spot price pair, please reach out to the Tellor team in discord, or
-[submit an issue](https://github.com/tellor-io/telliot-core/issues),
+The `optionID` should be a valid prediction market on the divaProtocol on the Polygon network, ready to be settled. 
 
 ## Response Type
 
@@ -31,29 +25,26 @@ The query response will consist of a single 256-bit value in the following forma
 
 ## Examples
 
-### BTC/USD Spot Price
+### Prediction Market 
 
 *Query Descriptor:*
 
 ```json
-{"type":"SpotPrice","asset":"btc","currency":"usd"}
+{"type":"divaProtocolPolygon","optionId":"1"}
 ```
+
+```solidity
+abi.encode("divaProtocolPolygon",1)
+````
 
 *queryID:*
 
-    `0xd66b36afdec822c56014e56f468dee7c7b082ed873aba0f7663ec7c6f25d2c0a`
+    keccak256(abi.encode("divaProtocolPolygon",1))
 
-### TRB/USD Spot Price
 
-*Query Descriptor:*
 
-```json
-{"type":"SpotPrice","asset":"trb","currency":"usd"}
-```
 
-*queryID:*
-
-     `0xd962318c0b96eaaa04e2e9a3ae518eb2986cdd97630c2d72fd107befb918d7dd`
+    `0x4c6bfa4040303750318007ec849efdc93255109ff3c4e656171a6dfe1b35f2aa`
 
 ### Encoding/Decoding
 
@@ -66,9 +57,10 @@ A value of 99.9 would be submitted on-chain using the following bytes:
 
 Reporters should use care in selecting data sources and choosing the algorithm to combine them.
 
+- The prediction market nature of Diva Protocol means that the query could have a result that is a price, a temperature, a boolean, a sports score, or any different format for the data.  
+- The result should be the correct one AT THE TIME of expiration. This means that if the prediction market bets on the price of BTC/USD on Feb 1st at midnight, the query should always return the price of BTC/USD at midnight on Feb 1st, even if it get called/requested again. 
 - Multiple sources should be used whenever possible.
-- When retrieving data directly from exchanges, feed users might expect that exchanges with lower volumes
-have their prices weighted accordingly to avoid erratic results.
+- When retrieving data directly from exchanges, feed users might expect that exchanges with lower volumes have their prices weighted accordingly to avoid erratic results.
 - Care should also be used when retrieving data from aggregators.  
 - It is the reporters responsibility to ensure that the feed result is *reasonable* enough for a community consensus, otherwise it may be subject to dispute.
 - If a *reasonable* value cannot be determined, a value should not be submitted
