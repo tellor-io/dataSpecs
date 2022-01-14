@@ -2,7 +2,7 @@
 
 ## Query Name
 
-- `divaProtocolPolygon`
+- `DivaProtocolPolygon`
 
 ## Query Description
 
@@ -10,7 +10,7 @@ This query returns the result for a given option ID (a specific prediction marke
 
 ## Query Parameters
 
-The `divaProtocolPolygon` query has one parameter, which specifies the requested data.  
+The `DivaProtocolPolygon` query has one parameter, which specifies the requested data.  
 
 1. **optionID** (uint256): ID of the prediction market
 
@@ -40,9 +40,6 @@ abi.encode("divaProtocolPolygon",1)
 *queryID:*
 
     keccak256(abi.encode("divaProtocolPolygon",1))
-
-
-
 
     `0x4c6bfa4040303750318007ec849efdc93255109ff3c4e656171a6dfe1b35f2aa`
 

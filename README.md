@@ -8,6 +8,18 @@ A Query specifies how to pose a question to the TellorX oracle, instructions for
 
 Check out our queryBuilder tool:  [Query Builder](https://queryidbuilder.herokuapp.com/)
 
+
+## TLDR
+
+A "QueryType" is the unique name of the query. All QueryTypes should have at least one parameter being "type", which is mapped to a .md file in this dataSpecs repo.  
+
+The "Query Descriptor" is a structured ABI string with details of each input variable
+
+"QueryData" is the input to the _queryData field in the submitValue function on Tellor and represents the encoded parameters of the QueryType (abi.encode() in soldity)
+
+A "QueryID" is the hash (keccack256) of the QueryData
+
+
 # Query Types
 
 TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured ABI type string.  
@@ -16,14 +28,13 @@ The following `QueryType`s are currently supported:
 
 - [Pricing Queries](price/README.md)
 - [Legacy Queries](legacy/README.md)
+- [Project Specific](projectSpecific/README.md)
 
 A `QueryType` can have multiple Query `parameters` that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
 
-Please submit a PR to this repository or contact the team if you would like to define a new `QueryType`. 
-
 # Query Descriptors
 
-Queries are uniquely identified by a special JSON string called the Query `Descriptor`.  In order to properly interact with the oracle, the `Descriptor` string must be provided *exactly* as defined by the [Query Descriptor Specification](#query-descriptor-specifications).
+Queries are uniquely identified by a special ABI string called the Query `Descriptor`.  In order to properly interact with the oracle, the `Descriptor` string must be provided *exactly* as defined by the [Query Descriptor Specification](#query-descriptor-specifications).
 
 The following is an example descriptor for a legacy query.  The `type` of query is a `LegacyRequest`.  The `LegacyRequest` query has a single integer parameter, called `legacy_id`.
 
@@ -35,7 +46,7 @@ For further details, refer to [Query Descriptor Specifications](#query-descripto
 
 Every `QueryType` Specification shall provide the following:
 
-## Name
+## Type
 
 The unique name of the QueryType (e.g. `LegacyRequest`)
 Further details of the `QueryType` specification shall be provided in a file named: 
@@ -51,7 +62,7 @@ A general description of the QueryType, including its purpose and suggested use 
 A description of the query parameters shall include:
 
 - A table defining the following for each `parameter`:
-  - `Name`
+  - `Type`
   - `Description`
   - `Data Type`
   - `Value Specifications`
@@ -92,46 +103,28 @@ An example demonstrating detailed usage.
 
 Note that following this guide does not prevent you from being disputed or guaruntee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
-## Why JSON? 
-
-JSON's a well known standard, but we ultimately chose it for three reasons: 
-
-1.  Human Readable/ Understandable
-
-2.  Machine Readable  
-
-3.  Programming Language Agnostic
-
 
 # Query Descriptor Specifications
-All query descriptors shall comply with the following specifications:
+All query descriptors should be found in the dataSpecs.json file and shall comply with the following specifications:
 
-1. The top level descriptor string shall be a JSON `object` that defines a set of `name`/`value` pairs.
+1. The top level descriptor string shall be a JSON `object` that defines a set of `type` => `inputs` 
 
-2.  An object begins with `{`  and ends with `}`. Each name is followed by `:` colon and the name/value pairs are separated by a comma (`,`).  
+2.  The `type` should be a valid `QueryType`
 
-3. There shall be **no whitespace before or after the colon or comma separators**.
+3. The remaining `inputs` shall be query `parameters`, provided in the specified order.
 
-4. The top level object is ordered so that `name`/`value` pairs must be provided in the specified order.
-
-5. The first `name`/`value` pair shall provide the Query Type
-   - The `name` shall be the word `"type"`.  
-   - The `value` shall be the name of a valid `QueryType`
-
-6. The remaining `name`/`value` pairs shall be query `parameters`, provided in the specified order.
-
-7. There shall be no optional query parameters.  All query parameters shall be specified in the descriptor.
+4. There shall be no optional query parameters.  All query parameters shall be specified in the descriptor.
 
 ## Contract Interfaces
 
 Interacting with the TellorX contract (e.g. calls to  `tipQuery`, `submitValue`) requires the computation of two values: `_queryData`, and `_queryID`.  
 
 Both values are easily computed from the QueryType Descriptor JSON string.
-
+ 
 
 ### QueryData
 
-The `bytes` value of `_queryData` in contract calls shall be the UTF-8 encoded version of the query `descriptor` string.
+The `bytes` value of `_queryData` in contract calls shall be the UTF-8 encoded version of the parameters of the query `descriptor` string.
 
 
 ### QueryID
@@ -171,4 +164,4 @@ It's hard to say "if 10% off" or any hard line value.  Sometimes ETH moves 10% i
 
 # Copyright
 
-Tellor Inc. 2021
+Tellor Inc. 2022
