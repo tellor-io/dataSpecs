@@ -40,6 +40,12 @@ The query response will consist of a single 256-bit value in the following forma
 {"type":"SpotPrice","asset":"btc","currency":"usd"}
 ```
 
+
+```s
+    abi.encode("SpotPrice","btc","usd")
+```
+
+
 *queryID:*
 
     `0xd66b36afdec822c56014e56f468dee7c7b082ed873aba0f7663ec7c6f25d2c0a`

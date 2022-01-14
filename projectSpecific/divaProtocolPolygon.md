@@ -30,12 +30,26 @@ The query response will consist of a single 256-bit value in the following forma
 *Query Descriptor:*
 
 ```json
-{"type":"divaProtocolPolygon","optionId":"1"}
+    {
+        "type": "DivaProtocolPolygon",
+        "inputs": [{
+            "type": "uint256",
+            "name": "optionID"
+        }],
+        "outputs": [
+            {
+              "name": "divaProtocolValue",
+              "decimals": 18,
+              "type": "uint256",
+              "packed":false
+            }
+        ]
+    }
 ```
 
-```solidity
-abi.encode("divaProtocolPolygon",1)
-````
+```s
+    abi.encode("divaProtocolPolygon",1)
+```
 
 *queryID:*
 
