@@ -26,9 +26,9 @@ TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryTyp
 
 The following `QueryType`s are currently supported:
 
-- [Pricing Queries](price/README.md)
-- [Legacy Queries](legacy/README.md)
-- [Project Specific](projectSpecific/README.md)
+- [Pricing Queries](types/SpotPrice.md)
+- [Legacy Queries](types/LegacyRequest.md)
+- [Diva Protocol](types/DivaProtocolPolygon.md)
 
 A `QueryType` can have multiple Query `parameters` that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
 
@@ -134,10 +134,15 @@ The `bytes32` value of `_queryID` in contract calls shall be the `keccak` hash o
 The `LegacyRequest` provides support for users of the Tellor network prior to TellorX.  In this case, the `_queryID` shall be set to the `request_id` defined in [Legacy Data Feed IDs](https://docs.tellor.io/tellor/integration/data-ids).
  
 
-# Adding New Query Types
+# Adding New Data Feeds / Types
 
-Make a PR in this repo to define the new `QueryType` specification following the 
-[Requirements for QueryType Specifications](#requirements-for-querytype-specifications).
+## New Data - Existing Query Type
+e.g. a new spot price feed
+Make a PR to add the specific feed to the catalog.md file.  
+
+## New Data - New QueryType
+e.g. txn data from a brand new chain
+Make a PR in this repo to define and add a new `QueryType`.md file in the "types" folder.  You can then add new data type to the dataspecs.json and the specific query to the catalog.md  
 
 # Maintainers <a name="maintainers"> </a> 
 This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people)
