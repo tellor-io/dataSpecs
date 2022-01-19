@@ -3,23 +3,21 @@ Title: ETH/USD feed
 Author: Brenda Loya
 Created: 2021-09-27
 ---
-# Question ID (qid): 001
+## Query Name
 
-# Query ID: 
+- `LegacyRequest`
 
-0x0000000000000000000000000000000000000000000000000000000000000001
+## Query Description
 
-This ID correlates with a bytes32 version of the old uint256 request ID for the ETH/USD feed (2).
+This is the type for all legacy requests (created and running before 12/01/2021). Unlike all new ID's, the hash of the _queryData is not the _queryID for legacy ID's. 
 
+## Query Parameters
 
-# Data Specifications
+The `LegacyRequest` query has one parameter, which specifies the requested data.  
 
-A current ETH/USD price.
+1. **requestId** (uint256): ID of the Tellor request
 
-
-## Description
-
-This is the ID for a valid ETH/USD price.  It does not specify which exchanges, but does not mean a price on any exchange.  Rather, it is the ambiguous current price which represents what parties would agree on as a given price for the current timestamp. 
+The `requestId` should be a requestId from the Tellor system before the TellorX upgrade. 
 
 
 ## Granularity
@@ -30,6 +28,18 @@ This is the ID for a valid ETH/USD price.  It does not specify which exchanges, 
 
 9/27/21 - 3000000000
 
+
+## Supported Data
+
+Only certain ID's are valid for legacy requests.  The others will be considered null and any price feeds wanted other than this list should use the SpotPrice.md type
+
+Supported:
+    - 1
+    - 2
+    - 10
+    - 41
+    - 50
+    - 59
 
 # Dispute Considerations
 
