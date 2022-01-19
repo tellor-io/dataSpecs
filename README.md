@@ -142,7 +142,9 @@ Make a PR to add the specific feed to the catalog.md file.
 
 ## New Data - New QueryType
 e.g. txn data from a brand new chain
-Make a PR in this repo to define and add a new `QueryType`.md file in the "types" folder.  You can then add new data type to the dataspecs.json and the specific query to the catalog.md  
+Make a PR in this repo to define and add a new `QueryType`.md file in the "types" folder.  You can then add new data type to the dataspecs.json and the specific query to the catalog.md 
+
+Note:  All parameters are input as lowercase.  All new types are camel-case. 
 
 # Maintainers <a name="maintainers"> </a> 
 This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people)
