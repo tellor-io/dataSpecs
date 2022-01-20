@@ -1,4 +1,4 @@
-# Spot Price Feeds
+# Diva Protocol Specific Feeds
 
 ## Query Name
 
