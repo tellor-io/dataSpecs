@@ -23,10 +23,6 @@ The query response will consist of a single 256-bit value in the following forma
 - `abi_type`: ufixed256x18 (18 decimals of precision)
 - `packed`: false
 
-## Examples
-
-### Prediction Market 
-
 *Query Descriptor:*
 
 ```json
@@ -38,7 +34,7 @@ The query response will consist of a single 256-bit value in the following forma
         }],
         "outputs": [
             {
-              "name": "divaProtocolValue",
+              "name": "DivaProtocolValue",
               "decimals": 18,
               "type": "uint256",
               "packed":false
@@ -48,14 +44,14 @@ The query response will consist of a single 256-bit value in the following forma
 ```
 
 ```s
-    abi.encode("divaProtocolPolygon",1)
+    abi.encode("DivaProtocolPolygon",1)
 ```
 
 *queryID:*
 
-    keccak256(abi.encode("divaProtocolPolygon",1))
+    keccak256(abi.encode("DivaProtocolPolygon",1))
 
-    `0x4c6bfa4040303750318007ec849efdc93255109ff3c4e656171a6dfe1b35f2aa`
+    `0x7629fa3217586cf11c9ea7af4567eaa9648c7ca309a6219a4785e140a5924744`
 
 ### Encoding/Decoding
 
