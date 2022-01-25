@@ -51,13 +51,6 @@ The query response will consist of a single 256-bit value in the following forma
 
 ### Encoding/Decoding Results
 
-An example result would be:
-
-[enter example here]
-
-Decoded, this would be:
-
-[enter decoded result here ]
 
 
 ## Dispute Considerations
