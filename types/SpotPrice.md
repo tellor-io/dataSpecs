@@ -43,7 +43,7 @@ The query response will consist of a single 256-bit value in the following forma
 
 *queryID:*
 
-    `0xdac60eddde0c33db33b12e6adb2ea5b13d3572efe8fc757f81e8544453d5501a`
+    `0xa6f013ee236804827b77696d350e9f0ac3e879328f2a3021d473a0b778ad78ac`
 
 ### TRB/USD Spot Price
 
@@ -59,7 +59,7 @@ The query response will consist of a single 256-bit value in the following forma
 
 *queryID:*
 
-     `0x168699163fbbbcf57c5ea0c0a960c7bc436372e23e498ea0eaf9d432b7f4ee6e`
+     `0x5c13cd9c97dbb98f2429c101a2a8150e6c7a0ddaff6124ee176a3a411067ded0`
 
 ### Encoding/Decoding
 
