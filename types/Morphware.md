@@ -45,7 +45,7 @@ The query response will consist of a single 256-bit value in the following forma
 
 *queryID:*
 
-    keccak256(abi.encode("Morphware",1))
+    keccak256(abi.encode("Morphware",abi.encode(1)))
 
     `0x4c6bfa4040303750318007ec849efdc93255109ff3c4e656171a6dfe1b35xxxx`
 
