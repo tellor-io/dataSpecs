@@ -2,7 +2,7 @@
 
 ## Query Name
 
-- `Morphware`
+- `MorphwareAWSSpotPrice`
 
 ## Query Description
 
@@ -10,7 +10,7 @@ This query returns the result for Morphware
 
 ## Query Parameters
 
-The `Morphware` query has X parameter, which specifies the requested data.  
+The `MorphwareAWSSpotPrice` query has three parameters: region, instance type, and price.
 
 ## Response Type
 
