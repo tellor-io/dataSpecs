@@ -49,9 +49,9 @@ The query response will consist of a single 256-bit value in the following forma
 
 *queryID:*
 
-    keccak256(abi.encode("DivaProtocolPolygon",1))
+    keccak256(abi.encode("DivaProtocolPolygon",abi.encode(1)))
 
-    `0x7629fa3217586cf11c9ea7af4567eaa9648c7ca309a6219a4785e140a5924744`
+    `0x4c22f2b746b4a712fe71df38c058d067baca27b3f97dbb132cfc7c2fce511379`
 
 ### Encoding/Decoding
 

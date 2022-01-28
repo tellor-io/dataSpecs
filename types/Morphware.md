@@ -57,6 +57,9 @@ Examples:
 Using [telliot](https://github.com/tellor-io/telliot-core):
 ```python
 from telliot_core.api import MorphwareAWSSpotPriceQuery
+    keccak256(abi.encode("Morphware",abi.encode(1)))
+
+    `0xbf7f9942188d84961cf2a01ec68c42ef000d5b0fb5ca7dc0fcf1ceee5164811c`
 
 zone = "us-east-1f"
 instance_type = "i3.16xlarge"
