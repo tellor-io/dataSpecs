@@ -10,15 +10,15 @@
 
 ## Query Parameters
 
-The `MorphwareAWSSpotPriceQuery` query has three parameters:
+The `MorphwareAWSSpotPriceQuery` query has two parameters:
 
 **Zone**: physical locations of AWS data center clusters (example: us-east-1f)
 
 **Instance**: compute optimized, memory optimized, etc. (example: i3.16xlarge)
 
-**Price**: price per hour in USD (example: 2.1194)
-
 ## Query Response
+
+**Price**: price per hour in USD (example: 2.1194)
 
 *Query Descriptor:*
 
