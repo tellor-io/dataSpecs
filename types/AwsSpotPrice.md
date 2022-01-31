@@ -23,10 +23,10 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
 
 ## Expected Response
 
-- **Description:** price per hour in US dollars of an EC2 instance in a specific region. TODO: more
+- **Description:** price per hour in US dollars of an EC2 instance in a specific region.
 - **ABI type:** `ufixed256x18` (Expected Solidity type to decode the bytes reponse into. More info [here](https://docs.soliditylang.org/en/v0.8.11/types.html#fixed-point-numbers))
-- **Packed:** `false` TODO explain
-- **Examples:** TODO
+- **Packed:** `false`
+- **Examples:** 
 
     - <details><summary>Python</summary>
 
@@ -41,14 +41,6 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
 
         value = query.value_type.encode(price)
         print("Encoded query response:", value.hex())
-        ```
-
-        Lower level way: TODO
-
-        ```python
-
-
-        print("Response bytes:", query_data)
         ```
 
     </details>
