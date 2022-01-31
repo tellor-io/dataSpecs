@@ -51,21 +51,8 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
         print("Response bytes:", query_data)
         ```
 
-    - <details><summary>JavaScript</summary>
-
-        ```javascript
-        console.log("TODO")
-        ```
-
-    - <details><summary>Solidity</summary>
-
-        ```javascript
-        TODO
-        ```
-
     </details>
-    </details>
-    </details>
+
 
 ## Query Data
 - **Description:** query data is needed to generate the query ID. Query data consists of the bytes encoded query parameter values and query type string. `zone` and `instance` values are encoded first as bytes, then the query type string with those bytes. Order of encoding matters.
@@ -123,7 +110,7 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
         string zone = "us-east-1f";
         string instance = "i3.16xlarge";
         bytes queryDataArgs = abi.encode(zone, instance);
-        bytes queryData = abi.encode("ExampleQuery", queryDataArgs);
+        bytes queryData = abi.encode("AwsSpotPrice", queryDataArgs);
         ```
 
     </details>
@@ -159,14 +146,22 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
 
     - <details><summary>JavaScript</summary>
 
+        Using [web3.js](https://github.com/ChainSafe/web3.js):
+
         ```javascript
-        console.log("TODO")
+        queryId = web3.utils.keccak256(queryData)
+        ```
+
+        Using [ethers.js](https://github.com/ethers-io/ethers.js/):
+
+        ```javascript
+        queryId = ethers.utils.keccak256(queryData)
         ```
 
     - <details><summary>Solidity</summary>
 
         ```javascript
-        queryData = abi.encode(["string", "bytes"], ["AwsSpotPrice", encodedParameterValues])
+        bytes32 queryId = keccak256(queryData);
         ```
 
     </details>
