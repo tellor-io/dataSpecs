@@ -98,14 +98,32 @@ Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets
 
     - <details><summary>JavaScript</summary>
 
+        Using [web3.js](https://github.com/ChainSafe/web3.js):
+
         ```javascript
-        console.log("TODO")
+        queryDataArgs = web3.eth.abi.encodeParameters(['string', 'string'], ['us-east-1f', 'i3.16xlarge'])
+
+        queryData = web3.eth.abi.encodeParameters(['string', 'bytes'], ['AwsSpotPrice', queryDataArgs])
+        ```
+
+        Using [ethers.js](https://github.com/ethers-io/ethers.js/):
+
+        ```javascript
+        abiCoder = new ethers.utils.AbiCoder
+
+        queryDataArgs = abiCoder.encode(['string', 'string'], ['us-east-1f', 'i3.16xlarge'])
+
+
+        queryData = abiCoder.encode(['string', 'bytes'], ['AwsSpotPrice', queryDataArgs])
         ```
 
     - <details><summary>Solidity</summary>
 
         ```javascript
-        queryData = abi.encode(["string", "bytes"], ["AwsSpotPrice", encodedParameterValues])
+        string zone = "us-east-1f";
+        string instance = "i3.16xlarge";
+        bytes queryDataArgs = abi.encode(zone, instance);
+        bytes queryData = abi.encode("ExampleQuery", queryDataArgs);
         ```
 
     </details>
