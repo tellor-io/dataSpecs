@@ -179,7 +179,15 @@ The JSON representation of this query type can be used in a variety of languages
 }
 ```
 
-## Data Sources & Dispute Considerations
+## Dispute Considerations
+
+Reporters should use care in selecting data sources and choosing the algorithm to combine them.
+ 
+- Multiple sources should be used whenever possible.
+- Care should also be used when retrieving data from aggregators.  
+- It is the reporters responsibility to ensure that the feed result is *reasonable* enough for a community consensus, otherwise it may be subject to dispute.
+- If a *reasonable* value cannot be determined, a value should not be submitted.
+
+## Data Sources
 
 AWS pricing can be retrieved through a number of APIs like [Amazon's](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) or [infracost](https://www.infracost.io/blog/cloud-pricing-api/). Also, there are tools like [cloudinfo](https://github.com/banzaicloud/cloudinfo) for retrieving responses to this query.
-
