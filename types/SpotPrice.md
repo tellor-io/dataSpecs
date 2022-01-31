@@ -65,7 +65,7 @@ The query response will consist of a single 256-bit value in the following forma
 
 A value of 99.9 would be submitted on-chain using the following bytes:
 
-    0x0000000000000000000000000000000000000000000000056ba3d73af34eec04
+    0x0000000000000000000000000000000000000000000000056a6418b505860000
 
 
 ## Dispute Considerations
