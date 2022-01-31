@@ -181,4 +181,5 @@ The JSON representation of this query type can be used in a variety of languages
 
 ## Data Sources & Dispute Considerations
 
-? TODO ?
+AWS pricing can be retrieved through a number of APIs like [Amazon's](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) or [infracost](https://www.infracost.io/blog/cloud-pricing-api/). Also, there are tools like [cloudinfo](https://github.com/banzaicloud/cloudinfo) for retrieving responses to this query.
+
