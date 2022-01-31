@@ -15,7 +15,7 @@ A "QueryType" is the unique name of the query. All QueryTypes should have at lea
 
 The "Query Descriptor" is a structured ABI string with details of each input variable
 
-"QueryData" is the input to the _queryData field in the submitValue function on Tellor and represents the encoded parameters of the QueryType (abi.encode() in soldity)
+"QueryData" is the input to the _queryData field in the submitValue function on Tellor and represents the encoded parameters of the QueryType (abi.encode() in solidity)
 
 A "QueryID" is the hash (keccack256) of the QueryData and the identifier for your data
 
