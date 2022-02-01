@@ -2,7 +2,7 @@
 
 ## Query Name
 
-- `DivaProtocolPolygon`
+- `divaProtocolPolygon`
 
 ## Query Description
 
@@ -10,7 +10,7 @@ This query returns the result for a given option ID (a specific prediction marke
 
 ## Query Parameters
 
-The `DivaProtocolPolygon` query has one parameter, which specifies the requested data.  
+The `divaProtocolPolygon` query has one parameter, which specifies the requested data.  
 
 1. **optionID** (uint256): ID of the prediction market
 
@@ -27,7 +27,7 @@ The query response will consist of a single 256-bit value in the following forma
 
 ```json
     {
-        "type": "DivaProtocolPolygon",
+        "type": "divaProtocolPolygon",
         "inputs": [{
             "type": "uint256",
             "name": "optionID"
@@ -43,21 +43,26 @@ The query response will consist of a single 256-bit value in the following forma
     }
 ```
 
+*queryData:*
+
 ```s
-    abi.encode("DivaProtocolPolygon",1)
+abi.encode("divaProtocolPolygon", abi.encode(1))
 ```
 
+`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000136469766150726f746f636f6c506f6c79676f6e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001`
+
 *queryID:*
+```s
+keccak256(abi.encode("divaProtocolPolygon",abi.encode(1)))
+```
 
-    keccak256(abi.encode("DivaProtocolPolygon",abi.encode(1)))
-
-    `0x4c22f2b746b4a712fe71df38c058d067baca27b3f97dbb132cfc7c2fce511379`
+`0x769ef93b727c9435930f0b9aceae97f79afe68a1f368453835581395ca2e2474`
 
 ### Encoding/Decoding
 
 A value of 99.9 would be submitted on-chain using the following bytes:
 
-    0x0000000000000000000000000000000000000000000000056ba3d73af34eec04
+`0x0000000000000000000000000000000000000000000000056a6418b505860000`
 
 
 ## Dispute Considerations
