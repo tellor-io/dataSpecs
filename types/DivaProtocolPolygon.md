@@ -6,15 +6,15 @@
 
 ## Query Description
 
-This query returns the result for a given option ID (a specific prediction market) on the Diva Protocol on Polygon
+This query returns the result for a given poolID (a specific prediction market) on the Diva Protocol on Polygon
 
-## Query Parameters
+## Query Paramete
 
 The `DivaProtocolPolygon` query has one parameter, which specifies the requested data.  
 
-1. **optionID** (uint256): ID of the prediction market
+1. **poolID** (uint256): ID of the prediction market
 
-The `optionID` should be a valid prediction market on the divaProtocol on the Polygon network, ready to be settled. 
+The `poolID` should be a valid prediction market on the divaProtocol on the Polygon network, ready to be settled. 
 
 ## Response Type
 
@@ -30,7 +30,7 @@ The query response will consist of a single 256-bit value in the following forma
         "type": "DivaProtocolPolygon",
         "inputs": [{
             "type": "uint256",
-            "name": "optionID"
+            "name": "poolID"
         }],
         "outputs": [
             {
