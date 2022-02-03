@@ -30,7 +30,7 @@ The query response will consist of a single 256-bit value in the following forma
         "type": "divaProtocolPolygon",
         "inputs": [{
             "type": "uint256",
-            "name": "poolId"
+            "name": "poolID"
         }],
         "outputs": [
             {
