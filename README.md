@@ -5,32 +5,29 @@ This repository contains the query specifications for interacting with the Tello
 
 A Query specifies how to pose a question to the TellorX oracle, instructions for reporters on how to respond, including the format of the response, and any special dispute considerations.
 
+The following data series are currently supported:
+
+- [Query Catalog](catalog.md)
 
 Check out our queryBuilder tool:  [Query Builder](https://queryidbuilder.herokuapp.com/)
 
 
 ## TLDR
 
-A "QueryType" is the unique name of the query. All QueryTypes should have at least one parameter being "type", which is mapped to a .md file in this dataSpecs repo.  
+To request a new data feed, make an issue.  
 
-The "Query Descriptor" is a structured ABI string with details of each input variable
+Here's a sample of a price feed one: https://github.com/tellor-io/dataSpecs/issues/24 
+Here's a sample of a more custom feed (a non-price feed): https://github.com/tellor-io/dataSpecs/issues/25
 
-"QueryData" is the input to the _queryData field in the submitValue function on Tellor and represents the encoded parameters of the QueryType (abi.encode() in solidity)
-
-A "QueryID" is the hash (keccack256) of the QueryData and the identifier for your data
+That should be all that's necessary, but we'll reach out in the issue with any questions. 
 
 
 # Query Types
 
 TellorX is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured ABI type string.  
 
-The following `QueryType`s are currently supported:
+All supported queries are found in the `/types` folder
 
-- [Pricing Queries](types/SpotPrice.md)
-- [Legacy Queries](types/LegacyRequest.md)
-- [Diva Protocol](types/DivaProtocolPolygon.md)
-
-A `QueryType` can have multiple Query `parameters` that specify details of the query request (e.g. the token symbol for a `CoinPrice` query).
 
 # Requirements for QueryType Specifications
 
@@ -38,7 +35,7 @@ Every `QueryType` Specification shall provide the following:
 
 ## Type
 
-The unique name of the QueryType (e.g. `LegacyRequest`)
+The unique name of the QueryType (e.g. `SpotPrice`)
 Further details of the `QueryType` specification shall be provided in a file named: 
 
     <query-type-name>.md
@@ -56,20 +53,11 @@ A description of the query parameters shall include:
   - `Description`
   - `Data Type`
   - `Value Specifications`
-- The parameter order required by the query `Descriptor`
-- Valid Parameter Sets
-  - A list of valid parameter sets that are expected to be supported by reporters
+- The parameter order required for the query 
 
 ## Response Type
 
-The response type shall specify two values
-- `abi_type`
-- `packed`
-
-The ABI type shall be specified as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc) 
-
-The response type shall also include whether the data shall be ABI encoded in packed (`packed=True`) or (`packed=False`) unpacked format. We currently recommend using unpacked formats only.
-
+Please specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc) 
 
 ## Example
 
@@ -108,15 +96,17 @@ The `bytes32` value of `_queryID` in contract calls shall be the `keccak` hash o
 
 # Adding New Data Feeds / Types
 
+Make an issue in this repository
+
+
 ## New Data - Existing Query Type
-e.g. a new spot price feed
-Make a PR to add the specific feed to the catalog.md file.  
+
+Here's a sample of a price feed one: https://github.com/tellor-io/dataSpecs/issues/24 
+
 
 ## New Data - New QueryType
-e.g. txn data from a brand new chain
-Make a PR in this repo to define and add a new `QueryType`.md file in the "types" folder.  You can then add new data type to the dataspecs.json and the specific query to the catalog.md 
 
-Note:  All parameters are input as lowercase.  All new types are camel-case. 
+Here's a sample of a more custom feed (a non-price feed): https://github.com/tellor-io/dataSpecs/issues/25
 
 # Maintainers <a name="maintainers"> </a> 
 This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people)
@@ -128,17 +118,6 @@ Join our Discord or Telegram:
 [<img src="./public/discord.png" width="24" height="24">](https://discord.gg/g99vE5Hb)
 
 Check out our issues log here on Github or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
-
-
-# Disclaimer  
-
-This is just a guide.  Tellor is decentralized, as with the voting, so nothing is promised.  Mine or use the data at your own risk.
-
-Any API examples are only examples and not an endorsement.  It is the reporter's job to find valid data sources.
-
-Work in a collaborative manner on discord.  If a value is a little stale or a slightly off, be sure to just ping reminders to update or get it off.  It's hard to say what is or is not a good value unless it's painfully obvious, so as the system continues to work out the tweaks, please keep a wide margin of error before starting disputes.
-
-It's hard to say "if 10% off" or any hard line value.  Sometimes ETH moves 10% in 5 minutes, so both could be valid.  You really have to use judgement, and even more so you have to realize that disputes are handled by a community consensus, not some formula.
 
 
 # Copyright
