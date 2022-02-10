@@ -8,6 +8,23 @@
 
 This query returns the result for a given poolId (a specific prediction market) on the Diva Protocol on Polygon
 
+### Informaton of Query:
+
+For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/dataSpecs  
+
+To get the pool information, run
+
+```
+    getPoolParameters(poolId)
+```
+
+The first result is the reference asset which should be returned for the value on expiry time (9th parameter)
+
+e.g  -  referenceAsset: 'ETH/USDT',
+e.g. - expiryDate: BigNumber { value: "1642021490" },
+
+In this example, if poolId 1 refers to these data, you would return the ETH/USDT price at 1642021490
+
 ## Query Parameters
 
 The `divaProtocolPolygon` query has one parameter, which specifies the requested data.  
