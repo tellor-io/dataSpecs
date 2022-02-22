@@ -8,7 +8,7 @@
 
 This query returns the result for a given poolId (a specific prediction market) on the Diva Protocol on Polygon
 
-### Informaton of Query:
+### Information of Query:
 
 For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/main
 
