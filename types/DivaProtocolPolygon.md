@@ -10,7 +10,7 @@ This query returns the result for a given poolId (a specific prediction market) 
 
 ### Informaton of Query:
 
-For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/dataSpecs  
+For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/main
 
 To get the pool information, run
 
