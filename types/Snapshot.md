@@ -6,7 +6,8 @@
 
 ## Query Description
 
-This query returns the proposal result for a given proposalId (a specific proposal) coming from Snapshot
+This query returns the proposal result for a given proposalId (a specific proposal) coming from Snapshot.
+See https://docs.snapshot.org/graphql-api for reference.
 
 ## Query Parameters
 
