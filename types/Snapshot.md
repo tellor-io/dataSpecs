@@ -70,3 +70,8 @@ A value of [10023,1058] would be submitted on-chain using the following bytes:
 
 - It is the reporters responsibility to ensure that the feed result is *reasonable* enough for a community consensus, otherwise it may be subject to dispute.
 - If a *reasonable* value cannot be determined, a value should not be submitted
+    
+    
+## Example
+
+    A working example can be found here: https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b
