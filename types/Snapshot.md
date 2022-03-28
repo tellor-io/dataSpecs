@@ -74,4 +74,4 @@ A value of [10023,1058] would be submitted on-chain using the following bytes:
     
 ## Example
 
-    A working example can be found here: https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b
+A working example can be found here: [https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b](https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b)
