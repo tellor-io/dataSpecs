@@ -1,7 +1,7 @@
 # Tellor Data Specifications
 
 
-This repository contains the query specifications for interacting with the TellorX oracle.
+This repository contains the query specifications for interacting with the Tellor oracle.
 
 A Query specifies how to pose a question to the TellorX oracle, instructions for reporters on how to respond, including the format of the response, and any special dispute considerations.
 
