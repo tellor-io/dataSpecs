@@ -1,164 +1,38 @@
-# AWS Spot Price
+# Morphware
 
 ## Type
 
-`AwsSpotPrice`
+`Morphware`
 
 ## Description
 
-This query asks, "What's the price (USD) per hour to rent a specific [EC2 instance](https://aws.amazon.com/ec2/pricing/on-demand/) in my [region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)?"
-
-Why this data? [Morphware](https://morphware.org) needs it. Since Morphware lets people train machine learning models with compute rented from a decentralized network of providers, they require the prices of EC2 instances to help determine the rewards for participating compute providers.
+Cloud compute prices and metadata. [Morphware](https://morphware.org) needs rental prices of cloud compute providers to help determine the rewards for participating compute providers in their decentralized network.
 
 ## Parameters
 
-1. `zone`
-    - **Description:** a physical location of an AWS data center to rent EC2 instances from.
-    - **ABI type:** `string`
-    - **Example:** `us-east-1f`
-2. `instance`
-    - **Description:** AWS virtual server for rent with different CPU, memory, storage, and networking configurations.
-    - **ABI type:** `string`
-    - **Example:** `i3.16xlarge`
+1. `version`
+    - **Description:** Morphware query version. Morphware provides detailed specs for each version [here](TODO: get link to Morphware docs).
+    - **ABI type:** `uint256`
+    - **Example:** `1`
+
 
 ## Expected Response
 
-- **Description:** price per hour in US dollars of an EC2 instance in a specific region.
-- **ABI type:** `ufixed256x18` (Expected Solidity type to decode the bytes reponse into. More info [here](https://docs.soliditylang.org/en/v0.8.11/types.html#fixed-point-numbers))
+- **Description:** An array of JSON strings containing cloud compute prices and metadata. Refer to the detailed response requirements of each Morphware query version [here](TODO: link to Morphware docs).
+- **ABI type:** `string[]` (Expected Solidity type to decode the bytes reponse into. More info [here](https://docs.soliditylang.org/en/v0.8.11/types.html#fixed-point-numbers))
 - **Packed:** `false`
-- **Examples:** 
-
-    - <details><summary>Python</summary>
-
-        Using [telliot-core](https://github.com/tellor-io/telliot-core):
-
-        ```python
-        from telliot_core.api import AwsSpotPrice
-
-        price = 2.345
-
-        query = AwsSpotPrice(zone="us-east-1f", instance="i3.16xlarge")
-
-        value = query.value_type.encode(price)
-        print("Encoded query response:", value.hex())
-        ```
-
-    </details>
+- **Examples:** [here](https://github.com/tellor-io/telliot-core/blob/main/tests/test_query_morphware.py)
 
 
 ## Query Data
-- **Description:** query data is needed to generate the query ID. Query data consists of the bytes encoded query parameter values and query type string. `zone` and `instance` values are encoded first as bytes, then the query type string with those bytes. Order of encoding matters.
+- **Description:** Query data is needed to generate the query ID. To generate the query data, the `version` parameter value (e.g. `1`) is first encoded as bytes, then the query type string with those bytes. Order of encoding matters.
 - **ABI type:** `bytes`
-- **Examples:** See the [catalog](https://github.com/tellor-io/dataSpecs/blob/main/catalog.md) for actively-used query data.
-
-    - <details><summary>Python</summary>
-
-        Using [telliot-core](https://github.com/tellor-io/telliot-core):
-
-        ```python
-        from telliot_core.api import AwsSpotPrice
-
-        query = AwsSpotPrice(zone="us-east-1f", instance="i3.16xlarge")
-
-        print("Query Data:", query.query_data)
-        ```
-
-        Using [eth-abi](https://github.com/ethereum/eth-abi):
-
-        ```python
-        from eth_abi import encode_abi
-
-        encoded_param_vals = encode_abi(["string", "string"], ["us-east-1f", "i3.16xlarge"])
-
-        query_data = encode_abi(["string", "bytes"], ["AwsSpotPrice", encoded_param_vals])
-
-        print("Query Data:", query_data)
-        ```
-
-    - <details><summary>JavaScript</summary>
-
-        Using [web3.js](https://github.com/ChainSafe/web3.js):
-
-        ```javascript
-        queryDataArgs = web3.eth.abi.encodeParameters(['string', 'string'], ['us-east-1f', 'i3.16xlarge'])
-
-        queryData = web3.eth.abi.encodeParameters(['string', 'bytes'], ['AwsSpotPrice', queryDataArgs])
-        ```
-
-        Using [ethers.js](https://github.com/ethers-io/ethers.js/):
-
-        ```javascript
-        abiCoder = new ethers.utils.AbiCoder
-
-        queryDataArgs = abiCoder.encode(['string', 'string'], ['us-east-1f', 'i3.16xlarge'])
-
-
-        queryData = abiCoder.encode(['string', 'bytes'], ['AwsSpotPrice', queryDataArgs])
-        ```
-
-    - <details><summary>Solidity</summary>
-
-        ```javascript
-        string zone = "us-east-1f";
-        string instance = "i3.16xlarge";
-        bytes queryDataArgs = abi.encode(zone, instance);
-        bytes queryData = abi.encode("AwsSpotPrice", queryDataArgs);
-        ```
-
-    </details>
-    </details>
-    </details>
+- **Examples:** [here](https://github.com/tellor-io/telliot-core/blob/main/tests/test_query_morphware.py)
 
 ## Query ID
-- **Description:** the unique identifier for this query is constructed by taking the [Keccak hash](https://eth.wiki/en/concepts/ethash/ethash) of the query data bytes. The query ID is used in several Tellor oracle functions, notably `submitValue()`, which is used for reporting query response data.
+- **Description:** The unique identifier for this query is constructed by taking the [Keccak hash](https://eth.wiki/en/concepts/ethash/ethash) of the query data bytes.
 - **ABI type:** `bytes32`
-- **Examples:** See the [catalog](https://github.com/tellor-io/dataSpecs/blob/main/catalog.md) for actively-used query IDs.
-
-    - <details><summary>Python</summary>
-
-        Using [telliot-core](https://github.com/tellor-io/telliot-core):
-
-        ```python
-        from telliot_core.api import AwsSpotPrice
-
-        query = AwsSpotPrice(zone="us-east-1f", instance="i3.16xlarge")
-
-        print("Query ID:", query.query_id.hex())
-        ```
-
-        Using [web3](https://github.com/ethereum/web3.py):
-
-        ```python
-        from web3 import Web3
-
-        query_id = bytes(Web3.keccak(b"fake query data"))
-
-        print("Query ID:", query_id.hex())
-        ```
-
-    - <details><summary>JavaScript</summary>
-
-        Using [web3.js](https://github.com/ChainSafe/web3.js):
-
-        ```javascript
-        queryId = web3.utils.keccak256(queryData)
-        ```
-
-        Using [ethers.js](https://github.com/ethers-io/ethers.js/):
-
-        ```javascript
-        queryId = ethers.utils.keccak256(queryData)
-        ```
-
-    - <details><summary>Solidity</summary>
-
-        ```javascript
-        bytes32 queryId = keccak256(queryData);
-        ```
-
-    </details>
-    </details>
-    </details>
+- **Examples:** [here](https://github.com/tellor-io/telliot-core/blob/main/tests/test_query_morphware.py)
 
 ## JSON Representation
 
@@ -166,19 +40,15 @@ The JSON representation of this query type can be used in a variety of languages
 
 ```json
 {
-    "type": "AwsSpotPrice",
+    "type": "Morphware",
     "abi": [
         {
-            "type": "string",
-            "name": "zone",
-        },
-        {
-            "type": "string",
-            "name": "instance",
+            "type": "uint256",
+            "name": "version",
         },
     ],
     "response": {
-        "type": "ufixed256x18",
+        "type": "string[]",
         "packed": false,
     }
 }
