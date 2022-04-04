@@ -36,7 +36,7 @@ This repository is maintained by the [Tellor team](https://github.com/orgs/tello
 
 
 ## Contribute<a name="how2contribute"> </a>  
-Join our [discord](https://discord.gg/DxSG2bPECw), check out our issues log here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
+Join our [discord](https://discord.gg/DxSG2bPECw), help us with issues here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
 
 
 # Copyright
