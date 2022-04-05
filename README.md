@@ -31,14 +31,14 @@ To create a new Query, or specification, for custom data you need from Tellor or
 - Fork this repository and make a pull request for a new Query type in `./types` using [this template](./types/_NewQueryTypeTemplate.md).
 
 
-## Maintainers <a name="maintainers"> </a> 
-This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people).
-
-
 ## Contribute<a name="how2contribute"> </a>  
 Join our [discord](https://discord.gg/DxSG2bPECw), help us with issues here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
 
 
-# Copyright
+## Maintainers <a name="maintainers"> </a> 
+This repository is maintained by the [Tellor team](https://github.com/orgs/tellor-io/people).
+
+
+## Copyright
 
 Tellor Inc. 2022
