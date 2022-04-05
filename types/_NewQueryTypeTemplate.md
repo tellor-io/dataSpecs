@@ -1,40 +1,74 @@
-Tellor is designed to support arbitrary query types (`QueryType`).  A `QueryType` can have an arbitrary response type, specified by a structured ABI type string.  
-
-All supported queries are found in the `/types` folder
+This is an example template for a new Query type. Every `Query` specification must include the following:
 
 
-# Requirements for QueryType Specifications
+## Type Name
 
-Every `QueryType` Specification shall provide the following:
-
-## Type
-
-The unique name of the QueryType (e.g. `SpotPrice`)
-Further details of the `QueryType` specification shall be provided in a file named: 
+A unique name of your new Query type (e.g. `SpotPrice`, `Snapshot`). The markdown file you create based off this template will be named using the query's type name:
 
     <query-type-name>.md
 
+
 ## Description
 
-A general description of the QueryType, including its purpose and suggested use cases.
+A general description of the Query type, including its purpose and suggested use cases.
+
 
 ## Query Parameters
 
-A description of the query parameters shall include:
+A query's parameters may change for each instance of your query type. For example, a `SpotPrice` query has both an `asset` and `currency` parameter. One instance of a `SpotPrice` query could have parameter values of `eth` (asset) and `usd` (currency), while another's `currency` parameter value might be `eur`. The definition of your new query type's parameters must each include:
+  - Parameter name (a string)
+  - Description and value specification
+  - Valid ABI type
+  - The parameter order required for the query data bytes (more on this later)
 
-- A table defining the following for each `parameter`:
-  - `Type`
-  - `Description`
-  - `Data Type`
-  - `Value Specifications`
-- The parameter order required for the query 
+For example, the `SpotPrice` query type's parameters are defines as:
+```
+1. asset
+    - description: Asset ID (e.g. BTC)
+    - value type: `string`
+2. currency
+    - description: Selected currency (e.g. USD)
+    - value type: `string`
+```
+
 
 ## Response Type
 
-Please specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc) 
+Specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc), as well as a boolean signifying whether the reponse will be packed or not when encoded to bytes. More on valid types [here](https://docs.soliditylang.org/en/v0.8.13/types.html).
+
+For example, the `SpotPrice`'s response type an unpacked 256 bit value with 18 decimals of precision:
+```
+- abi_type: ufixed256x18 (18 decimals of precision)
+- packed: false
+```
+
+
+## JSON Representation
+The JSON representation of this query type is needed to construct query objects in a variety of languages.
+
+For example, the JSON representation of a `SpotPrice` query:
+```json
+{
+    "type": "SpotPrice",
+    "abi": [
+        {
+            "type": "string",
+            "name": "asset",
+        },
+        {
+            "type": "string",
+            "name": "currency",
+        },
+    ],
+    "response": {
+        "type": "ufixed256x18",
+        "packed": false,
+    }
+}
+```
+
 
 ## Example
-
 A working example mapping of all the various inputs and parameters to a valid queryID. 
 
 ## Dispute Considerations
