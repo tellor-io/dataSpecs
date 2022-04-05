@@ -1,7 +1,7 @@
 # Tellor Data Specifications
 
 
-This repository contains specifications of data requested from, reported to, and retrieved from Tellor oracles. These specifications are called Queries.
+This repository contains specifications of data requested from, reported to, and retrieved from Tellor oracles. Each specification is called a `Query`.
 
 - [For Tellor Users](#for-tellor-users)
 - [For Tellor Reporters](#for-tellor-reporters)
