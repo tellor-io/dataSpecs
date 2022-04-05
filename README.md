@@ -10,7 +10,7 @@ This repository contains specifications of data requested from, reported to, and
 ## For Tellor Users:
 
 ### **Price data**:
-First check if the price data is already being reported [here]().
+First check if the price data is already being reported [here](https://queryidbuilder.herokuapp.com/).
 
 Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.herokuapp.com/). After, use that ID to [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain. Then retrieve the reported spot price from from the oracle [like this](https://docs.tellor.io/tellor/integration/introduction).
 
