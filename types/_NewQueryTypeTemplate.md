@@ -36,15 +36,41 @@ For example, the `SpotPrice` query type's parameters are defines as:
 
 Specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc), as well as a boolean signifying whether the reponse will be packed or not when encoded to bytes. More on valid types [here](https://docs.soliditylang.org/en/v0.8.13/types.html).
 
-For example, the `SpotPrice`'s response type an unpacked 256 bit value with 18 decimals of precision:
+For example, the `SpotPrice`'s response type is an unpacked 256 bit value with 18 decimals of precision:
 ```
 - abi_type: ufixed256x18 (18 decimals of precision)
 - packed: false
 ```
 
 
+## Query Data
+
+Query data is used to form your new Query's unique identifier, or query ID, and it's also included in emitted contract events so Tellor users and reporters can programmatically construct query objects.
+
+To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order specified above. Then encode those `bytes` with the Query's type string.
+
+For example, to get the query data of an example instance of a `SpotPrice` query using Solidity:
+```s
+queryData = abi.encode("SpotPrice", abi.encode("eth", "usd"))
+```
+
+You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query data.
+
+
+## Query ID
+
+The Query ID is your new Query's unique identifier. It's important to have one because many kinds of data pass through the Tellor ecosystem.
+
+To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
+```s
+keccak256(queryData)
+```
+
+You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query IDs.
+
+
 ## JSON Representation
-The JSON representation of this query type is needed to construct query objects in a variety of languages.
+The JSON representation of your new query type is needed to construct query objects in a variety of languages. It contains the essential components of your query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
 
 For example, the JSON representation of a `SpotPrice` query:
 ```json
@@ -71,44 +97,12 @@ For example, the JSON representation of a `SpotPrice` query:
 ## Example
 A working example mapping of all the various inputs and parameters to a valid queryID. 
 
+
 ## Dispute Considerations
 
 Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
-## Query Descriptors
 
-Queries are uniquely identified by a special ABI string called the Query `Descriptor`.  In order to properly interact with the oracle, the `Descriptor` string must be provided *exactly* as defined by the [Query Descriptor Specification](#query-descriptor-specifications).
+## Suggested Data Sources
 
-The following is an example descriptor for a legacy query.  The `type` of query is a `LegacyRequest`.  The `LegacyRequest` query has a single integer parameter, called `legacy_id`.
-
-    {"type":"LegacyRequest","legacy_id":1}
-
-All query descriptors should be found in the dataSpecs.json file and shall comply with the following specifications:
-
-1. The top level descriptor string shall be a JSON `object` that defines a set of `type` => `inputs` 
-
-2.  The `type` should be a valid `QueryType`
-
-3. The remaining `inputs` shall be query `parameters`, provided in the specified order.
-
-
-# QueryData
-
-The `bytes` value of `_queryData` in contract calls shall be the UTF-8 encoded version of the parameters of the query `descriptor` string.
-
-
-# QueryID
-
-The `bytes32` value of `_queryID` in contract calls shall be the `keccak` hash of `_queryData`.
-
-
-Reporters should use care in selecting data sources and choosing the algorithm to combine them.
- 
-- Multiple sources should be used whenever possible.
-- Care should also be used when retrieving data from aggregators.  
-- It is the reporters responsibility to ensure that the feed result is *reasonable* enough for a community consensus, otherwise it may be subject to dispute.
-- If a *reasonable* value cannot be determined, a value should not be submitted.
-
-## Data Sources
-
-AWS pricing can be retrieved through a number of APIs like [Amazon's](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html) or [infracost](https://www.infracost.io/blog/cloud-pricing-api/). Also, there are tools like [cloudinfo](https://github.com/banzaicloud/cloudinfo) for retrieving responses to this query.
+Where can reporters retrieve the query's response? Are there APIs available so reporters can programmatically retrieve the data for your query's expected response? Are there multiple possible sources for the expected response?
