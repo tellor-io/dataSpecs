@@ -17,11 +17,11 @@ Need a spot price from Tellor? Generate a unique identifier, or query ID, for th
 ### **Custom data**:
 First, check in [`/types`](./types/) if there's already a query type that defines the data you need.
 
-If not, [create a new query type](#create-new-query-type) and [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/integration/introduction).
+If not, [create a new query type](#create-new-query-type), [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/integration/introduction).
 
 ## For Tellor Reporters:
 To find out what data to report, there's two options:
-- Use our [reporter client]() to automatically report the expected response of queries that Tellor users are funding.
+- Use our [reporter client](https://github.com/tellor-io/telliot-feed-examples) to automatically report the expected response of queries that Tellor users are funding.
 - Check for newly funded queries, then refer to that query's expected response in [`/types`](./types/) for the required data to report. Be sure to read the dispute considerations section for that query.
 
 
