@@ -24,7 +24,7 @@ The query response will consist of a variable-length array of 256-bit values in 
 - `abi_type`: <uint256>[] (18 decimals of precision)
 - `packed`: false
 
-_Query Descriptor:_
+*Query Descriptor:*
 
 ```json
 {
@@ -46,7 +46,7 @@ _Query Descriptor:_
 }
 ```
 
-_queryData:_
+*queryData:*
 
 ```s
 abi.encode("Snapshot", abi.encode("aDd6cYVvfoKvkDX14jRcN86z6bfV135npUfhxmENjHnQ1"))
