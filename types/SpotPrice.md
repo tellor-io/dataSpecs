@@ -10,10 +10,14 @@ This query returns the spot price of an asset in a specified currency.
 
 ## Query Parameters
 
-The `SpotPrice` query has two parameters, which specify the pricing pair.  
+The `SpotPrice` query has two parameters, which specify the pricing pair.
 
-1. **asset** (string): Asset ID (e.g. BTC)
-2. **currency** (string) Selected currency (e.g. USD)
+1. **asset**
+    - description: Asset ID (e.g. BTC)
+    - value type: `string`
+2. **currency**
+    - description: Selected currency (e.g. USD)
+    - value type: `string`
 
 To request new spot price pair, please reach out to the Tellor team or make an issue/PR in this repository
 
