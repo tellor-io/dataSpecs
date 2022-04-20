@@ -3,12 +3,12 @@ This is an example template for a new Query type. Every `Query` specification mu
 
 ## Type Name
 
-`Gas Price Oracle`
+`GasPriceOracle`
 
 
 ## Description
 
-This is a proposal for a new query type for reporting a gas price to the Tellor network. The query type will be called `GasPriceOracle`. Its main use case is for gas refunds: protocols will need an accurate estimate for the cost of historical user transactions in gas. Given its approach, this `GasPriceOracle` is best suited for refunding users an approximation of their gas spent according to an average of gas prices from that time period.
+This is a proposal for a new query type for reporting a gas price in gwei to the Tellor network. The query type will be called `GasPriceOracle`. Its main use case is for gas refunds: protocols will need an accurate estimate for the cost of historical user transactions in gas. Given its approach, this `GasPriceOracle` is best suited for refunding users an approximation of their gas spent according to an average of gas prices from that time period.
 
 
 ## Query Parameters
@@ -27,7 +27,7 @@ The parameters of the `GasPriceOracle` query type will be the `chaindId` and `ti
 
 ## Response Type
 
-`GasPriceOracle`'s response type is an unpacked 256 bit value with 18 decimals of precision:
+`GasPriceOracle`'s response type is an unpacked 256 bit value with 18 decimals of precision. It's response type is measured in gwei:
 ```
 - abi_type: ufixed256x18 (18 decimals of precision)
 - packed: false
@@ -42,7 +42,7 @@ To generate the query data for an instance of your new Query type, first UTF-8 e
 
 For example, to get the query data of an example instance of a `GasPriceOracle` query using Solidity:
 ```s
-queryData = abi.encode("GasPriceOracle", abi.encode("1", "1650465649"))
+queryData = abi.encode("GasPriceOracle", abi.encode(1, 1650465649))
 ```
 
 ## Query ID
@@ -88,7 +88,7 @@ A working example mapping of all the various inputs and parameters to a valid qu
 The queryData for mainnet ethereum at unix timestamp `1650465649`:
 
 ```s
-queryData = abi.encode("GasPriceOracle", abi.encode("1", "1650465649"))
+queryData = abi.encode("GasPriceOracle", abi.encode(1, 1650465649))
 queryId = keccack256(queryData)
 ```
 
@@ -104,10 +104,15 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
 
 Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
-- retreiving a gas price from one historical transaction is not recommended. gas price is very volatile
-- retreiving the current gas price from metamask is not recommended. gas price is very volatile
-- care should be used when reporting from black box aggregators
+**don't do this**
+- reporting a gas price from one historical transaction. gas prices are very volatile
+- reporting the current gas price from metamask. gas prices are very volatile
+
+**do this**
+- aggregate/medianize gas prices from the relevant block(s)
+- be careful when sourcing data from a black box API
 - use EIP-1559 gas strategy
+- always measured in gwei
 
 
 
@@ -115,7 +120,7 @@ Note that following this guide does not prevent you from being disputed or guara
 
 Where can reporters retrieve the query's response? Are there APIs available so reporters can programmatically retrieve the data for your query's expected response? Are there multiple possible sources for the expected response?
 
-Owlracle privode's a "gas price history" API. It supports the following networks:
+Owlracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
 - Ethereum
 - BSC
 - Fantom
