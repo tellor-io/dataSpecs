@@ -1,5 +1,3 @@
-This is an example template for a new Query type. Every `Query` specification must include the following:
-
 
 ## Type Name
 
@@ -13,7 +11,7 @@ This is a proposal for a new query type for reporting a gas price in gwei to the
 
 ## Query Parameters
 
-The parameters of the `GasPriceOracle` query type will be the `chaindId` and `timestamp`
+The parameters of the `GasPriceOracle` query type will be the `chainId` and `timestamp`
 
 ```
 1. chainId
@@ -36,11 +34,6 @@ The parameters of the `GasPriceOracle` query type will be the `chaindId` and `ti
 
 ## Query Data
 
-Query data is used to form your new Query's unique identifier, or query ID, and it's also included in emitted contract events so Tellor users and reporters can programmatically construct query objects.
-
-To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order specified above. Then encode those `bytes` with the Query's type string.
-
-For example, to get the query data of an example instance of a `GasPriceOracle` query using Solidity:
 ```s
 queryData = abi.encode("GasPriceOracle", abi.encode(1, 1650465649))
 ```
@@ -50,6 +43,7 @@ queryData = abi.encode("GasPriceOracle", abi.encode(1, 1650465649))
 The Query ID is your new Query's unique identifier. It's important to have one because many kinds of data pass through the Tellor ecosystem.
 
 To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
+
 ```s
 keccak256(queryData)
 ```
@@ -58,9 +52,7 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
 
 
 ## JSON Representation
-The JSON representation of your new query type is needed to construct query objects in a variety of languages. It contains the essential components of your query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
-
-For example, the JSON representation of a `SpotPrice` query:
+The JSON representation of a `GasPriceOracle` query:
 ```json
 {
     "type": "GasPriceOracle",
@@ -85,7 +77,7 @@ For example, the JSON representation of a `SpotPrice` query:
 ## Example
 A working example mapping of all the various inputs and parameters to a valid queryID. 
 
-The queryData for mainnet ethereum at unix timestamp `1650465649`:
+The queryData for mainnet ethereum (chainId `1`) at unix timestamp `1650465649`:
 
 ```s
 queryData = abi.encode("GasPriceOracle", abi.encode(1, 1650465649))
@@ -117,8 +109,6 @@ Note that following this guide does not prevent you from being disputed or guara
 
 
 ## Suggested Data Sources
-
-Where can reporters retrieve the query's response? Are there APIs available so reporters can programmatically retrieve the data for your query's expected response? Are there multiple possible sources for the expected response?
 
 Owlracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
 - Ethereum
