@@ -54,9 +54,6 @@ For example, to get the query data of an example instance of a `SpotPrice` query
 queryData = abi.encode("SpotPrice", abi.encode("eth", "usd"))
 ```
 
-You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query data.
-
-
 ## Query ID
 
 The Query ID is your new Query's unique identifier. It's important to have one because many kinds of data pass through the Tellor ecosystem.
