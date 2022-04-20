@@ -110,7 +110,7 @@ Note that following this guide does not prevent you from being disputed or guara
 
 ## Suggested Data Sources
 
-Owlracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
+Oracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
 - Ethereum
 - BSC
 - Fantom
