@@ -10,6 +10,36 @@ Finance on Arbitrum
 
 For complete information, see their docs: https://docs.tracer.finance/tracer/master
 
+To get the pool information, use TheGraph(https://thegraph.com/hosted-service/subgraph/scaredibis/tracer-pools-v1-arbitrum-one?query=Example%20query) to query Tracer.finance, a subsequent
+query can help you:
+
+```json
+{
+  leveragedPools(
+    where:{
+      id:"0x146808f54db24be2902ca9f595ad8f27f56b2e76"
+    }
+  ) {
+        name
+  }
+}
+```
+response:
+
+```json
+{
+  "data": {
+    "leveragedPools": [
+      {
+        "name": "1-BTC/USD"
+      }
+    ]
+  }
+}
+```
+where:
+- 1: the pool's leverage
+- BTC/USD: reference asset
 
 ## Query Parameters
 
