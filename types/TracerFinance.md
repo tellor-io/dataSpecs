@@ -97,6 +97,8 @@ keccak256(queryData)
 A working example mapping of all the various inputs and parameters to a valid queryID. 
 `keccak256(abi.encode("TracerFinance",abi.encode(1)))`
 
+You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query IDs.
+
 ## Dispute Considerations
 
 - Multiple sources should be used whenever possible.
