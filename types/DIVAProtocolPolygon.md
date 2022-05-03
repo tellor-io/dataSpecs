@@ -63,7 +63,7 @@ _JSON Representation:_
     }
   ],
   "response": {
-    "type": "ufixed256x18",
+    "type": "(ufixed256x18,ufixed256x18)",
     "packed": false
   }
 }
