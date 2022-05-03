@@ -35,7 +35,7 @@ The `poolId` should be a valid prediction market on the DIVAProtocol on the Poly
 
 ## Response Type
 
-The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token.
+The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token, in that order.
 
 - `abi_type`: (ufixed256x18,ufixed256x18)
 - `packed`: false
@@ -87,9 +87,9 @@ keccak256(abi.encode("DIVAProtocolPolygon",abi.encode(1)))
 
 ### Encoding/Decoding
 
-A value of 99.9 would be submitted on-chain using the following bytes:
+For example, if the reference asset is ETH/USD with a price of $2,819.35, and the collateral token is DAI/USD at a price of $0.9996, then the hexadecimal of the bytes-encoded expected response for this query-- ready to be submitted by a reporter --is:
 
-`0x0000000000000000000000000000000000000000000000056a6418b505860000`
+`0x00000000000000000000000000000008490b0f122862a11da8c6ac40000000000000000000000000000000000000000000c08415c61401a79c97e10c00000000`
 
 ## Dispute Considerations
 
