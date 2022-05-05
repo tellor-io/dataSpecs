@@ -35,7 +35,7 @@ The `poolId` should be a valid prediction market on the DIVAProtocol on the Poly
 
 ## Response Type
 
-The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token, in that order.
+The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token in USD, in that order.
 
 - `abi_type`: `(ufixed256x18,ufixed256x18)`
 - `packed`: false
