@@ -19,7 +19,7 @@ The `proposalId` should be a valid proposal on Snapshot.
 
 ## Response Type
 
-The query response will consist of a variable-length array of 256-bit values in the following format:
+The query response will consist of a boolean value in the following format:
 
 - `abi_type`: bool
 - `packed`: false
