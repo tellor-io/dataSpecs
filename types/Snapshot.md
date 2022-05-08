@@ -6,8 +6,8 @@
 
 ## Query Description
 
-This query returns the proposal result for a given proposal id (an IPFS hash for a certain proposal) coming from Snapshot.
-See https://docs.snapshot.org/graphql-api for reference.
+This query returns the proposal result for a given proposal id (an IPFS hash for a certain proposal) coming from [Snapshot](https://snapshot.org/#/).
+See https://snapshot.org/#/ for reference.
 
 ## Query Parameters
 
