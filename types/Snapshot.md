@@ -6,8 +6,8 @@
 
 ## Query Description
 
-This query returns the proposal result for a given proposalId (a specific proposal) coming from Snapshot.
-See https://docs.snapshot.org/graphql-api for reference.
+This query returns the proposal result for a given proposal id (an IPFS hash for a certain proposal) coming from [Snapshot](https://snapshot.org/#/).
+See https://snapshot.org/#/ for reference.
 
 ## Query Parameters
 
@@ -19,9 +19,9 @@ The `proposalId` should be a valid proposal on Snapshot.
 
 ## Response Type
 
-The query response will consist of a variable-length array of 256-bit values in the following format:
+The query response will consist of a boolean value in the following format:
 
-- `abi_type`: <uint256>[] (18 decimals of precision)
+- `abi_type`: bool
 - `packed`: false
 
 *Query Descriptor:*
@@ -37,9 +37,7 @@ The query response will consist of a variable-length array of 256-bit values in 
   ],
   "outputs": [
     {
-      "name": "SnapshotProposalValue",
-      "decimals": 18,
-      "type": "uint256[]",
+      "type": "bool",
       "packed": false
     }
   ]
@@ -64,15 +62,15 @@ keccak256(abi.encode("Snapshot",abi.encode("aDd6cYVvfoKvkDX14jRcN86z6bfV135npUfh
 
 ### Encoding/Decoding
 
-A value of [10023,1058] would be submitted on-chain using the following bytes:
+A value of `true` would be submitted on-chain using the following bytes:
 
-`0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000027270000000000000000000000000000000000000000000000000000000000000422`
+`0x0000000000000000000000000000000000000000000000000000000000000001`
 
 ## Dispute Considerations
 
-- It is the reporters responsibility to ensure that the feed result is _reasonable_ enough for a community consensus, otherwise it may be subject to dispute.
-- If a _reasonable_ value cannot be determined, a value should not be submitted
+- It is the reporters responsibility to return the correct result of a proposal, if a proposal succeeds a value of true is expected, if a proposal doesn't pass a value of false is submitted.
+
 
 ## Example
 
-A working example can be found here: [https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b](https://gist.github.com/QuintusTheFifth/3c5d79c9dd5eb8edbb3fc55f5518de2b)
+In a proposal with 10 000 yes votes and 2 000 no votes, a `true` value is expected to be returned to show that the proposal succeeded.
