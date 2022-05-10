@@ -121,3 +121,5 @@ Owlracle provides a "gas price history" API. It aggregates gas prices between ti
 - Heco
 - Moonriver
 - Fuse
+
+**for more information, please refer to _NewQueryTypeTemplate.md**
