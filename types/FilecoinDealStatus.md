@@ -6,8 +6,7 @@
 
 ## Description
 
-A general description of the Query type, including its purpose and suggested use cases.
-
+This is a proposal for a new query type for reporting Filecoin Deal Statuses. A Filecoin Deal is a special type of smart contract on Filecoin that exchanges FIL tokens for an active provision of IPFS storage. Given a unique ID called a ProposalCID, a data reporter can determine if a paid agreement to provide storage with Filecoin (on IPFS) is still active. Users can use this query type to create EVM smart contract incentives on Filecoin deals that are more complex than the deals themselves.
 
 ## Query Parameters
 
