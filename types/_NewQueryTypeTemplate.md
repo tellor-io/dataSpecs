@@ -1,6 +1,5 @@
 This is an example template for a new Query type. Every `Query` specification must include the following:
 
-
 ## Type Name
 
 A unique name of your new Query type (e.g. `SpotPrice`, `Snapshot`). The markdown file you create based off this template will be named using the query's type name:
@@ -15,7 +14,7 @@ A general description of the Query type, including its purpose and suggested use
 
 ## Query Parameters
 
-A query's parameters may change for each instance of your query type. For example, a `SpotPrice` query has both an `asset` and `currency` parameter. One instance of a `SpotPrice` query could have parameter values of `eth` (asset) and `usd` (currency), while another's `currency` parameter value might be `eur`. The definition of your new query type's parameters must each include:
+A query's parameters may change for each instance of your query type. For example, a `SpotPrice` query has both an `asset` and `currency` parameter. One instance of a `SpotPrice` query could have parameter values of `eth` (asset) and `usd` (currency), while another's `currency` parameter value might be `eur`. Query parameters should be styled in `mixedCase`, matching Solidity styling. The definition of your new query type's parameters must each include:
   - Parameter name (a string)
   - Description and value specification
   - Valid ABI type
@@ -53,9 +52,6 @@ For example, to get the query data of an example instance of a `SpotPrice` query
 ```s
 queryData = abi.encode("SpotPrice", abi.encode("eth", "usd"))
 ```
-
-You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query data.
-
 
 ## Query ID
 

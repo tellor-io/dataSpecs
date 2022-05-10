@@ -99,18 +99,19 @@ Note that following this guide does not prevent you from being disputed or guara
 **don't do this**
 - reporting a gas price from one historical transaction. gas prices are very volatile
 - reporting the current gas price from metamask. gas prices are very volatile
+- do not report the base fee and priority fee separately
 
 **do this**
 - aggregate/medianize gas prices from the relevant block(s)
 - be careful when sourcing data from a black box API
-- use EIP-1559 gas strategy
+- use EIP-1559 gas strategy (the sum of the base fee and priority fee)
 - always measured in gwei
 
 
 
 ## Suggested Data Sources
 
-Owlracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
+Oracle provides a "gas price history" API. It aggregates gas prices between timestamps, which can be used to calculate a median. It supports the following networks:
 - Ethereum
 - BSC
 - Fantom
@@ -121,5 +122,3 @@ Owlracle provides a "gas price history" API. It aggregates gas prices between ti
 - Heco
 - Moonriver
 - Fuse
-
-**for more information, please refer to _NewQueryTypeTemplate.md**
