@@ -6,13 +6,13 @@
 
 ## Query Description
 
-This query returns a pseudorandom number generated from hashing together the next bitcoin and ethereum mainnet blockhashes after a given timestamp.
+This query returns a pseudorandom number by finding the next bitcoin blockhash after a given timestamp, finding the most recent ethereum blockhash before the bitcoin block, and hashing the two blockhashes together.
 
 ## Query Parameters
 
-The `TellorRNG` query has one parameter which specifies the timestamp after which to find the next bitcoin and ethereum blockhashes.
+The `TellorRNG` query has one parameter which specifies the timestamp after which to find the next bitcoin blockhash.
 
-1. **timestamp** (uint256): timestamp after which to take next bitcoin and ethereum blockhashes
+1. **timestamp** (uint256): timestamp after which to take next bitcoin blockhash
 
 ## Response Type
 
@@ -71,8 +71,8 @@ A value of `0xa588d598625d216c6f2416efa20970007c501b65a2a815d35389e92d7b944d92` 
 
 ## Example
 
-When requesting a random number for a timestamp of `1652075943`, one should find the next ethereum and bitcoin blockhashes. The next ethereum block is number `14740733` with a blockhash of `0x52fbab47bc7311e376c6775e5cbf163d98d4bd433c0490142193ab0740f0a787`. The next bitcoin block is number `735571` with a blockhash of `0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af`. These blockhashes should be converted to strings, encoded with packing into bytes, and hashed using `keccak256` to get a final pseudorandom number of `0xa588d598625d216c6f2416efa20970007c501b65a2a815d35389e92d7b944d92`.
+When requesting a random number for a timestamp of `1652075943`, one should first find the next bitcoin blockhash. Then find the most recent ethereum blockhash before that ethereum block. The next bitcoin block is number `735571` with a blockhash of `0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af`. The most recent ethereum block before the bitcoin block is number `14740820` with a blockhash of `0xaf3454d3f72c9d3e7b2c26887f6dd1b89431b872e8c6a2c329ee64c8744edf59`. These blockhashes should be converted to strings, encoded with packing into bytes, and hashed using `keccak256` to get a final pseudorandom number of `0x9d6946d952f13e7125134611ad9f5dcc4108d90359b02394d8ef6769cc8574b3`.
 
 ```solidity
-bytes32 randomNumber = keccak256(abi.encodePacked('0x52fbab47bc7311e376c6775e5cbf163d98d4bd433c0490142193ab0740f0a787', '0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af'));
+bytes32 randomNumber = keccak256(abi.encodePacked('0xaf3454d3f72c9d3e7b2c26887f6dd1b89431b872e8c6a2c329ee64c8744edf59', '0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af'));
 ```
