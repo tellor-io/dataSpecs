@@ -71,7 +71,7 @@ A value of `0xa588d598625d216c6f2416efa20970007c501b65a2a815d35389e92d7b944d92` 
 
 ## Example
 
-When requesting a random number for a timestamp of `1652075943`, one should first find the next bitcoin blockhash. Then find the most recent ethereum blockhash before that ethereum block. The next bitcoin block is number `735571` with a blockhash of `0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af`. The most recent ethereum block before the bitcoin block is number `14740820` with a blockhash of `0xaf3454d3f72c9d3e7b2c26887f6dd1b89431b872e8c6a2c329ee64c8744edf59`. These blockhashes should be converted to strings, encoded with packing into bytes, and hashed using `keccak256` to get a final pseudorandom number of `0x9d6946d952f13e7125134611ad9f5dcc4108d90359b02394d8ef6769cc8574b3`.
+When requesting a random number for a timestamp of `1652075943`, one should first find the next bitcoin blockhash. Then find the most recent ethereum blockhash before that bitcoin block. The next bitcoin block is number `735571` with a blockhash of `0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af`. The most recent ethereum block before the bitcoin block is number `14740820` with a blockhash of `0xaf3454d3f72c9d3e7b2c26887f6dd1b89431b872e8c6a2c329ee64c8744edf59`. These blockhashes should be converted to strings, encoded with packing into bytes, and hashed using `keccak256` to get a final pseudorandom number of `0x9d6946d952f13e7125134611ad9f5dcc4108d90359b02394d8ef6769cc8574b3`.
 
 ```solidity
 bytes32 randomNumber = keccak256(abi.encodePacked('0xaf3454d3f72c9d3e7b2c26887f6dd1b89431b872e8c6a2c329ee64c8744edf59', '0000000000000000000201fec7d610dd93645f677dfe68afdd1a3b534194e6af'));
