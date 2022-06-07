@@ -23,14 +23,13 @@ The `EVMCall` query type's parameters are defined as:
 3. calldata
     - description: the encoding of the function name and its arguments
     - value type: `bytes`
-4. timestamp
-    - description: the timestamp of when the state variable was published (often not the current block.timestamp)
-    - value type: `uint256`
 ```
 
 see [here](https://ethereum.stackexchange.com/questions/14037/what-is-msg-data) for more information on calldata
 
 ## Response Type
+
+Response should return a concatenation of the value and the timestamp
 
 ```
 - abi_type: bytes
@@ -46,7 +45,7 @@ To generate the query data for an instance of your new Query type, first UTF-8 e
 
 For example, to get the query data of an example instance of a `EVMCall` query using Solidity:
 ```s
-queryData = abi.encode("EVMCall", abi.encode(1, 0xc305c901078781C232A2a521C2aF7980f8385ee9, 0x477a5c98, 1648771200)) # april 1, 2022 UTC time
+queryData = abi.encode("EVMCall", abi.encode(1, 0xc305c901078781C232A2a521C2aF7980f8385ee9, 0x477a5c98))
 ```
 
 ## Query ID
@@ -97,7 +96,7 @@ For example, the JSON representation of a `EVMCall` query:
 ## Example
 ```s
 
-queryData = abi.encode("EVMCall", abi.encode(1, 0xc305c901078781C232A2a521C2aF7980f8385ee9, 0x477a5c98, 1648771200)) # april 1, 2022 UTC time
+queryData = abi.encode("EVMCall", abi.encode(1, 0xc305c901078781C232A2a521C2aF7980f8385ee9, 0x477a5c98))
 
 queryId = keccak256(queryData)
 ```
@@ -114,7 +113,6 @@ Make sure to...
 - use the (Ethereum Signature Database)[https://www.4byte.directory/signatures/] to avoid mispelled function signatures
 - use double quotes and no spaces if building function signatures from scratch
 - make calls on an EVM compatible chain
-- use the timestamp of when the on-chain data was written, not the current timestamp
 
 ## Suggested Data Sources
 
