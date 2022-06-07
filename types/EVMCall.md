@@ -23,6 +23,9 @@ The `EVMCall` query type's parameters are defined as:
 3. calldata
     - description: the encoding of the function name and its arguments
     - value type: `bytes`
+4. timestamp
+    - description: the timestamp of when the state variable was published (often not the current block.timestamp)
+    - value type: `uint256`
 ```
 
 see [here](https://ethereum.stackexchange.com/questions/14037/what-is-msg-data) for more information on calldata
@@ -107,6 +110,7 @@ Make sure to...
 - use the (Ethereum Signature Database)[https://www.4byte.directory/signatures/] to avoid mispelled function signatures
 - use double quotes and no spaces if building function signatures from scratch
 - make calls on an EVM compatible chain
+- use the timestamp of when the on-chain data was written, not the current timestamp
 
 ## Suggested Data Sources
 
