@@ -13,7 +13,7 @@ This query returns the direct output of any API.
 The `APIQuery` type has two parameters, which specify the url of the API to be called and the fields in the output wanted.
 
 1. **url**
-    - description: API endpoint (e.g `"https://samples.openweathermap.org/data/2.5/weather?q=Lond`on,uk&appid=b6907d289e10d714a6e88b30761fae22"`)
+    - description: API endpoint (e.g ```"https://samples.openweathermap.org/data/2.5/weather?q=Lond`on,uk&appid=b6907d289e10d714a6e88b30761fae22"```)
     - value type: `string`
 2. **key_str**
     - description: Comma separated string of desired returned values (e.g. `"id, temp_min, clouds"` )
@@ -67,30 +67,30 @@ returned list, where its values will be stored.
 #### Example 1: Weather
 The output of the weather example API is:
 ```json
-{'coord': {'lon': -0.13, 'lat': 51.51},
- 'weather': [{'id': 300,
-   'main': 'Drizzle',
-   'description': 'light intensity drizzle',
-   'icon': '09d'}],
- 'base': 'stations',
- 'main': {'temp': 280.32,
-  'pressure': 1012,
-  'humidity': 81,
-  'temp_min': 279.15,
-  'temp_max': 281.15},
- 'visibility': 10000,
- 'wind': {'speed': 4.1, 'deg': 80},
- 'clouds': {'all': 90},
- 'dt': 1485789600,
- 'sys': {'type': 1,
-  'id': 5091,
-  'message': 0.0103,
-  'country': 'GB',
-  'sunrise': 1485762037,
-  'sunset': 1485794875},
- 'id': 2643743,
- 'name': 'London',
- 'cod': 200}
+{"coord": {"lon": -0.13, "lat": 51.51},
+ "weather": [{"id": 300,
+   "main": "Drizzle",
+   "description": "light intensity drizzle",
+   "icon": "09d"}],
+ "base": "stations",
+ "main": {"temp": 280.32,
+  "pressure": 1012,
+  "humidity": 81,
+  "temp_min": 279.15,
+  "temp_max": 281.15},
+ "visibility": 10000,
+ "wind": {"speed": 4.1, "deg": 80},
+ "clouds": {"all": 90},
+ "dt": 1485789600,
+ "sys": {"type": 1,
+  "id": 5091,
+  "message": 0.0103,
+  "country": "GB",
+  "sunrise": 1485762037,
+  "sunset": 1485794875},
+ "id": 2643743,
+ "name": "London",
+ "cod": 200}
  ```
 
 The key_str is:`"id, temp_min, clouds"`
@@ -106,17 +106,17 @@ url: `https://api.coindesk.com/v1/bpi/currentprice.json`
 
 API output: 
 ```json
-{'time': {'updated': 'Jun 2, 2022 12:34:00 UTC', 
-'updatedISO': '2022-06-02T12:34:00+00:00', 
-'updateduk': 'Jun 2, 2022 at 13:34 BST'}, 
-'disclaimer': 'This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org', 
-'chartName': 'Bitcoin', 
-'bpi': {'USD': {'code': 'USD', 'symbol': '&#36;', 'rate': '30,075.4176', 'description': 'United States Dollar', 'rate_float': 30075.4176}, 
-'GBP': {'code': 'GBP', 'symbol': '&pound;', 'rate': '24,088.0937', 'description': 'British Pound Sterling', 'rate_float': 24088.0937}, 
-'EUR': {'code': 'EUR', 'symbol': '&euro;', 'rate': '28,220.0651', 'description': 'Euro', 'rate_float': 28220.0651}}}
+{"time": {"updated": "Jun 2, 2022 12:34:00 UTC", 
+"updatedISO": "2022-06-02T12:34:00+00:00", 
+"updateduk": "Jun 2, 2022 at 13:34 BST"}, 
+"disclaimer": "This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org", 
+"chartName": "Bitcoin", 
+"bpi": {"USD": {"code": "USD", "symbol": "&#36;", "rate": "30,075.4176", "description": "United States Dollar", "rate_float": 30075.4176}, 
+"GBP": {"code": "GBP", "symbol": "&pound;", "rate": "24,088.0937", "description": "British Pound Sterling", "rate_float": 24088.0937}, 
+"EUR": {"code": "EUR", "symbol": "&euro;", "rate": "28,220.0651", "description": "Euro", "rate_float": 28220.0651}}}
 ```
 
-key_str: `"USD, "rate"`
+key_str: `"USD, rate"`
 
 response: `[{'code': 'USD', 'symbol': '&#36;', 'rate': '30,075.4176', 'description': 'United States Dollar', 'rate_float': 30075.4176}, ['30,075.4176', '24,088.0937', '28,220.0651']]`
 
