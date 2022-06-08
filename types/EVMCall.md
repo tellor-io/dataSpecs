@@ -63,7 +63,7 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
 ## JSON Representation
 The JSON representation of your new query type is needed to construct query objects in a variety of languages. It contains the essential components of your query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
 
-For example, the JSON representation of a `EVMCall` query:
+the JSON representation of a `EVMCall` query:
 ```json
 {
     "type": "EVMCall",
@@ -94,9 +94,12 @@ For example, the JSON representation of a `EVMCall` query:
 
 
 ## Example
+
+to query Tellor's total supply on Ethereum mainnet:
+
 ```s
 
-queryData = abi.encode("EVMCall", abi.encode(1, 0xc305c901078781C232A2a521C2aF7980f8385ee9, 0x477a5c98))
+queryData = abi.encode("EVMCall", abi.encode(1, 0x88df592f8eb5d7bd38bfef7deb0fbc02cf3778a0, 0x18160ddd))
 
 queryId = keccak256(queryData)
 ```
@@ -104,6 +107,20 @@ queryId = keccak256(queryData)
 the queryData: `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000745564d43616c6c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000001000000000000000000000000c305c901078781c232a2a521c2af7980f8385ee9000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624640800000000000000000000000000000000000000000000000000000000000000004477a5c9800000000000000000000000000000000000000000000000000000000`
 
 this queryId is `0x527c9ab9303553fc05722634e58a0c89f9d07d59ce7b34037109ff13b25a91e7`
+
+to format the response...
+
+```s
+
+response = abi.encode(
+    2390472032948139443578988, #total supply
+    1654697834, #current timestamp
+    )
+```
+
+this example response in bytes is...
+`0x00000000000000000000000000000000000000000001fa33bfa23eb18dab686c0000000000000000000000000000000000000000000000000000000062a0af6a`
+
 
 ## Dispute Considerations
 
