@@ -2,7 +2,7 @@
 
 ## Query Name
 
-- `API`
+- `APIQuery`
 
 ## Query Description
 
@@ -10,7 +10,7 @@ This query returns the direct output of any API.
 
 ## Query Parameters
 
-The `API` query has two parameters, which specify the url of the API to be called and the fields in the output wanted.
+The `APIQuery` type has two parameters, which specify the url of the API to be called and the fields in the output wanted.
 
 1. **url**
     - description: API endpoint (e.g `"https://samples.openweathermap.org/data/2.5/weather?q=Lond`on,uk&appid=b6907d289e10d714a6e88b30761fae22"`)
@@ -60,9 +60,14 @@ A value of `[[300, 5091, 2643743], 279.15, {'all': 90}]` would be submitted on-c
 
 ### Response Format
 
+This query type searches the entire JSON object returned by the API call for any keys contained in the `key_str` parameter. If there are duplicate keys 
+in the dictionary, a list containing all values mapped to that key will be returned. Each key in `key_str` will correspond to an index in the 
+returned list, where its values will be stored. 
+
 #### Example 1: Weather
 The output of the weather example API is:
-`{'coord': {'lon': -0.13, 'lat': 51.51},
+```json
+{'coord': {'lon': -0.13, 'lat': 51.51},
  'weather': [{'id': 300,
    'main': 'Drizzle',
    'description': 'light intensity drizzle',
@@ -85,7 +90,8 @@ The output of the weather example API is:
   'sunset': 1485794875},
  'id': 2643743,
  'name': 'London',
- 'cod': 200}`
+ 'cod': 200}
+ ```
 
 The key_str is:`"id, temp_min, clouds"`
 
@@ -99,14 +105,16 @@ The second has the single value for `temp_min`, and the last contains a dictiona
 url: `https://api.coindesk.com/v1/bpi/currentprice.json`
 
 API output: 
-`{'time': {'updated': 'Jun 2, 2022 12:34:00 UTC', 
+```json
+{'time': {'updated': 'Jun 2, 2022 12:34:00 UTC', 
 'updatedISO': '2022-06-02T12:34:00+00:00', 
 'updateduk': 'Jun 2, 2022 at 13:34 BST'}, 
 'disclaimer': 'This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org', 
 'chartName': 'Bitcoin', 
 'bpi': {'USD': {'code': 'USD', 'symbol': '&#36;', 'rate': '30,075.4176', 'description': 'United States Dollar', 'rate_float': 30075.4176}, 
 'GBP': {'code': 'GBP', 'symbol': '&pound;', 'rate': '24,088.0937', 'description': 'British Pound Sterling', 'rate_float': 24088.0937}, 
-'EUR': {'code': 'EUR', 'symbol': '&euro;', 'rate': '28,220.0651', 'description': 'Euro', 'rate_float': 28220.0651}}}`
+'EUR': {'code': 'EUR', 'symbol': '&euro;', 'rate': '28,220.0651', 'description': 'Euro', 'rate_float': 28220.0651}}}
+```
 
 key_str: `"USD, "rate"`
 
