@@ -6,24 +6,28 @@
 
 ## Query Description
 
-This query returns the direct output of any API.
+Use this query type to report numerical values from any API to Tellor oracles. Only use this query type for testnet, as data sources with single points-of-failure shouldn't be used in production.
 
 ## Query Parameters
 
-The `APIQuery` type has two parameters, which specify the url of the API to be called and the fields in the output wanted.
+The `APIQuery` type has two parameters, `url` & `parseStr`.
 
 1. **url**
     - description: API endpoint (e.g ```"https://samples.openweathermap.org/data/2.5/weather?q=Lond`on,uk&appid=b6907d289e10d714a6e88b30761fae22"```)
     - value type: `string`
-2. **key_str**
-    - description: Comma separated string of desired returned values (e.g. `"id, temp_min, clouds"` )
+2. **parseStr**
+    - description: Comma-separated string of keys and array indices to access the target numerical value in the JSON response returned from the API endpoint (e.g. `"id, temp_min, clouds"` )
     - value type: `string`
     
 
 ## Response Type
 
-The query response will be a string that will contain a list of all the matching values to the given keys in the API's json dict. If there is more than one 
-value to a key, that index in the return list will be a list of all the matching values to the given key.
+The query response will consist of a single 256-bit value in the following format:
+
+- `abi_type`: ufixed256x18 (18 decimals of precision)
+- `packed`: false
+
+For example, a reporter decodes an instance of this query to retrieve its `url` and `parseStr` parameter values. The reporter uses the decoded `url` string to retrieve a JSON response from the API in question, then retrieves the target number from that JSON blob with the decoded `parseStr`. The number is 5.25, so the reporter multiplies it by 1e18 for the proper precision, encodes it as bytes, and submits the value to a Tellor oracle.
 
 ## Examples
 
