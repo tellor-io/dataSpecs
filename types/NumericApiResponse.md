@@ -40,7 +40,7 @@ Response before applying precision and encoding: `0.02721565`
 **queryData:**
 (Solidity)
 ```c
-bytes queryData = abi.encode("APIQuery", abi.encode("https://api.coingecko.com/api/v3/simple/price?ids=garlicoin&vs_currencies=usd", "garlicoin, usd"))
+bytes queryData = abi.encode("NumericApiResponse", abi.encode("https://api.coingecko.com/api/v3/simple/price?ids=garlicoin&vs_currencies=usd", "garlicoin, usd"))
 ```
 **queryID:**
 (Solidity)
