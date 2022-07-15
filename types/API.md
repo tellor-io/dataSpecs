@@ -62,53 +62,12 @@ A value of `[[300, 5091, 2643743], 279.15, {'all': 90}]` would be submitted on-c
 
 `000000000000000000000000000000000000000000000000000000000000002b5b5b3330302c20353039312c20323634333734335d2c203237392e31352c207b27616c6c273a2039307d5d000000000000000000000000000000000000000000`
 
-### Response Format
-
-This query type searches the entire JSON object returned by the API call for any keys contained in the `key_str` parameter. If there are duplicate keys 
-in the dictionary, a list containing all values mapped to that key will be returned. Each key in `key_str` will correspond to an index in the 
-returned list, where its values will be stored. 
-
-#### Example 1: Weather
-The output of the weather example API is:
-```json
-{"coord": {"lon": -0.13, "lat": 51.51},
- "weather": [{"id": 300,
-   "main": "Drizzle",
-   "description": "light intensity drizzle",
-   "icon": "09d"}],
- "base": "stations",
- "main": {"temp": 280.32,
-  "pressure": 1012,
-  "humidity": 81,
-  "temp_min": 279.15,
-  "temp_max": 281.15},
- "visibility": 10000,
- "wind": {"speed": 4.1, "deg": 80},
- "clouds": {"all": 90},
- "dt": 1485789600,
- "sys": {"type": 1,
-  "id": 5091,
-  "message": 0.0103,
-  "country": "GB",
-  "sunrise": 1485762037,
-  "sunset": 1485794875},
- "id": 2643743,
- "name": "London",
- "cod": 200}
- ```
-
-The key_str is:`"id, temp_min, clouds"`
-
-The response is: `"[[300, 5091, 2643743], 279.15, {'all': 90}]"`
-
-The first list index holds a list itself of all matching values in the JSON API output that has a key `id`. 
-The second has the single value for `temp_min`, and the last contains a dictionary that is the value to the key `clouds`.
-
-#### Example 2: Coindesk Bitcoin Rate
+#### Example 2: Coindesk Bitcoin USD Rate
 
 url: `https://api.coindesk.com/v1/bpi/currentprice.json`
+parseStr: `"bpi, USD, rate_float"`
 
-API output: 
+API response: 
 ```json
 {"time": {"updated": "Jun 2, 2022 12:34:00 UTC", 
 "updatedISO": "2022-06-02T12:34:00+00:00", 
@@ -120,9 +79,7 @@ API output:
 "EUR": {"code": "EUR", "symbol": "&euro;", "rate": "28,220.0651", "description": "Euro", "rate_float": 28220.0651}}}
 ```
 
-key_str: `"USD, rate"`
-
-response: `[{'code': 'USD', 'symbol': '&#36;', 'rate': '30,075.4176', 'description': 'United States Dollar', 'rate_float': 30075.4176}, ['30,075.4176', '24,088.0937', '28,220.0651']]`
+response before applying precision and encoding: `'30075.4176'`
 
 The first index in this list holds the entire dictionary that is the value to the "USD" key. The second index has 
 every value to the key "rate" that appears in the entire response. There are multiple ways to access the data to get
@@ -130,23 +87,15 @@ the same value from this query type, depending on the API output.
 
 
 #### Example 3: SpotPrice 
+Get a simple spot price for garlicoin by querying an API for its price.
 
 url: `"https://api.coingecko.com/api/v3/simple/price?ids=garlicoin&vs_currencies=usd"`
+parseStr: `"garlicoin, usd"`
 
-API output: `{"garlicoin":{"usd":0.02721565}}`
+API response: `{"garlicoin":{"usd":0.02721565}}`
 
-key_str:`"usd"`
-
-response:`[0.02721565]`
-
-Getting a simple spot price for garlicoin, a coin that is unsupported on the larger Tellor SpotPrice query type by directly 
-querying an API for its price. Since the output is so simple from the API and only one value is wanted, only one is returned
-and requires no further parsing.
+response before applying precision and encoding: `0.02721565`
 
 ## Considerations
-
-Users should use care in selecting data sources and choosing the best way to get desired data.
-
-Due to the inherent security risk of pulling data straight from API's to on chain with no intermediate checks or averaging infrastructure, 
-this query type should only be used for testing or for small personal projects.
+Don't use this query type in production, since you aren't using multiple sources and since there are no intermediate checks before putting the data on-chain. Only use this query type for testing or small personal projects.
 
