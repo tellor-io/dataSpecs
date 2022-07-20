@@ -6,7 +6,7 @@
 
 ## Description
 
-This is a proposal for a new query type for reporting a gas price in gwei to the Tellor network. The query type will be called `GasPriceOracle`. Its main use case is for gas refunds: protocols will need an accurate estimate for the cost of historical user transactions in gas. Given its approach, this `GasPriceOracle` is best suited for refunding users an approximation of their gas spent according to an average of gas prices from that time period.
+This is a proposal for a new query type for reporting a TWAP spot price to the Tellor network. The query type will be called `TWAP`.
 
 
 ## Query Parameters
