@@ -46,11 +46,16 @@ For example, the `SpotPrice`'s response type is an unpacked 256 bit value with 1
 
 Query data is used to form your new Query's unique identifier, or query ID, and it's also included in emitted contract events so Tellor users and reporters can programmatically construct query objects.
 
-To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order specified above. Then encode those `bytes` with the Query's type string.
+To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order specified above. Then encode those `bytes` with the Query's type string. If there are no parameters for a query, instead encode empty bytes first.
 
 For example, to get the query data of an example instance of a `SpotPrice` query using Solidity:
 ```s
 queryData = abi.encode("SpotPrice", abi.encode("eth", "usd"))
+```
+
+And for a query with no parameters:
+```s
+queryData = abi.encode("QueryWithNoParameters", abi.encode(bytes("")))
 ```
 
 ## Query ID
