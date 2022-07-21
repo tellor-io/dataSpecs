@@ -3,7 +3,7 @@
 
 ## Description
 
-This query type is used to report a toxicity measure across multiple lending protocols of a given collateral/loan asset pair. The formula for calculating this toxicity measure is defined by [Stader Labs](https://staderlabs.com/).
+This query type is used to report a toxicity measure across multiple lending protocols of a given collateral/loan asset pair. The [formula for calculating this toxicity measure](./LendingPairToxicity/LendingPairToxicity.pdf) was co-authored by Pestopoppa who can be found on [Github](https://github.com/pestopoppa) and [Twitter](https://twitter.com/PestoPoppa).
 
 ## Query Parameters
 
@@ -28,7 +28,7 @@ The query response will consist of a single 256-bit value in the following forma
 - **ABI Type:** `bytes`
 
 For example, to get the query data of an example instance of a `LendingPairToxicity` query using Solidity:
-````
+
 ```s
 queryData = abi.encode(“LendingPairToxicity, abi.encode("eth", "dai"))
 ````
