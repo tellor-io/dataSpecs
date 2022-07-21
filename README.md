@@ -30,6 +30,8 @@ To create a new Query, or specification, for custom data you need from Tellor or
 - Make an issue like [this](https://github.com/tellor-io/dataSpecs/issues/25) and the Tellor team will help with the next steps.
 - Fork this repository and make a pull request for a new Query type in `./types` using [this template](./types/_NewQueryTypeTemplate.md).
 
+After creating the new query type in this repo, [here](https://github.com/tellor-io/telliot-feeds/issues/new/choose) are some next steps.
+
 
 ## Contribute<a name="how2contribute"> </a>  
 Join our [discord](https://discord.gg/DxSG2bPECw), help us with issues here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
