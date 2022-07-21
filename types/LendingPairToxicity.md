@@ -74,4 +74,4 @@ Note that following this guide does not prevent you from being disputed or guara
 
 ## Suggested Data Sources
 
-Calculating this toxicity measure depends on multiple on-chain and off-chain data points. The set of lending protocols used to calculate this measure is determined by Stader labs. The set of on-chain token markets used to check liquidity is also determined by Stader labs. Token prices should be derived from multiple sources.
+Calculating this toxicity measure depends on multiple on-chain and off-chain data points. The set of lending protocols used to calculate this measure is as follows: Hundred Finance and Aave. The set of on-chain token markets used to check liquidity is as follows: Balancer and QuickSwap. These sources will likely be updated in the future. Token prices should be derived from multiple sources.
