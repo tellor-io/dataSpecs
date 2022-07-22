@@ -20,7 +20,7 @@ A query's parameters may change for each instance of your query type. For exampl
   - Valid ABI type
   - The parameter order required for the query data bytes (more on this later)
 
-For example, the `SpotPrice` query type's parameters are defines as:
+For example, the `SpotPrice` query type's parameters are defined as:
 ```
 1. asset
     - description: Asset ID (e.g. BTC)
