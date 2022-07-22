@@ -12,12 +12,12 @@ This repository contains specifications of data requested from, reported to, and
 ### **Price data**:
 First check if the price data is already being reported [here](https://queryidbuilder.herokuapp.com/).
 
-Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.herokuapp.com/). After, use that ID to [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain. Then retrieve the reported spot price from from the oracle [like this](https://docs.tellor.io/tellor/integration/introduction).
+Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.herokuapp.com/). After, use that ID to [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain. Then retrieve the reported spot price from from the oracle [like this](https://docs.tellor.io/tellor/getting-data/introduction).
 
 ### **Custom data**:
 First, check in [`/types`](./types/) if there's already a query type that defines the data you need.
 
-If not, [create a new query type](#create-new-query-type), [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/integration/introduction).
+If not, [create a new query type](#create-new-query-type), [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/getting-data/introduction).
 
 ## For Tellor Reporters:
 To find out what data to report, there's two options:
