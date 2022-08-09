@@ -6,36 +6,28 @@
 
 ## Query Description
 
-This query returns the result for a given poolId (a specific prediction market) on the DIVA Protocol on Polygon
+This query returns the required information to settle a pool from a DIVA Protocol deployment on Polygon.
 
 ### Information of Query:
 
 For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/main
 
-To get the pool information, run
-
-```
-    getPoolParameters(poolId)
-```
-
-The first result is the reference asset which should be returned for the value on expiry time (9th parameter)
-
-e.g - referenceAsset: 'ETH/USDT',
-e.g. - expiryDate: BigNumber { value: "1642021490" },
-
-In this example, if poolId 1 refers to these data, you would return the ETH/USDT price at 1642021490
-
 ## Query Parameters
 
-The `DIVAProtocolPolygon` query has one parameter, which specifies the requested data.
+The `DIVAProtocolPolygon` query has two parameters, `poolId` and `divaDiamond`.
 
-1. **poolId** (uint256): ID of the prediction market.
-
-The `poolId` should be a valid prediction market on the DIVAProtocol on the Polygon network, ready to be settled. The parameter name `poolId` is the same name used within the DIVA protocol contracts for a prediction market identifier.
+1. **poolId**
+    - description: Unique identifier of the prediction market (e.g. `1234`)
+    - value type: `uint256`
+2. **divaDiamond**
+    - description: Contract address of DIVA Protocol (since there might be multiple deployments on a single network, e.g. `0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211`)
+    - value type: `address`
 
 ## Response Type
 
 The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token in USD, in that order.
+
+To retrieve the reference asset and collateral token, see DIVA's documentation on pool parameters [here](https://github.com/divaprotocol/oracles/tree/main#diva-smart-contract)
 
 - `abi_type`: `(ufixed256x18,ufixed256x18)`
 - `packed`: false
@@ -57,6 +49,10 @@ _JSON Representation:_
     {
       "type": "uint256",
       "name": "poolId"
+    },
+    {
+      "type": "address",
+      "name": "divaDiamond",
     }
   ],
   "response": {
@@ -69,18 +65,18 @@ _JSON Representation:_
 _queryData:_
 
 ```s
-abi.encode("DIVAProtocolPolygon", abi.encode(1))
+abi.encode("DIVAProtocolPolygon", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211))
 ```
 
-`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000136469766150726f746f636f6c506f6c79676f6e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001`
+`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000134449564150726f746f636f6c506f6c79676f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000004d2000000000000000000000000ebbaa31b1ebd727a1a42e71dc15e304ad8905211`
 
 _queryID:_
 
 ```s
-keccak256(abi.encode("DIVAProtocolPolygon",abi.encode(1)))
+keccak256(abi.encode("DIVAProtocolPolygon",abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211)))
 ```
 
-`0x769ef93b727c9435930f0b9aceae97f79afe68a1f368453835581395ca2e2474`
+`0x9e2cc609c7cb305374b7390fba2769c71d3c806aea66937639892ee8c23371a3`
 
 ### Encoding/Decoding
 
