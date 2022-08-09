@@ -1,12 +1,12 @@
-# DIVA Protocol Specific Feeds
+# DIVA Protocol data specifications
 
 ## Query Name
 
-- `DIVAProtocolPolygon`
+- `DIVAProtocol`
 
 ## Query Description
 
-This query returns the required information to settle a pool from a DIVA Protocol deployment on Polygon.
+This query returns the required information to settle a pool from a DIVA Protocol deployment on any chain.
 
 ### Information of Query:
 
@@ -14,14 +14,16 @@ For complete information, see their docs: https://github.com/divaprotocol/oracle
 
 ## Query Parameters
 
-The `DIVAProtocolPolygon` query has two parameters, `poolId` and `divaDiamond`.
+The `DIVAProtocol` query has three parameters, `poolId`, `divaDiamond`, and `chainId`.
 
 1. **poolId**
     - description: Unique identifier of the prediction market (e.g. `1234`)
     - value type: `uint256`
 2. **divaDiamond**
-    - description: Contract address of DIVA Protocol (since there might be multiple deployments on a single network, e.g. `0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211`)
+    - description: Contract address of DIVA Protocol containing the relevant pool (since there might be multiple deployments on a single network, e.g. `0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211`)
     - value type: `address`
+3. **chainId**
+    - description: Network identifier (e.g. `137` for Polygon mainnet or `3` for Ropsten testnet)
 
 ## Response Type
 
@@ -44,7 +46,7 @@ _JSON Representation:_
 
 ```json
 {
-  "type": "DIVAProtocolPolygon",
+  "type": "DIVAProtocol",
   "abi": [
     {
       "type": "uint256",
@@ -53,6 +55,10 @@ _JSON Representation:_
     {
       "type": "address",
       "name": "divaDiamond",
+    },
+    {
+      "type": "uint256",
+      "name": "chainId",
     }
   ],
   "response": {
@@ -65,18 +71,18 @@ _JSON Representation:_
 _queryData:_
 
 ```s
-abi.encode("DIVAProtocolPolygon", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211))
+abi.encode("DIVAProtocol", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211, 137))
 ```
 
-`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000134449564150726f746f636f6c506f6c79676f6e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000004d2000000000000000000000000ebbaa31b1ebd727a1a42e71dc15e304ad8905211`
+`0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000c4449564150726f746f636f6c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000004d2000000000000000000000000ebbaa31b1ebd727a1a42e71dc15e304ad89052110000000000000000000000000000000000000000000000000000000000000089`
 
 _queryID:_
 
 ```s
-keccak256(abi.encode("DIVAProtocolPolygon",abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211)))
+keccak256(abi.encode("DIVAProtocol", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211, 137)))
 ```
 
-`0x9e2cc609c7cb305374b7390fba2769c71d3c806aea66937639892ee8c23371a3`
+`0x60754fb4cb226fbdfcc3152049a8869c1ca5984ad7afb2548654a0ef78100278`
 
 ### Encoding/Decoding
 
