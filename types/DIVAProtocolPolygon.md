@@ -1,41 +1,35 @@
-# DIVA Protocol Specific Feeds
+# DIVA Protocol data specifications
 
 ## Query Name
 
-- `DIVAProtocolPolygon`
+- `DIVAProtocol`
 
 ## Query Description
 
-This query returns the result for a given poolId (a specific prediction market) on the DIVA Protocol on Polygon
+This query returns the required information to settle a pool from a DIVA Protocol deployment on any chain.
 
 ### Information of Query:
 
 For complete information, see their docs: https://github.com/divaprotocol/oracles/tree/main
 
-To get the pool information, run
-
-```
-    getPoolParameters(poolId)
-```
-
-The first result is the reference asset which should be returned for the value on expiry time (9th parameter)
-
-e.g - referenceAsset: 'ETH/USDT',
-e.g. - expiryDate: BigNumber { value: "1642021490" },
-
-In this example, if poolId 1 refers to these data, you would return the ETH/USDT price at 1642021490
-
 ## Query Parameters
 
-The `DIVAProtocolPolygon` query has one parameter, which specifies the requested data.
+The `DIVAProtocol` query has three parameters, `poolId`, `divaDiamond`, and `chainId`.
 
-1. **poolId** (uint256): ID of the prediction market.
-
-The `poolId` should be a valid prediction market on the DIVAProtocol on the Polygon network, ready to be settled. The parameter name `poolId` is the same name used within the DIVA protocol contracts for a prediction market identifier.
+1. **poolId**
+    - description: Unique identifier of the prediction market (e.g. `1234`)
+    - value type: `uint256`
+2. **divaDiamond**
+    - description: Contract address of DIVA Protocol containing the relevant pool (since there might be multiple deployments on a single network, e.g. `0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211`)
+    - value type: `address`
+3. **chainId**
+    - description: Network identifier (e.g. `137` for Polygon mainnet or `3` for Ropsten testnet)
 
 ## Response Type
 
 The query response will consist of a two floats represented as 256-bit integer values with 18 decimals of precision. These floats are the price of the reference asset and the price of the collateral token in USD, in that order.
+
+To retrieve the reference asset and collateral token, see DIVA's documentation on pool parameters [here](https://github.com/divaprotocol/oracles/tree/main#diva-smart-contract)
 
 - `abi_type`: `(ufixed256x18,ufixed256x18)`
 - `packed`: false
@@ -52,11 +46,19 @@ _JSON Representation:_
 
 ```json
 {
-  "type": "DIVAProtocolPolygon",
+  "type": "DIVAProtocol",
   "abi": [
     {
       "type": "uint256",
       "name": "poolId"
+    },
+    {
+      "type": "address",
+      "name": "divaDiamond",
+    },
+    {
+      "type": "uint256",
+      "name": "chainId",
     }
   ],
   "response": {
@@ -69,18 +71,18 @@ _JSON Representation:_
 _queryData:_
 
 ```s
-abi.encode("DIVAProtocolPolygon", abi.encode(1))
+abi.encode("DIVAProtocol", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211, 137))
 ```
 
-`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000136469766150726f746f636f6c506f6c79676f6e0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001`
+`0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000c4449564150726f746f636f6c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000004d2000000000000000000000000ebbaa31b1ebd727a1a42e71dc15e304ad89052110000000000000000000000000000000000000000000000000000000000000089`
 
 _queryID:_
 
 ```s
-keccak256(abi.encode("DIVAProtocolPolygon",abi.encode(1)))
+keccak256(abi.encode("DIVAProtocol", abi.encode(1234, 0xebBAA31B1Ebd727A1a42e71dC15E304aD8905211, 137)))
 ```
 
-`0x769ef93b727c9435930f0b9aceae97f79afe68a1f368453835581395ca2e2474`
+`0x60754fb4cb226fbdfcc3152049a8869c1ca5984ad7afb2548654a0ef78100278`
 
 ### Encoding/Decoding
 
