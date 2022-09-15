@@ -87,6 +87,8 @@ keccak256(abi.encode("ExampleFantasyFootball", abi.encode(1)))
 `0xe1defa9341b970361595a2019126e8b028e2f9bc5ba298f2228d33bd4d5fa86e`
 
 ## Decoding submitted value in solidity
+More Solidity help [here](https://tellor.io/docs/).
+
 ```js
 pragma solidity >=0.8.0;
 
