@@ -98,7 +98,7 @@ contract MyContract is UsingTellor {
 
   constructor(address payable _tellorAddress) UsingTellor (_tellorAddress) public {}
 
-  function getBtcSpotPrice() external view returns(uint256) {
+  function getFirstPlayerFantasyStat() external view returns(uint256) {
     
       bytes memory _queryData = abi.encode("ExampleFantasyFootball", abi.encode(1));
       bytes32 _queryId = keccak256(_queryData);
@@ -107,7 +107,7 @@ contract MyContract is UsingTellor {
           getDataBefore(_queryId, block.timestamp - 1 hours);
       if (!ifRetrieve) return 0;
       // Returns Kyle Murray's fantasy sports rating for week 3
-      return abi.decode(_value, (uint256))[2];
+      return (abi.decode(_value, (uint256)))[2];
     }
 
 }
