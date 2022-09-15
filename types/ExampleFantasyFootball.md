@@ -107,8 +107,34 @@ contract MyContract is UsingTellor {
           getDataBefore(_queryId, block.timestamp - 1 hours);
       if (!ifRetrieve) return 0;
       // Returns Kyle Murray's fantasy sports rating for week 3
-      return (abi.decode(_value, (uint256)))[2];
+      return abi.decode(_value, (uint256[]))[2];
     }
 
 }
 ```
+
+An alternative way to structure the data could be to use a struct array which may help with the user's code readability:
+
+```js
+SportsData[] public sportsArray;
+
+struct SportsData {
+    uint256 playerId;
+    uint256 weekId;
+    uint256 rating;
+}
+
+function encodeSportsArray() public view returns(bytes memory) {
+    return abi.encode(sportsArray);
+}
+
+function decodeSportsArray(bytes memory _value) public pure returns(SportsData[] memory) {
+    return abi.decode(_value, (SportsData[]));
+}
+
+function decodeSportsArrayAndGetRating(bytes memory _value, uint256 _index) public pure returns(uint256) {
+     // returns rating for player at _index
+     return abi.decode(_value, (SportsData[]))[_index].rating;
+}
+```
+Depending on the implementation, you could even remove the playerId from the reported data if the user's smart contract contained a record of each player's expected position in the reported array.
