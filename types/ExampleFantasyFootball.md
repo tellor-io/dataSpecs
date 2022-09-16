@@ -16,7 +16,7 @@ The `ExampleFantasyFootball` query has one parameter:
 
 1. **version**:
     - description: Version number, in case you make more versions of this data specification
-    - value type: `uint256`
+    - value type: `int256`
 
 ## Response Type
 
@@ -46,7 +46,7 @@ data = [20889,2222, 20550000000000000000, 18890,2222, 20550000000000000000,16762
 `data` contains information for three players. Player IDs for Kyler Murray, Patrick Mahomes, and Jameis Winston are each followed by a game ID, which all happen to be `2222` (week 3).
 
 Solidity type:
-- `abi_type`: `uint256[]`
+- `abi_type`: `int256[]`
 - `packed`: false
 
 An example of encoding and decoding this response type using Python:
@@ -55,11 +55,11 @@ An example of encoding and decoding this response type using Python:
 from eth_abi import encode_abi, decode_abi
 
 data = [20889, 2222, int(20.55*10**18), 18890, 2222, int(20.55*10**18),16762, 2222, int(20.55*10**18)]
-submit_value = encode_abi(["uint256[]"], [data])
+submit_value = encode_abi(["int256[]"], [data])
 print(submit_value.hex())
 # 00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000519900000000000000000000000000000000000000000000000000000000000008ae0000000000000000000000000000000000000000000000011d30441f1647000000000000000000000000000000000000000000000000000000000000000049ca00000000000000000000000000000000000000000000000000000000000008ae0000000000000000000000000000000000000000000000011d30441f16470000000000000000000000000000000000000000000000000000000000000000417a00000000000000000000000000000000000000000000000000000000000008ae0000000000000000000000000000000000000000000000011d30441f16470000
 
-decoded_val = decode_abi(["uint256[]"], submit_value)
+decoded_val = decode_abi(["int256[]"], submit_value)
 print(decoded_val)
 # ((20889, 2222, 20550000000000000000, 18890, 2222, 20550000000000000000, 16762, 2222, 20550000000000000000),)
 ```
@@ -98,7 +98,7 @@ contract MyContract is UsingTellor {
 
   constructor(address payable _tellorAddress) UsingTellor (_tellorAddress) public {}
 
-  function getFirstPlayerFantasyStat() external view returns(uint256) {
+  function getFirstPlayerFantasyStat() external view returns(int256) {
     
       bytes memory _queryData = abi.encode("ExampleFantasyFootball", abi.encode(1));
       bytes32 _queryId = keccak256(_queryData);
@@ -107,7 +107,7 @@ contract MyContract is UsingTellor {
           getDataBefore(_queryId, block.timestamp - 1 hours);
       if (!ifRetrieve) return 0;
       // Returns Kyle Murray's fantasy sports rating for week 3
-      return abi.decode(_value, (uint256[]))[2];
+      return abi.decode(_value, (int256[]))[2];
     }
 
 }
@@ -119,9 +119,9 @@ An alternative way to structure the data could be to use a struct array which ma
 SportsData[] public sportsArray;
 
 struct SportsData {
-    uint256 playerId;
-    uint256 weekId;
-    uint256 rating;
+    int256 playerId;
+    int256 weekId;
+    int256 rating;
 }
 
 function encodeSportsArray() public view returns(bytes memory) {
@@ -132,7 +132,7 @@ function decodeSportsArray(bytes memory _value) public pure returns(SportsData[]
     return abi.decode(_value, (SportsData[]));
 }
 
-function decodeSportsArrayAndGetRating(bytes memory _value, uint256 _index) public pure returns(uint256) {
+function decodeSportsArrayAndGetRating(bytes memory _value, uint256 _index) public pure returns(int256) {
      // returns rating for player at _index
      return abi.decode(_value, (SportsData[]))[_index].rating;
 }
