@@ -132,7 +132,7 @@ function decodeSportsArray(bytes memory _value) public pure returns(SportsData[]
     return abi.decode(_value, (SportsData[]));
 }
 
-function decodeSportsArrayAndGetRating(bytes memory _value, int256 _index) public pure returns(int256) {
+function decodeSportsArrayAndGetRating(bytes memory _value, uint256 _index) public pure returns(int256) {
      // returns rating for player at _index
      return abi.decode(_value, (SportsData[]))[_index].rating;
 }
