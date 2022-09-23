@@ -17,7 +17,7 @@ The `ExampleNftCollectionStats` query has one parameter:
 ## Response Type
 
 Solidity type:
-- `abi_type`: `int256[]`
+- `abi_type`: `uint256[]`
 - `packed`: false
 
 The query response will consist of an array of integers. Each integer represents the original value to 18 decimals of precision (you multiply the original `float` by 10**18). The array includes the floor price, total volume, and best offer, in that order.
@@ -78,7 +78,7 @@ contract MyContract is UsingTellor {
 
   constructor(address payable _tellorAddress) UsingTellor (_tellorAddress) public {}
 
-  function getCollectionFloorPrice() external view returns(int256) {
+  function getCollectionFloorPrice() external view returns(uint256) {
     
       bytes memory _queryData = abi.encode("ExampleNftCollectionStats", abi.encode("proof-moonbirds"));
       bytes32 _queryId = keccak256(_queryData);
@@ -87,7 +87,7 @@ contract MyContract is UsingTellor {
           getDataBefore(_queryId, block.timestamp - 1 hours);
       if (!ifRetrieve) return 0;
       // Returns moon bird floor price, 11 * 10**18
-      return abi.decode(_value, (int256[]))[0];
+      return abi.decode(_value, (uint256[]))[0];
     }
 
 }
