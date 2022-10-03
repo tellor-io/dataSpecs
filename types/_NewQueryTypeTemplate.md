@@ -30,6 +30,14 @@ For example, the `SpotPrice` query type's parameters are defined as:
     - value type: `string`
 ```
 
+For a query with no parameters, `QueryWithNoParameters`, one should always include a single empty bytes argument with the name `phantom` as a convention:
+
+```
+1. phantom
+   - description: Empty bytes, always used for query types with no arguments
+   - value type: `bytes`
+```
+
 
 ## Response Type
 
