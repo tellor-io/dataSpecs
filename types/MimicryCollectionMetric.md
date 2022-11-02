@@ -6,7 +6,7 @@
 
 This query returns a metric derived from an NFT collection's sales data. Its initial use case is enabling the creation of markets on [Mimicry Protocol](https://www.mimicry.finance/), but the values can be used by anyone who needs one of the outlined metrics for a given NFT collection.
 
-The metric itself can be one types outlined in the following list. 
+The metric itself can be one types outlined in the following list. Note that list will likely grow in the future, and as items are added, they will be documented here, and their respective `metric` value will be added below. In order to maintain data integrity, metric types will never be removed.
 
 - Time-Adjusted Market Index (TAMI)
     - TAMI calculates the estimated value of a collection of assets with guards for price swings and time . It does do using the algorithm defined in [this repository](https://github.com/Mimicry-Protocol/TAMI).
