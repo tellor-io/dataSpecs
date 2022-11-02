@@ -43,7 +43,7 @@ The query response will consist of a bytes value in the following format:
 
 *queryData:* 
 
-Example for SpotPrice(ETH,USD) and SpotPrice(BTC,USD)
+Example for SpotPrice(eth,usd) and SpotPrice(btc,usd)
 
 ```s
 keccak256(abi.encode("ComboQuery", abi.encode(
