@@ -47,8 +47,8 @@ Example for SpotPrice(ETH,USD) and SpotPrice(BTC,USD)
 
 ```s
 keccak256(abi.encode("ComboQuery", abi.encode(
-                                      [abi.encode("SpotPrice", abi.encode("ETH","USD")),
-                                      abi.encode("SpotPrice", abi.encode("BTC","USD"))]
+                                      [abi.encode("SpotPrice", abi.encode("eth","usd")),
+                                      abi.encode("SpotPrice", abi.encode("eth","usd"))]
 )))
 ```
 
@@ -58,8 +58,8 @@ keccak256(abi.encode("ComboQuery", abi.encode(
 
 ```s
 keccak256(abi.encode("ComboQuery", abi.encode(
-                                      [abi.encode("SpotPrice", abi.encode("ETH","USD")),
-                                      abi.encode("SpotPrice", abi.encode("BTC","USD"))]
+                                      [abi.encode("SpotPrice", abi.encode("eth","usd")),
+                                      abi.encode("SpotPrice", abi.encode("eth","usd"))]
 )))
 ```
 
@@ -77,10 +77,10 @@ keccak256(abi.encode("ComboQuery", abi.encode(
 In the example query:  
 
 ```
-abi.encode("ComboQuery", abi.encode(
-            [abi.encode("SpotPrice", abi.encode("ETH","USD")),
-            abi.encode("SpotPrice", abi.encode("BTC","USD"))]
-))
+keccak256(abi.encode("ComboQuery", abi.encode(
+                                      [abi.encode("SpotPrice", abi.encode("eth","usd")),
+                                      abi.encode("SpotPrice", abi.encode("eth","usd"))]
+)))
 
 ```
 
