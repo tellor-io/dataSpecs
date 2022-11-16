@@ -67,6 +67,12 @@ The JSON representation of your new query type is needed to construct query obje
 }
 ```
 
+## Encoding/Decoding
+
+A toxicity value of 0.024 would be submitted on-chain as follows:
+
+`0x000000000000000000000000000000000000000000000000005543df729c0000`
+
 ## Dispute Considerations
 
 Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unnecessary disputes and at the same time encourage monitoring and punishment of bad data. 
