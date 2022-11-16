@@ -3,7 +3,7 @@
 
 ## Description
 
-This query type is used to report a toxicity measure across multiple lending protocols of a given collateral/loan asset pair. The [formula for calculating this toxicity measure](./LendingPairToxicity/LendingPairToxicity.pdf) was co-authored by Pestopoppa who can be found on [Github](https://github.com/pestopoppa) and [Twitter](https://twitter.com/PestoPoppa).
+This query type is used to report a toxicity measure of a given collateral/loan asset pair using data from Aave V3 on Polygon. The [formula for calculating this toxicity measure](./LendingPairToxicity/LendingPairToxicity.pdf) was co-authored by Pestopoppa who can be found on [Github](https://github.com/pestopoppa) and [Twitter](https://twitter.com/PestoPoppa).
 
 ## Query Parameters
 
