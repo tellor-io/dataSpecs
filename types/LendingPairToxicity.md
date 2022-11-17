@@ -3,7 +3,7 @@
 
 ## Description
 
-This query type is used to report a toxicity measure across multiple lending protocols of a given collateral/loan asset pair. The [formula for calculating this toxicity measure](./LendingPairToxicity/LendingPairToxicity.pdf) was co-authored by Pestopoppa who can be found on [Github](https://github.com/pestopoppa) and [Twitter](https://twitter.com/PestoPoppa).
+This query type is used to report a toxicity measure of a given collateral/loan asset pair using data from Aave V3 on Polygon. The [formula for calculating this toxicity measure](./LendingPairToxicity/LendingPairToxicity.pdf) was co-authored by Pestopoppa who can be found on [Github](https://github.com/pestopoppa) and [Twitter](https://twitter.com/PestoPoppa).
 
 ## Query Parameters
 
@@ -66,6 +66,38 @@ The JSON representation of your new query type is needed to construct query obje
   }
 }
 ```
+
+## Examples
+
+### MATIC/DAI Collateral/Loan Asset Pair
+
+*Query Descriptor:*
+
+```json
+{"type":"LendingPairToxicity","collateral":"matic","loan":"dai"}
+```
+
+*queryData:*
+
+```s
+abi.encode("LendingPairToxicity", abi.encode("matic", "dai"))
+```
+
+`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000134c656e64696e6750616972546f7869636974790000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000056d6174696300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000036461690000000000000000000000000000000000000000000000000000000000`
+
+*queryID:*
+
+```s
+keccak256(queryData)
+```
+
+`0x3771021ab39eb679bf2d005627545e458eed14c3ea60e47ef4d11d5b9f5acd6b`
+
+### Encoding/Decoding
+
+A toxicity value of 0.024 would be submitted on-chain as follows:
+
+`0x000000000000000000000000000000000000000000000000005543df729c0000`
 
 ## Dispute Considerations
 
