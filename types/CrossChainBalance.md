@@ -8,15 +8,19 @@ This query returns the merke root for a given merkle tree of a token's balances.
 
 ## Query Parameters
 
-The `CrossChainBalance` query has two parameters, which specifies the requested data.
+The `CrossChainBalance` query has three parameters, which specifies the requested data.
 
-1. **chainId** (string): ID of the proposal.
+1. **chainId** (string):
 
 The `chainId` should be a valid EVM chain ID.
 
-1. **contractAddress** (string): ID of the proposal.
+2. **contractAddress** (string):
 
 The `contractAddress` should be a valid token contract on the given EVM chain.
+
+3. **blockNumber** (string):
+
+The `blockNumber' is a valid block number on the chainId specified
 
 ## Response Type
 
@@ -85,7 +89,7 @@ An example repo for generating the merkle root can be found here:  https://githu
 In the example query:  
 
 ```
-abi.encode("CrossChainBalance", abi.encode(1,0x88dF592F8eb5D7Bd38bFeF7dEb0fBc02cf3778a0,15998590))
+queryData = abi.encode("CrossChainBalance", abi.encode(1,0x88dF592F8eb5D7Bd38bFeF7dEb0fBc02cf3778a0,15998590))
 
 ```
 
