@@ -10,15 +10,15 @@ This query returns the merke root for a given merkle tree of a token's balances.
 
 The `CrossChainBalance` query has three parameters, which specifies the requested data.
 
-1. **chainId** (string):
+1. **chainId** (uint256):
 
 The `chainId` should be a valid EVM chain ID.
 
-2. **contractAddress** (string):
+2. **contractAddress** (address):
 
 The `contractAddress` should be a valid token contract on the given EVM chain.
 
-3. **blockNumber** (string):
+3. **blockNumber** (uint256):
 
 The `blockNumber' is a valid block number on the chainId specified
 
