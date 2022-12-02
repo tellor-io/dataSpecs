@@ -80,3 +80,4 @@ body:
       - abi_type: ufixed256x18 (18 decimals of precision)
       - packed: false
       ```
+
