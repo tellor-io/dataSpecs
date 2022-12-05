@@ -67,7 +67,6 @@ body:
   - type: markdown
     id: response-type-explanation
     attributes:
-      label: Response Type
       value: > 
         ## Response Type
 
