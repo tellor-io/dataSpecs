@@ -61,7 +61,7 @@ body:
           - value type: `bytes`
         ```
   - type: textarea
-    id: your-query-description
+    id: your-query-parameters
     attributes:
       label: Your query parameters
       description: place your query parameters with their description + solidity data types here
@@ -81,4 +81,9 @@ body:
         - abi_type: ufixed256x18 (18 decimals of precision)
         - packed: false
         ```
-
+  - type: textarea
+    id: your-response-type
+    attributes:
+      label: Your response type
+      description: place your response type with their description + solidity data types here
+      placeholder: "- response type (description, solidity value type)..."
