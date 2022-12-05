@@ -1,5 +1,5 @@
 name: New Query Type Form
-description: File a bug report
+description: Fill out this form to propose a new data type on Tellor
 title: "[New Query Type]: "
 body:
   - type: markdown
@@ -42,6 +42,7 @@ body:
           - The parameter order required for the query data bytes (more on this later)
 
         For example, the `SpotPrice` query type's parameters are defined as:
+        
         ```
         1. asset
             - description: Asset ID (e.g. BTC)
