@@ -44,6 +44,7 @@ body:
         For example, the `SpotPrice` query type's parameters are defined as:
         
         ```
+        
         1. asset
             - description: Asset ID (e.g. BTC)
             - value type: `string`
@@ -74,7 +75,9 @@ body:
         Specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc), as well as a boolean signifying whether the reponse will be packed or not when encoded to bytes. More on valid types [here](https://docs.soliditylang.org/en/v0.8.13/types.html).
 
         For example, the `SpotPrice`'s response type is an unpacked 256 bit value with 18 decimals of precision:
+        
         ```
+        
         - abi_type: ufixed256x18 (18 decimals of precision)
         - packed: false
         ```
