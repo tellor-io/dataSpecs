@@ -1,5 +1,5 @@
 name: New Query Type Form
-description: Fill out this form to propose a new data type on Tellor
+description: Fill out this form to propose a new data spec for Tellor
 title: "[New Query Type]: "
 body:
   - type: markdown
