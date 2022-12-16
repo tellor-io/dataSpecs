@@ -27,8 +27,7 @@ To find out what data to report, there's two options:
 
 ## Create New Query Type
 To create a new Query, or specification, for custom data you need from Tellor oracles, there's two options:
-- Make an issue like [this](https://github.com/tellor-io/dataSpecs/issues/25) and the Tellor team will help with the next steps.
-- Fork this repository and make a pull request for a new Query type in `./types` using [this template](./types/_NewQueryTypeTemplate.md).
+- Make an issue with [this template](https://github.com/tellor-io/dataSpecs/issues/new?assignees=&labels=&template=new_query_type.yaml&title=%5BNew+Query+Type%5D%3A+) and the Tellor team will help with the next steps.
 
 After creating the new query type in this repo, [here](https://github.com/tellor-io/telliot-feeds/issues/new/choose) are some next steps.
 
