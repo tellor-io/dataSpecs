@@ -87,3 +87,15 @@ body:
       label: Your response type
       description: place your response type with their description + solidity data types here
       placeholder: "- response type (description, solidity value type)..."
+  - type: textarea
+    id: dispute-considerations
+    attributes:
+      label: Dispute Considerations
+      description: How should the data be formatted? How should it be measured? When should it be disputed?
+      placeholder: "Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized. This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data."
+  - type: textarea
+    id: suggested-data-sources
+    attributes:
+      label: Suggested Data Sources
+      placeholder: "Where can reporters retrieve the query's response? Are there APIs available so reporters can programmatically retrieve the data for your query's expected response? Are there multiple possible sources for the expected response?" 
+
