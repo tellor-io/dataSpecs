@@ -55,6 +55,7 @@ Decoded with `abi.decode(response, (string))`:
 ### Dispute considerations
 
 New lines should be stripped. In other words there should not be separate paragraphs in the on-chain response.
+Responses should include the major keywords of the question to be considered valid. Users of this query type should also examine the answer before accepting it in their smart contract, as irrelevant or off-topic answers can be hard to detect.
 
 ### Suggested Data Sources
 
