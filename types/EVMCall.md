@@ -80,10 +80,6 @@ the JSON representation of a `EVMCall` query:
             "type": "bytes",
             "name": "calldata",
         },
-        {
-            "type": "uint256",
-            "name": "timestamp"
-        },
     ],
     "response": {
         "type": "bytes",
