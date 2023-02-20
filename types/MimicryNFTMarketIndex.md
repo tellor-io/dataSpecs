@@ -186,7 +186,7 @@ curl -X "POST" "https://oracle-api.banksea.finance/nft/v1/collection/market_cap"
      -H 'x-api-key: test-api-key' \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
-    "collection":"citizenone"
+    "collection":"degods"
 }'
 ```
 
@@ -199,6 +199,8 @@ And then, finally, to sum the top 50 most valuable NFT collections using the `ma
     }
 }
 ```
+
+> Note that you can request a Banksea Finance API key [here](https://banksea-finance.gitbook.io/banksea-oracle-api/cooperation/request-form) and [here](https://c2dtw7wmuwa.typeform.com/to/DBQ3SUXv).
 
 ### Other Sources
 The more difficult way to calcuate this metric is by sourcing sales history from Reservoir Protocol, Dune Analytics, etc. and manually calculating the market capitalization per the methodology described herein. 
