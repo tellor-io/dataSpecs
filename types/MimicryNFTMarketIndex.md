@@ -136,6 +136,9 @@ _queryId:
 
 Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
+### Special Note on Currencies
+Reporting in a novel currency is a not as simple as taking the pre-calculated market capitalization metric from NFTGo in ETH and looking up some other currency's current spot price. The reason is because the pre-calculated values (from both NFTGo and Banksea Finance) take into account the spot price of ETH and SOL at the time of each NFT's last sale transaction. So in order to support a currency such as LINK, one must look at the price of LINK at the time of each sale, convert to that value, and then keep a running total of the sum of NFT sales. 
+
 
 ## Suggested Data Sources
 
