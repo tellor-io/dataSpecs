@@ -29,12 +29,9 @@ Suspected wash trades should be filtered out.
 
 The `MimicryNFTMarketIndex` query has two parameters:
 
-1. **chainId**
-    - description: The chain id of the blockchain that the collections live on
-    - value type: `uint256`
-    - allowed values:
-        - `0` - ETH Mainnet
-        - `1` - Solana Mainnet
+1. **chain**
+    - description: The blockchain mainnet that the collections live on (e.g. ethereum, solana, etc.)
+    - value type: `string`
 2. **currency**
     - description: The currency used to calculate the market capitalization (e.g. usd, eth, sol)
     - value type: `string`
@@ -54,7 +51,7 @@ The response will consist of a single 256-bit value with 18 decimals of precisio
 Example queryData to request the market capitalization of the 50 most valuable NFT collections on the Ethereum Mainnet, represented in USD:
 
 ```s
-queryData = abi.encode("MimicryNFTMarketIndex", abi.encode(0, 0))
+queryData = abi.encode("MimicryNFTMarketIndex", abi.encode('ethereum', 'usd'))
 ```
 
 
@@ -76,8 +73,8 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
     "type": "MimicryNFTMarketIndex",
     "abi": [
         {
-            "type": "uint256",
-            "name": "chainId",
+            "type": "string",
+            "name": "chain",
         },
         {
             "type": "string",
@@ -107,7 +104,7 @@ contract Example is UsingTellor {
 
     function getEthMainnetNftMarketCapUsd() external view returns (uint256) {
         bytes memory _args = abi.encode(
-            0,    // Ethereum chain id
+            'ethereum,
             'usd'
         );
         bytes memory _queryData = abi.encode("MimicryNFTMarketIndex", _args);
@@ -125,10 +122,10 @@ contract Example is UsingTellor {
 ```
 
 _queryData:
-`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000154d696d696372794e46544d61726b6574496e646578000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000037573640000000000000000000000000000000000000000000000000000000000`
+`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000154d696d696372794e46544d61726b6574496e646578000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000008657468657265756d00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000037573640000000000000000000000000000000000000000000000000000000000`
 
 _queryId:
-`0xd8ab4243ad345c80c87cf9681d14dad97d865effc65eeff980e74702bfcf880a`
+`0x486e2149f25d46bb39a27f5e0c81be9b6f193abf46c0d49314b8d1dd104cd53b`
 
 
 
