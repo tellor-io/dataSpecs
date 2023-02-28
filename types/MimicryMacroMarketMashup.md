@@ -9,6 +9,9 @@ This query returns a single market capitalization metric derived from the sum of
 
 Its initial use case is enabling the creation of macro-markets on [Mimicry Protocol](https://www.mimicry.org/), but the values can be used by anyone who needs this metric.
 
+The intent of this Data Spec is to continue to expand with more and more asset classes.
+
+
 ### Market Capitalization for NFT Collections, Explained
 Market capitalization is calculated as the sum of each NFT within an NFT collection, where each NFT is valued at the greater of its last traded price or the floor price of the collection, respectively.
 
@@ -34,16 +37,25 @@ The market capitalization of an ERC-20 token is the total market value of a cryp
 
 The `MimicryMacroMarketMashup` query has two parameters:
 
-1. **ethereumNftCollections**
-    - description: A CSV list of NFT collection contract-addresses on the Ethereum Mainnet
-    - value type: `string`
-3. **tokens**
-    - description: A CSV list of cryptocurrency tokens (e.g. 'APE, MANA, SAND')
+1. **metric**
+    - description: The metric that should be use for all calculations. 99.9% of the time this will always be "market-cap"
     - value type: `string`
 
-> Note that no currency is specified because the resulting market capitalization will always be returned in USD. 
+2. **currency**
+    - description: The currency that should be used for all calculations. 99.9% of the time this will always be "usd"
+    - value type: `string`
 
-> Also note that in the future we may include NFT collections from more chains (hence the query parameter naming), as well as more asset classes (e.g. stocks, commodities, fine spirits, etc.).
+3. **collections**
+    - description: An array of Collection structs, where each Collection includes the blockchain where the NFT contract is deployed, and the contract address itself 
+    - value type: `Collection[]`
+    - struct: `tuple(string, address)`
+
+4. **tokens**
+    - description: An array of Token structs, where each Token includes the blockchain where the token contract is deployed, the lower-case short name of the token, and the token contract address itself
+    - value type: `Token[]`
+    - struct: `tuple(string, string, address)`
+
+> Note that in the future we may include NFT collections and tokens from more chains than "ethereum-mainnet".
 
 ## Response Type
 
@@ -53,24 +65,96 @@ The response will consist of a single 256-bit value that reprents the summed mar
 - `packed`: false
 
 
-## Query Data
+## Query Data and ID Example
 
-Example queryData to request the market capitalization of the all Sandbox, Decentraland, and Otherdeed land NFTs on the Ethereum Mainnet, along with the market capitalization of all circulating SAND, MANA, and APE tokens:
+Please see the example below request the market capitalization of the all Sandbox, Decentraland, and Otherdeed land NFTs on the Ethereum Mainnet, along with the market capitalization of all circulating SAND, MANA, and APE tokens, represented in USD:
 
-```javascript
-queryData = abi.encode("MimicryMacroMarketMashup", abi.encode("0x50f5474724e0Ee42D9a4e711ccFB275809Fd6d4a,0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d,0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258", "SAND,MANA,APE"))
+```solidity
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity 0.8.17;
+import "usingtellor/contracts/UsingTellor.sol";
+
+struct Collection {
+    string chainName;
+    address collectionAddress;
+}
+
+struct Token {
+    string chainName;
+    string tokenName;
+    address tokenAddress;
+}
+
+contract Example {
+
+    function getQueryData() 
+        public 
+        pure 
+        returns (bytes memory) 
+    {
+        Collection[] memory _collections = new Collection[](3); // length of 3 is arbitrary and must match use case
+        Token[] memory _tokens = new Token[](3);                // length of 3 is arbitrary and must match use case
+        // Token[] memory _tokens = new Token[](0);             // example... use length of 0 when an asset type is not needed
+        
+        _collections[0] = Collection("ethereum-mainnet", 0x50f5474724e0Ee42D9a4e711ccFB275809Fd6d4a);   // sandbox land
+        _collections[1] = Collection("ethereum-mainnet", 0xF87E31492Faf9A91B02Ee0dEAAd50d51d56D5d4d);   // decentraland land
+        _collections[2] = Collection("ethereum-mainnet", 0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258);   // otherdeed land
+
+        _tokens[0] = Token("ethereum-mainnet", "sand", 0x3845badAde8e6dFF049820680d1F14bD3903a5d0);     // sand token
+        _tokens[1] = Token("ethereum-mainnet", "mana", 0x0F5D2fB29fb7d3CFeE444a200298f468908cC942);     // mana token
+        _tokens[2] = Token("ethereum-mainnet", "ape", 0x4d224452801ACEd8B2F0aebE155379bb5D594381);      // ape token
+
+        bytes memory _args = abi.encode(
+            "market-cap",   // 99.9999999% of the time this will not change
+            "usd",          // 99.9999999% of the time this will not change
+            _collections,   // this param will always be an array of Collection
+            _tokens         // this param will always be an array of Token
+        );
+        return abi.encode("MimicryMacroMarketMashup", _args);
+    }
+    
+    function getQueryId(bytes calldata queryData) external pure returns (bytes32) {
+        return keccak256(queryData);
+    }
+
+    function decodeQueryData(bytes calldata data) 
+        external 
+        pure 
+        returns (string memory _name, bytes memory _args) 
+    {
+        (_name, _args) = abi.decode(data, (string, bytes));
+    }
+
+    function decodeArgs(bytes calldata data) 
+        external 
+        pure 
+        returns (
+            string memory _metric, 
+            string memory _currency, 
+            Collection[] memory _collections, 
+            Token[] memory _tokens
+        )
+    {
+        (_metric, _currency, _collections, _tokens) = abi.decode(data, (string, string, Collection[], Token[]));
+    }
+}
 ```
 
+**getQueryData():**
+`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000184d696d696372794d6163726f4d61726b65744d617368757000000000000000000000000000000000000000000000000000000000000000000000000000000620000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000000a6d61726b65742d63617000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000375736400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000160000000000000000000000000000000000000000000000000000000000000004000000000000000000000000050f5474724e0ee42d9a4e711ccfb275809fd6d4a0000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e6574000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000f87e31492faf9a91b02ee0deaad50d51d56d5d4d0000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e657400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000034d85c9cdeb23fa97cb08333b511ac86e1c4e2580000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e6574000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000001400000000000000000000000000000000000000000000000000000000000000220000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000003845badade8e6dff049820680d1f14bd3903a5d00000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e657400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000473616e6400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000f5d2fb29fb7d3cfee444a200298f468908cc9420000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e65740000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000046d616e6100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000004d224452801aced8b2f0aebe155379bb5d5943810000000000000000000000000000000000000000000000000000000000000010657468657265756d2d6d61696e6e65740000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000036170650000000000000000000000000000000000000000000000000000000000`
 
-## Query ID
+**getQueryId(queryData):**
+`0x30717c1fa75f5bae0c11e13283bedcf72e9f4e526c642bd5b330b615d0db8708`
 
-To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
+**decodeArgs(data):**
 
-```s
-keccak256(queryData)
-```
+`0: string: _metric market-cap`
 
-You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate query IDs.
+`1: string: _currency usd`
+
+`2: tuple(string,address)[]: _collections ethereum-mainnet,0x50f5474724e0Ee42D9a4e711ccFB275809Fd6d4a,ethereum-mainnet,0xF87E31492Faf9A91B02Ee0dEAAd50d51d56D5d4d,ethereum-mainnet,0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258`
+
+`3: tuple(string,string,address)[]: _tokens ethereum-mainnet,sand,0x3845badAde8e6dFF049820680d1F14bD3903a5d0,ethereum-mainnet,mana,0x0F5D2fB29fb7d3CFeE444a200298f468908cC942,ethereum-mainnet,ape,0x4d224452801ACEd8B2F0aebE155379bb5D594381`
 
 
 ## JSON Representation
@@ -81,15 +165,19 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
     "abi": [
         {
             "type": "string",
-            "name": "ethereumNftCollections",
+            "name": "_metric",
         },
         {
             "type": "string",
-            "name": "solanaNftCollections",
+            "name": "_currency",
         },
         {
-            "type": "string",
-            "name": "tokens",
+            "type": "Collection[]",     // tuple(string, address)
+            "name": "_collections",
+        },
+        {
+            "type": "Token[]",          // tuple(string, string, address)
+            "name": "_tokens",
         },
     ],
     "response": {
@@ -98,41 +186,6 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
     }
 }
 ```
-
-
-## Example
-
-Full example to request the market capitalization of all land NFTs from Sandbox, Decentraland, and Otherdeed, plus the market capitalization of the SAND, MANA, and APE tokens, represented in USD:
-
-```solidity
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity 0.8.12;
-import "usingtellor/contracts/UsingTellor.sol";
-contract Example is UsingTellor {
-    constructor(address payable _tellorAddress) UsingTellor (_tellorAddress) public {}
-    function getMetaverseMarketCap() external view returns (uint256) {
-        bytes memory _args = abi.encode(
-            "0x50f5474724e0Ee42D9a4e711ccFB275809Fd6d4a,0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d,0x34d85c9CDeB23FA97cb08333b511ac86E1C4E258",
-            "SAND,MANA,APE"
-        );
-        bytes memory _queryData = abi.encode("MimicryMacroMarketMashup", _args);
-        bytes32 _queryId = keccak256(_queryData);
-        (bytes memory value, uint256 timestampRetrieved) = getDataBefore(_queryId, block.timestamp - 1 hours);
-        if (timestampRetrieved == 0) {
-            return 0;
-        }
-        return abi.decode(value, (uint256));
-    }
-}
-```
-
-_queryData:
-`0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000174d696d696372794d6163726f4d61726b6574496e6465780000000000000000000000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000000803078353066353437343732346530456534324439613465373131636346423237353830394664366434612c3078663837653331343932666166396139316230326565306465616164353064353164353664356434642c307833346438356339434465423233464139376362303833333362353131616338364531433445323538000000000000000000000000000000000000000000000000000000000000000d53414e442c4d414e412c41504500000000000000000000000000000000000000`
-
-_queryId:
-`0xfe4fff3585418f5d0b6c3dd3ce92cba1227904d158a97d7cef5363fd656517a3`
-
-
 
 ## Dispute Considerations
 
