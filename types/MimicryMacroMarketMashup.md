@@ -67,7 +67,7 @@ The response will consist of a single 256-bit value that reprents the summed mar
 
 ## Query Data and ID Example
 
-Please see the example below request the market capitalization of the all Sandbox, Decentraland, and Otherdeed land NFTs on the Ethereum Mainnet, along with the market capitalization of all circulating SAND, MANA, and APE tokens, represented in USD:
+Please see the example below request the market capitalization of the all Sandbox, Decentraland, and Otherdeed land NFTs on the Ethereum Mainnet, along with the market capitalization of all circulating SAND, MANA, and APE tokens, represented in USD. You can test this by pasting the following code into https://remix.ethereum.org/.
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0
