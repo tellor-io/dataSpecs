@@ -187,8 +187,6 @@ Using this data source is as simple as iterating through the provided responses 
 
 > Note that at the time of writing this endpoint is free to use. You can generate your NFTGo API key [here](https://developer.nftgo.io/login).
 
-> You can test the calculation for this value [here](https://runkit.io/aslangoldenhour/calculate-nft-market-index-via-nftgo/branches/master?currency=usd). [[source](https://runkit.com/aslangoldenhour/calculate-nft-market-index-via-nftgo)]
-
 ### Banksea Finance (Solana)
 Another way to calculate this metric is using the [Collection API](https://banksea-finance.gitbook.io/banksea-oracle-api/api/solana-api/collection-api) endpoint provided by Banksea Finance.
 
@@ -225,3 +223,10 @@ And then, finally, to sum the top 50 most valuable NFT collections using the `ma
 
 ### Other Sources
 The more difficult way to calcuate this metric is by sourcing sales history from Reservoir Protocol, Dune Analytics, etc. and manually calculating the market capitalization per the methodology described herein. 
+
+
+## Comprehensive Calculation Example
+
+You may test the calculation for this metric using [this public api endpoint](https://runkit.io/aslangoldenhour/calculate-nft-market-index-via-nftgo/branches/master?currency=usd). 
+
+[Here's the source code](https://runkit.com/aslangoldenhour/calculate-nft-market-index-via-nftgo) for this endpoint.
