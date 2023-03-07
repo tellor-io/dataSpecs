@@ -95,28 +95,51 @@ Full example to request the market capitalization of the 50 most valuable NFT co
 
 ```solidity
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity 0.8.12;
-import "usingtellor/contracts/UsingTellor.sol";
+pragma solidity 0.8.17;
 
-contract Example is UsingTellor {
+contract NFTMarketIndex {
 
-    constructor(address payable _tellorAddress) UsingTellor (_tellorAddress) public {}
-
-    function getEthMainnetNftMarketCapUsd() external view returns (uint256) {
+    function getQueryData() 
+        public 
+        pure 
+        returns (bytes memory) 
+    {
         bytes memory _args = abi.encode(
-            'ethereum,
-            'usd'
+            "ethereum",   // 99.9999999% of the time this will not change
+            "usd"         // 99.9999999% of the time this will not change
         );
-        bytes memory _queryData = abi.encode("MimicryNFTMarketIndex", _args);
-        bytes32 _queryId = keccak256(_queryData);
+        return abi.encode("MimicryNFTMarketIndex", _args);
+    }
+    
+    function getQueryId(bytes calldata queryData) external pure returns (bytes32) {
+        return keccak256(queryData);
+    }
 
-        (bytes memory value, uint256 timestampRetrieved) = getDataBefore(_queryId, block.timestamp - 1 hours);
+    function decodeQueryData(bytes calldata data) 
+        external 
+        pure 
+        returns (string memory _name, bytes memory _args) 
+    {
+        (_name, _args) = abi.decode(data, (string, bytes));
+    }
 
-        if (timestampRetrieved == 0) {
-            return 0;
-        }
+    function decodeArgs(bytes calldata data) 
+        external 
+        pure 
+        returns (
+            string memory _chain, 
+            string memory _currency
+        )
+    {
+        (_chain, _currency) = abi.decode(data, (string, string));
+    }
 
-        return abi.decode(value, (uint256));
+    function decodeQueryValue(bytes calldata _value)
+        external
+        pure
+        returns (uint256) 
+    {
+        return abi.decode(_value, (uint256));
     }
 }
 ```
@@ -163,6 +186,8 @@ Using this data source is as simple as iterating through the provided responses 
 ```
 
 > Note that at the time of writing this endpoint is free to use. You can generate your NFTGo API key [here](https://developer.nftgo.io/login).
+
+> You can test the calculation for this value [here](https://runkit.io/aslangoldenhour/calculate-nft-market-index-via-nftgo/branches/master?currency=usd). [[source](https://runkit.com/aslangoldenhour/calculate-nft-market-index-via-nftgo)]
 
 ### Banksea Finance (Solana)
 Another way to calculate this metric is using the [Collection API](https://banksea-finance.gitbook.io/banksea-oracle-api/api/solana-api/collection-api) endpoint provided by Banksea Finance.
