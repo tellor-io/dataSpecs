@@ -4,7 +4,7 @@
 
 ## Description
 
-The `EVMHeader` query type allows users to bridge block header information from any EVM compatible network and
+The `EVMHeader` query type allows users to fetch the block hash for a given block from any EVM compatible network and
 subsequently storing this information on the target chain.
 
 ## Query Parameters
@@ -34,7 +34,7 @@ Response should return the block header hash
 Query data is used to form your new Query's unique identifier, or query ID, and it's also included in emitted contract
 events so Tellor users and reporters can programmatically construct query objects.
 
-To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order
+To generate the query data for an instance of your new Query type, first encode the parameter values in the order
 specified above. Then encode those `bytes` with the Query's type string.
 
 For example, to get the query data of an example instance of a `EVMHeader` query using Solidity:
