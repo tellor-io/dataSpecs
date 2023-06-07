@@ -87,8 +87,6 @@ the JSON representation of a `EVMHeader` query:
 
 ## Example
 
-to query Tellor's total supply on Ethereum mainnet:
-
 ```s
 bytes queryData = abi.encode("EVMHeader", abi.encode(1, 17403636));
 bytes32 queryId = keccak256(queryData);
