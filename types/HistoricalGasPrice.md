@@ -5,8 +5,9 @@
 
 
 ## Description
+This is a query type for the Tellor network, named HistoricalGasPrice, which is engineered to estimate the historical gas price in gwei. This is particularly beneficial for protocols that aim to refund users for their expended gas.
 
-This is a query type for reporting a gas price in gwei to the Tellor network. The query type will be called `HistoricalGasPrice. An Example use case is for gas refunds: protocols will need an accurate estimate for the cost of historical user transactions in gas. Given its approach, this `HistoricalGasPrice` is best suited for refunding users an approximation of their gas spent according to an average of gas prices from that time period.
+The HistoricalGasPrice query type operates by examining the average gas prices at a given timestamp. It achieves this by reporting the median gas price from the block that corresponds to the given timestamp. Since finding a block that perfectly matches the given timestamp isn't always feasible, the block that is closest to, but not later than, the given timestamp is used. This ensures that the user reimbursement is based on a representative gas price, even when an exact match for the timestamp isn't available.
 
 
 ## Query Parameters
