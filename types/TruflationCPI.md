@@ -47,7 +47,7 @@ keccak256(queryData)
 ## JSON Representation
 The JSON representation of a query type is needed to construct query objects in a variety of languages. It contains the essential components of a query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
 
-The JSON representation of a `AmpleforthUSPCE` query is as follows:
+The JSON representation of a `TruflationCPI` query is as follows:
 ```json
 {
     "type": "TruflationCPI",
