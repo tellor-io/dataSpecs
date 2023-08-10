@@ -32,7 +32,7 @@ The response will consist of a single 256-bit value in the following format:
 
 ## Query Data Examples
 
-**The query data for the Beauro of Labor Statistics consumer price index (unadjusted) should be formed as follows:**
+**The query data for the Bureau of Labor Statistics consumer price index (unadjusted) should be formed as follows:**
 
 *Query Descriptor:*
 
