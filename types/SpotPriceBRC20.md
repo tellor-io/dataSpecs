@@ -6,7 +6,7 @@
 
 ## Query Description
 
-This query returns the price of a non-crypto asset like a stock, derivatives product, or legacy market commodity.
+This query returns the price of a BRC-20 token that uses ordinal inscriptions on Bitcoin.
 
 ## Query Parameters
 
