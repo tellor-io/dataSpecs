@@ -67,7 +67,7 @@ the JSON representation of a `BTCBalance` query:
     "type": "BTCBalance",
     "abi": [
         {
-            "type": "stering",
+            "type": "string",
             "name": "btcAddress",
         },
         {
