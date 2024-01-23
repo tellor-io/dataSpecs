@@ -26,7 +26,7 @@ see [here](https://ethereum.stackexchange.com/questions/14037/what-is-msg-data) 
 
 ## Response Type
 
-Response should return a concatenation of the value and the timestamp
+Response should return the value to 18 decimals
 
 ```
 - abi_type: uint256
