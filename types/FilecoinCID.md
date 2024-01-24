@@ -12,7 +12,7 @@ Filecoin IPFS users depend on Filecoin miners for reliable storage of their data
 The `FilecoinCID` query type has one parameter, `url`.
 
 1. **Url**
-    - description: The URL where some IPFS data can be found (e.g ```"https://bobswebsite.com/bobsresume.html"```)
+    - description: The URL where some data can be found (e.g ```"https://bobswebsite.com/bobsresume.html"```)
     - value type: `string`
 
 
