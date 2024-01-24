@@ -66,8 +66,7 @@ For example, the JSON representation of a `FilecoinDealStatus` query:
 ```
 
 
-## Examples
-A working example mapping of all the various inputs and parameters to a valid queryID. 
+## Example
 
 **for the url: "https://raw.githubusercontent.com/tellor-io/dataSpecs/main/README.md"**
 ```s
@@ -82,9 +81,7 @@ queryID:
 `0x7358f056230629915e1e6a8ef2c2f02496de3de644cbfadfced0449b784f8d47`
 
 
-**Tellor reporter's response should be:**
-
-The ipfs CID Value submitted as bytes:
+The Tellor reporter should report the ipfs CID Value submitted as bytes:
 `0x000000000000000000000000000000000000000000000000000000000000002e516d645734464e4b7350533979796b4b4e357343375135337064574a527a325458675652476e5a48617750377165000000000000000000000000000000000000`
 
 Decoded Value:
