@@ -79,6 +79,8 @@ The Tellor reporter should report the ipfs CID Value submitted as bytes:
 Decoded Value:
 `QmdW4FNKsPS9yykKN5sC7Q53pdWJRz2TXgVRGnZHawP7qe`
 
+**Note: Actual CID for example data may change if dataSpecs readme changes.*
+
 ## Dispute Considerations
 
 You can be disputed for reporting a CID that does not match the data found at the url in the requested (tipped) queryData.
