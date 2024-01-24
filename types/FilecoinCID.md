@@ -5,14 +5,14 @@
 
 ## Description
 
-Filecoin IPFS users depend on Filecoin miners for reliable storage of their data, but verifying that the data is actually stored as expected is not always straightforward. This FilecoinCID query type aims to help recruit an unbiased third party (the decentralized Tellor reporter network) to report the generated CID for the data found at a provided URL.
+Filecoin IPFS users depend on Filecoin miners for reliable storage of their data, but verifying that the data is actually stored as expected is not always straightforward. This FilecoinCID query type aims to help recruit an unbiased third party (the decentralized Tellor reporter network) to report the generated CID for the data found at any provided URL.
 
 ## Query Parameters
 
 The `FilecoinCID` query type has one parameter, `url`.
 
 1. **Url**
-    - description: The URL where some IPFS data can be found (e.g ```"https://<gateway_domain>/ipfs/<content_identifier>"```)
+    - description: The URL where some IPFS data can be found (e.g ```"https://bobswebsite.com/bobsresume.html"```)
     - value type: `string`
 
 
@@ -29,7 +29,7 @@ Response should return the abi encoded CID for the data found at the url.
 
 To get the query data of an example instance of a `FilecoinCID` query using Solidity:
 ```s
-queryData = abi.encode("FilecoinCID", abi.encode("https://ipfs.io/ipfs/QmZULkCELmmk5XNfCgTnCyFgAVxBRBXyDHGGMVoLFLiXEN"))
+queryData = abi.encode("FilecoinCID", abi.encode("https://bobswebsite.com/bobsresume.html"))
 ```
 
 
