@@ -29,7 +29,7 @@ Response should return an abi encoded CID Value matching the data found at the u
 
 To get the query data of an example instance of a `FilecoinCID` query using Solidity:
 ```s
-queryData = abi.encode("FilecoinCID", abi.encode("https://github.com/tellor-io/dataSpecs/blob/FilecoinCID/types/SpotPrice.md"))
+queryData = abi.encode("FilecoinCID", abi.encode("https://raw.githubusercontent.com/tellor-io/dataSpecs/main/README.md"))
 ```
 
 
