@@ -108,4 +108,4 @@ Make sure to...
 
 ## Suggested Data Sources
 
-All the reporters need is a btc node or trusted explorer. In order to account for the possibility of a reorg, the reference block should be old enough that it won't be reverted or rolled back (you will be disputed).
+All the reporters need is a btc node or trusted explorer. 
