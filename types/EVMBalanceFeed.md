@@ -1,24 +1,27 @@
 ## Type Name
 
-`BTCBalance`
+`EVMBalance`
 
 
 ## Description
 
-The `BTCBalance` query type allows users to query a BTC balance by address and timestamp. Users can tip Tellor reporters to bridge balances from Bitcoin to any tellor enabled chain.  
+The `EVMBalance` query type allows users to query a an EVM's native token balance by address and timestamp. Users can tip Tellor reporters to bridge balances from any EVM chain to any tellor enabled chain.  
 
 
 ## Query Parameters
 
 A query's parameters may change for each instance of your query type.
 
-The `BTCBalance` query type's parameters are defined as:
+The `EVMBalance` query type's parameters are defined as:
 ```
-1. btcAddress
-    - description: the address of the bitcoin hodler
-    - value type: `string`
-2. timestamp
-    - description: timestamp which will be rounded down to the closest Bitcoin block
+1. chainId
+    - description: the chainId which you want the balance for
+    - value type: `uint256`
+2. evmAddress
+    - description: the address of the hodler
+    - value type: `address`
+3. timestamp
+    - description: timestamp which will be rounded down to the closest Ethereum block
     - value type: `uint256`
 ```
 
@@ -40,10 +43,10 @@ Query data is used to form your new Query's unique identifier, or query ID, and 
 
 To generate the query data for an instance of your new Query type, first UTF-8 encode the parameter values in the order specified above. Then encode those `bytes` with the Query's type string.
 
-For example, to get the query data of an example instance of a `BTCBalance` query using Solidity:
+For example, to get the query data of an example instance of a `EVMBalance` query using Solidity:
 ```s
-string btcAddress = "3Cyd2ExaAEoTzmLNyixJxBsJ4X16t1VePc";
-bytes queryData = abi.encode("BTCBalance", abi.encode(btcAddress,1705954706));
+adddress _addy = "0x0d7EFfEFdB084DfEB1621348c8C70cc4e871Eba4";
+bytes queryData = abi.encode("EVMBalance",abi.encode(1,_addy,1705954706));
 ```
 
 ## Query ID
@@ -61,14 +64,17 @@ You can use [this tool](https://queryidbuilder.herokuapp.com/custom) to generate
 ## JSON Representation
 The JSON representation of your new query type is needed to construct query objects in a variety of languages. It contains the essential components of your query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
 
-the JSON representation of a `BTCBalance` query:
+the JSON representation of a `EVMalance` query:
 ```json
 {
-    "type": "BTCBalance",
+    "type": "EVMBalance",
     "abi": [
         {
-            "type": "string",
-            "name": "btcAddress",
+            "type": "uint256",
+            "name": "chaindId",
+        },{
+            "type": "address",
+            "name": "evmAddress",
         },
         {
             "type": "uint256",
@@ -85,25 +91,25 @@ the JSON representation of a `BTCBalance` query:
 
 ## Example
 
-to query a bitcoin address at 22 January 2024 at 3:06pm EST
+to query a mainnet Ethereum address at 22 January 2024 at 3:06pm EST
 
 ```s
-bytes queryData = abi.encode("BTCBalance", abi.encode("3Cyd2ExaAEoTzmLNyixJxBsJ4X16t1VePc",1705954706));
+bytes queryData = abi.encode("EVMBalance", abi.encode(1,"0x0d7EFfEFdB084DfEB1621348c8C70cc4e871Eba4",1705954706));
 bytes32 queryId = keccak256(queryData)
 ```
 
-the queryData: `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000a42544342616c616e63650000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000065aecd920000000000000000000000000000000000000000000000000000000000000022334379643245786141456f547a6d4c4e7969784a7842734a34583136743156655063000000000000000000000000000000000000000000000000000000000000`
+the queryData: `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000a45564d42616c616e636500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000d7effefdb084dfeb1621348c8c70cc4e871eba40000000000000000000000000000000000000000000000000000000065aecd92`
 
-this queryId is `0xee2cbdde34725cfa760bc074083ca85b3f82747d8f9b6baa79cecc2cb107c2a`
+this queryId is `0xca5aae1e155dcaa848c3dd85ecb799a65fdc0628a586c843a5b352eab74cb2b8`
 
-to format the response (.31 BTC), pull out to 18 decimals:
+to format the response (0.43287710009898539 ETH), pull out to 18 decimals:
 
 ```s
 bytes exampleResponse = abi.encode();
 ```
 
 this example response in bytes is...
-`0x000000000000000000000000000000000000000000000000044d575b885f0000`
+`0x0000000000000000000000000000000000000000000000000601e36dd6cd1dae`
 
 
 ## Dispute Considerations
@@ -115,4 +121,4 @@ Make sure to...
 
 ## Suggested Data Sources
 
-All the reporters need is a btc node or trusted explorer!
+All the reporters need is an eth node or trusted explorer!
