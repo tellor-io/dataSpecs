@@ -106,7 +106,8 @@ this example response in bytes is...
 Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
 
 Make sure to...
-- use blocks old enough that they won't be reverted or rolled back (you will be disputed)
+- use a balance from 6 blocks ago to reduce the likelihood of the block being reverted or rolled back (you will be disputed)
+- a dispute for a reported value which was correct at the time of the report but is no longer correct should resolve to invalid
 
 ## Suggested Data Sources
 
