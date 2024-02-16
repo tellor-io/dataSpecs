@@ -23,11 +23,15 @@ see [here](https://ethereum.stackexchange.com/questions/14037/what-is-msg-data) 
 
 ## Response Type
 
-Response should return the value to 18 decimals
+Response should return the balance value to 18 decimals:
 
 ```
-- abi_type: uint256
-- packed: false
+1. balance
+    - abi_type: ufixed256x18
+    - packed: false
+2. blockTimestamp
+    - abi_type: uint256
+    - packed: false
 ```
 
 
@@ -68,19 +72,27 @@ the JSON representation of a `BTCBalanceFeed` query:
             "name": "btcAddress",
         }
     ],
-    "response": {
-        "type": "uint256",
-        "packed": false,
-    }
+    "response": [
+        {
+            "type": "ufixed256x18",
+            "name": "balance",
+            "packed": false,
+        },
+        {
+            "type": "uint256",
+            "name": "blockTimestamp",
+            "packed": false,
+        }
+    ]
 }
 ```
 
 
 ## Example
 
-to query a current bitcoin address balance
+to query a current bitcoin address balance:
 
-```s
+```sol
 bytes queryData = abi.encode("BTCBalanceFeed", abi.encode("3Cyd2ExaAEoTzmLNyixJxBsJ4X16t1VePc"));
 bytes32 queryId = keccak256(queryData)
 ```
@@ -89,14 +101,16 @@ the queryData: `0x00000000000000000000000000000000000000000000000000000000000000
 
 this queryId is `0xbb0436c16f88cc7230850f217a6644a90e95f3f08feb2c57d8dd7e92a99be6c6`
 
-to format the response (.31 BTC), pull out to 18 decimals:
+to format the response (.31 BTC), pull out to 18 decimals, and use the timestamp of the block:
 
-```s
-bytes exampleResponse = abi.encode();
+```sol
+uint256 balance = 310000000000000000
+uint256 blockTimestamp = 1708099219
+bytes exampleResponse = abi.encode(balance, blockTimestamp);
 ```
 
 this example response in bytes is...
-`0x000000000000000000000000000000000000000000000000044d575b885f0000`
+`0x000000000000000000000000000000000000000000000000044d575b885f00000000000000000000000000000000000000000000000000000000000065cf8693`
 
 
 ## Dispute Considerations

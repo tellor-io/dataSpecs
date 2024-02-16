@@ -22,13 +22,16 @@ see [here](https://ethereum.stackexchange.com/questions/14037/what-is-msg-data) 
 
 ## Response Type
 
-Response should return the value to 18 decimals
+Response should return the balance value to 18 decimals:
 
 ```
-- abi_type: uint256
-- packed: false
+1. balance
+    - abi_type: ufixed256x18
+    - packed: false
+2. blockTimestamp
+    - abi_type: uint256
+    - packed: false
 ```
-
 
 ## Query Data
 
@@ -47,7 +50,7 @@ bytes queryData = abi.encode("EVMBalanceFeed",abi.encode(1,_addy));
 The Query ID is your new Query's unique identifier. It's important to have one because many kinds of data pass through the Tellor ecosystem.
 
 To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
-```s
+```sol
 bytes32 queryId = keccak256(queryData);
 ```
 
@@ -70,19 +73,27 @@ the JSON representation of a `EVMalanceFeed` query:
             "name": "evmAddress",
         },
     ],
-    "response": {
-        "type": "uint256",
-        "packed": false,
-    }
+    "response": [
+        {
+            "type": "ufixed256x18",
+            "name": "balance",
+            "packed": false,
+        },
+        {
+            "type": "uint256",
+            "name": "blockTimestamp",
+            "packed": false,
+        }
+    ]
 }
 ```
 
 
 ## Example
 
-to query a mainnet Ethereum address at 22 January 2024 at 3:06pm EST
+to query a mainnet Ethereum address:
 
-```s
+```sol
 bytes queryData = abi.encode("EVMBalanceFeed", abi.encode(1,"0x0d7EFfEFdB084DfEB1621348c8C70cc4e871Eba4"));
 bytes32 queryId = keccak256(queryData)
 ```
@@ -91,14 +102,16 @@ the queryData: `0x00000000000000000000000000000000000000000000000000000000000000
 
 this queryId is `0xb3766520288fc365d96f6ec8c1b9c1243f5af6b89f7e2f469440a89013782963`
 
-to format the response (0.43287710009898539 ETH), pull out to 18 decimals:
+to format the response (0.38 ETH), pull out to 18 decimals, and use the timestamp of the block:
 
-```s
-bytes exampleResponse = abi.encode();
+```sol
+uint256 balance = 380000000000000000;
+uint256 blockTimestamp = 1708099917;
+bytes exampleResponse = abi.encode(balance, blockTimestamp);
 ```
 
 this example response in bytes is...
-`0x0000000000000000000000000000000000000000000000000601e36dd6cd1dae`
+`0x000000000000000000000000000000000000000000000000054607fc96a600000000000000000000000000000000000000000000000000000000000065cf894d`
 
 
 ## Dispute Considerations
