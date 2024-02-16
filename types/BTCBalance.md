@@ -14,10 +14,10 @@ A query's parameters may change for each instance of your query type.
 
 The `BTCBalance` query type's parameters are defined as:
 ```
-2. btcAddress
+1. btcAddress
     - description: the address of the bitcoin hodler
     - value type: `string`
-3. timestamp
+2. timestamp
     - description: timestamp which will be rounded down to the closest Bitcoin block
     - value type: `uint256`
 ```
