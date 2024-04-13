@@ -21,7 +21,7 @@ The `StringQuery` query type's parameters are defined as:
 
 ## Response Type
 
-Response should return a string which answers the text question.
+Response should return a string which answers the text question.  Unless specified in the question, all responses should be camel case. 
 
 ```
 - abi_type: string
