@@ -83,8 +83,8 @@ Decoded Value:
 
 ## Dispute Considerations
 
-You can be disputed for reporting a DLC Proof of Reserve sum that is not similar to what other oracles are reporting as well. Be sure to check your value and ensure that there were no errors along the way and that you have all the data necessary to make an accurate report
+Reports should be generated using the methodology outlined here (``https://docs.google.com/document/d/1E8pOe8W3SPmFLfmxBgCObDODWkVsKHt-RwUX-GA_bEI/edit``), otherwise they may be subject to dispute
 
 ## Suggested Data Sources
 
-The networks related to the desired chain id have a DLCManager.sol contract deployed that provides us with the data necessary to verify funding transactions on bitcoin for that vault's "valueLocked" field. Then only with the vaults that are verified you sum all of the locked value
+Please look here for an in depth walk through on how the value should be calculated: ``https://docs.google.com/document/d/1E8pOe8W3SPmFLfmxBgCObDODWkVsKHt-RwUX-GA_bEI/edit``
