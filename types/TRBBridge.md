@@ -5,7 +5,7 @@
 
 ## Description
 
-The `TRBBridge` query type allows users to bridge the TRB from Ethereum to Tellor Layer. The data type works by digesting a deposit ID and direction (bool whether you are going to Layer or not).  The deposit ID corresponds to the deposit ID associated with the deposit on the TRB bridge contract on each chain.  The data type will then return the ETH address, cosmos address, and amount.  
+The `TRBBridge` query type allows users to bridge the TRB from Ethereum to Tellor Layer. The data type works by digesting a deposit ID and direction (bool whether you are going to Layer or not).  The deposit ID corresponds to the deposit ID associated with the deposit on the TRB bridge contract on each chain.  The data type will then return the ETH address, layer address, total amount, and tip amount.  
 
 
 ## Query Parameters
@@ -20,7 +20,6 @@ The `TRBBridge` query type's parameters are defined as:
 2. depositId
     - description: the correspoinding depositId of each transaction
     - value type: `uint256`
-
 ```
 
 ## Response Type
@@ -34,9 +33,11 @@ Response should return abi-encoded bytes correspoinding to the eth Address, laye
     - description: the layer address (i.e. cosmos sdk address) either doing the deposit or recieving the funds (if toLayer)
     - value type: `string`
 3. amount
-    - description: the amount of tokens being bridged
+    - description: the total amount of tokens being bridged
     - value type: `uint256`
-
+4. tip
+    - description: the quantity of tokens, subtracted from the total `amount` parameter above, tipped to the "claimDeposit" caller on layer
+    - value type: `uint256`
 
 
 ## Query Data
@@ -101,14 +102,15 @@ to format the response...
 
 ```s
 bytes exampleResponse = abi.encode(
-    abi.encode(0x0d7EFfEFdB084DfEB1621348c8C70cc4e871Eba4, // eth address
-    tellor12z5sdp7ayjwshr3c93scrn4x0v2lmlmzemt73j, // layer address
-    68000000000000000000 //68 TRB
+    0x0d7EFfEFdB084DfEB1621348c8C70cc4e871Eba4, // eth address
+    "tellor12z5sdp7ayjwshr3c93scrn4x0v2lmlmzemt73j", // layer address
+    68000000000000000000, //68 TRB total amount bridged
+    10000000000000000 // 0.01 TRB tip
 );
 ```
 
 this example response in bytes is...
-`0000000000000000000000000d7effefdb084dfeb1621348c8c70cc4e871eba40000000000000000000000000000000000000000000000000000000000000060000000000000000000000000000000000000000000000003afb087b876900000000000000000000000000000000000000000000000000000000000000000002d74656c6c6f7231327a357364703761796a77736872336339337363726e34783076326c6d6c6d7a656d7437336a00000000000000000000000000000000000000`
+`0x0000000000000000000000000d7effefdb084dfeb1621348c8c70cc4e871eba40000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000003afb087b876900000000000000000000000000000000000000000000000000000002386f26fc10000000000000000000000000000000000000000000000000000000000000000002d74656c6c6f7231327a357364703761796a77736872336339337363726e34783076326c6d6c6d7a656d7437336a00000000000000000000000000000000000000`
 
 
 ## Dispute Considerations
