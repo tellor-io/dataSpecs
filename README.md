@@ -10,7 +10,7 @@ This repository contains specifications of data requested from, reported to, and
 ## For Tellor Users:
 
 ### **Price data**:
-First check if the price data is already being reported [here](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds). If it is not, [please fill this out.](https://github.com/tellor-io/telliot-feeds/issues/new/choose)
+First check if the price data is already being reported [here](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds). If it is not, [please fill this out.](https://github.com/tellor-io/dataSpecs/issues/new/choose)
 
 Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.herokuapp.com/). After, use that ID to [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain. Then retrieve the reported spot price from the oracle [like this](https://docs.tellor.io/tellor/getting-data/introduction).
 
