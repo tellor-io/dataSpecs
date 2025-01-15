@@ -68,18 +68,43 @@ You can use [this tool](https://tellor.io/queryidstation/) to generate query IDs
 
 ## Example Response
 
-To self report your grip strength and socials for the booth challenge:
+To self report your grip strength and socials for the booth challenge. 
+In solidity:
+```
+pragma solidity 0.8.3;
 
+contract EncodeReport {
+    function encodeQueryData(
+        string calldata _eventDescription, 
+        string calldata _challengeType
+    ) public pure returns (bytes32 _queryId, bytes memory _queryData) {
+        _queryData = abi.encode("GripDynoChallenge", abi.encode(_eventDescription, _challengeType));
+        _queryId = keccak256(_queryData);
+    }
+
+    function encodeReportValue(
+        int256 _dataSet, 
+        uint256 _rightHand,
+        uint256 _leftHand,
+        string calldata _xHandle,
+        string calldata _githubUsername,
+        uint256 _hoursOfSleep
+    ) public pure returns (bytes memory _value) {
+        _value = abi.encode(_dataSet, _rightHand, _leftHand, _xHandle, _githubUsername, _hoursOfSleep);
+    }
+}
+```
+Given theh following values:
 ```s
-uint256 memory _dataSet = "0";
-uint256 memory _rightHand = 123;
-uint256 memory _leftHand = 34;
-string memory _XHandle = "0xSpuddy"
-string memory _githubUsername = "0xSpuddy"
-string memory _hoursOfSleep = 4;
+_dataSet = "0";
+_rightHand = 123;
+_leftHand = 34;
+_XHandle = "0xSpuddy"
+_githubUsername = "0xSpuddy"
+_hoursOfSleep = 4;
 ```
 
-this example response in bytes is...
+response in bytes is...
 ```
 0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007b000000000000000000000000000000000000000000000000000000000000002200000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000008307853707564647900000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000083078537075646479000000000000000000000000000000000000000000000000
 ```
