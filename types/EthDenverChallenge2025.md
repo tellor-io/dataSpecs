@@ -9,16 +9,33 @@ The `EthDenverChallenge2025` query type allows anyone to self report the result 
 ## Query Parameters
 
 The query data for each event and challenge should be unique and consistent accross all reports for the same event.
-The `EthDenverChallenge2025` query type's parameters are defined using a description of the booth event, and the type of challenge:
+The `EthDenverChallenge2025` query type has one parameter for the specific challenge name:
 
-1. eventDescription
-    - description: a clearly written definition of the in-perso event (e.g. "eth_denver_2025")
-    - value type: `string`
-2. challengeType
+1. challengeName
     - description: descriptor for the challenge (e.g. "grip_strength_dynometer")
     - value type: `string`
 
 Other challenges will be added as needed.
+
+
+## Query Data
+
+An instance of a `EthDenverChallenge2025 ` query for the grip-strenth dynometer challenge using Solidity:
+```s
+queryData = abi.encode("EthDenverChallenge2025"), abi.encode("grip_strength_dynometer"))
+```
+
+From [the Tellor.io query builder](https://tellor.io/queryidstation/)
+```
+Query Descriptor:
+{"type":"EthDenverChallenge2025","arg1":"grip-strength-dynometer"}
+
+Query Data (Bytes):
+0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001645746844656e7665724368616c6c656e67653230323500000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000017677269702d737472656e6774682d64796e6f6d65746572000000000000000000
+
+Query ID (Hash):
+0xaac4e5f5c928963f173417ed5e8a4b998684069693bda10a22923b828958519f
+```
 
 ## Response Type
 
@@ -46,33 +63,6 @@ can be searched on-chain for retroactively engineering corrilations that will lo
       slept the night before.
     - value type: `uint256`
 ```
-
-## Query Data
-
-An instance of a `GripDynoChallenge ` query for the grip-strenth dynometer challenge using Solidity:
-```s
-# encoding example
-queryData = abi.encode("GripDynoChallenge"), abi.encode(query_type, "eth_denver_2025","grip_strength_dynometer"))
-
-# Encoded queryData:
-0x0000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000114772697044796e6f4368616c6c656e676500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000f6574685f64656e7665725f3230323500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000017677269705f737472656e6774685f64796e6f6d65746572000000000000000000
-```
-
-## Query ID
-
-The Query ID is your new Query's unique identifier. It's important to have one because many kinds of data pass through the Tellor ecosystem.
-
-To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
-```s
-# queryId is obtained by:
-bytes32 queryId = keccak256(queryData);
-
-# queryId for queryData shown above ("eth_denver_2025", "grip_strength_dynometer"):
-0xc21c361101d37bd6293975fbdac23d16bb45f7fd1cfab6a548ea2db9e113b388
-```
-
-You can use [this tool](https://tellor.io/queryidstation/) to verify and/or generate query IDs.
-
 
 ## Example Response
 
@@ -112,7 +102,7 @@ _githubUsername = "0xspuddy_git"
 _hoursOfSleep = 4;
 ```
 
-The properly encoded response in bytes is...
+The encoded response in bytes:
 ```
 0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000005e8adca7e459400000000000000000000000000000000000000000000000000063548c53f3dbc000000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a30787370756464795f7800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c30787370756464795f6769740000000000000000000000000000000000000000
 ```
