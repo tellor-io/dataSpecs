@@ -1,15 +1,15 @@
 ## Type Name
 
-`GripDynoChallenge`
+`EthDenverChallenge2025`
 
 ## Description
 
-The `GripDynoChallenge` query type allows anyone to self report the result of an event specific in-person grip strength dynometer challenge. It will used at ETH Denver 2025, but could also be considered a conceptual query type for other in-person studies.
+The `EthDenverChallenge2025` query type allows anyone to self report the result of an event specific in-person grip strength dynometer challenge. It will used at ETH Denver 2025, but could also be considered a conceptual query type for other in-person studies.
 
 ## Query Parameters
 
 The query data for each event and challenge should be unique and consistent accross all reports for the same event.
-The `GripDynoChallenge` query type's parameters are defined using a description of the booth event, and the type of challenge:
+The `EthDenverChallenge2025` query type's parameters are defined using a description of the booth event, and the type of challenge:
 
 1. eventDescription
     - description: a clearly written definition of the in-perso event (e.g. "eth_denver_2025")
@@ -17,6 +17,8 @@ The `GripDynoChallenge` query type's parameters are defined using a description 
 2. challengeType
     - description: descriptor for the challenge (e.g. "grip_strength_dynometer")
     - value type: `string`
+
+Other challenges will be added as needed.
 
 ## Response Type
 
