@@ -1,48 +1,42 @@
-## Type Name
-
-`EthDenverChallenge2025`
+# Type Name: `EthDenver2025`
 
 ## Description
 
-The `EthDenverChallenge2025` query type allows anyone to self report the result of an event specific in-person grip strength dynometer challenge. It will used at ETH Denver 2025, but could also be considered a conceptual query type for other in-person studies.
+The `EthDenver2025` query type allows anyone to self report the result of event in-person challenges. It will used at ETH Denver 2025, but could also be considered a conceptual query type for other in-person studies.
 
 ## Query Parameters
 
 The query data for each event and challenge should be unique and consistent accross all reports for the same event.
-The `EthDenverChallenge2025` query type has one parameter for the specific challenge name:
+The `EthDenver2025` query type has one parameter for the specific challenge name:
 
 1. challengeName
-    - description: descriptor for the challenge (e.g. "grip_strength_dynometer")
+    - description: descriptor for the challenge (e.g. "grip_strength_dynamometer")
     - value type: `string`
 
 Other challenges will be added as needed.
 
-
 ## Query Data
 
-An instance of a `EthDenverChallenge2025 ` query for the grip-strenth dynometer challenge using Solidity:
+An instance of a `EthDenver2025` query for the grip-strenth dynamometer challenge using Solidity:
+
 ```s
-queryData = abi.encode("EthDenverChallenge2025"), abi.encode("grip_strength_dynometer"))
+queryData = abi.encode("EthDenver2025"), abi.encode("grip_strength_dynamometer"))
+```
+
+encoded query data:
+
+```s
+0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000d45746844656e7665723230323500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000019677269705f737472656e6774685f64796e616d6f6d6574657200000000000000
 ```
 
 From [the Tellor.io query builder](https://tellor.io/queryidstation/)
-```
-Query Descriptor:
-{"type":"EthDenverChallenge2025","arg1":"grip-strength-dynometer"}
-
-Query Data (Bytes):
-0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000001645746844656e7665724368616c6c656e67653230323500000000000000000000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000017677269702d737472656e6774682d64796e6f6d65746572000000000000000000
-
-Query ID (Hash):
-0xaac4e5f5c928963f173417ed5e8a4b998684069693bda10a22923b828958519f
-```
 
 ## Response Type
 
 The Response (reported value) should be a list of pre-determined event specific values. The result reports 
 can be searched on-chain for retroactively engineering corrilations that will look fun on social media. For the grip-strength challenge, we will use a list of 5 values:
 
-```
+```yaml
 1. dataSet
     - description: Participant's data set selection (men's or women's data).
     - value type: `bool`
@@ -67,7 +61,8 @@ can be searched on-chain for retroactively engineering corrilations that will lo
 ## Example Response
 
 To self report your grip strength and socials for the booth challenge in solidity:
-```
+
+```s
 pragma solidity 0.8.3;
 
 contract EncodeReport {
@@ -91,8 +86,10 @@ contract EncodeReport {
     }
 }
 ```
+
 If a user input the following values:
 `(True, 109, 114.52, 0xspuddy_x, 0xspuddy_git, 4)
+
 ```s
 _dataSet = "True";
 _rightHand = 109000000000000000000;
@@ -103,7 +100,8 @@ _hoursOfSleep = 4;
 ```
 
 The encoded response in bytes:
-```
+
+```s
 0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000005e8adca7e459400000000000000000000000000000000000000000000000000063548c53f3dbc000000000000000000000000000000000000000000000000000000000000000000c000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a30787370756464795f7800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c30787370756464795f6769740000000000000000000000000000000000000000
 ```
 
