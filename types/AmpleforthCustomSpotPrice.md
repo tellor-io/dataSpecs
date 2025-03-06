@@ -71,4 +71,4 @@ Note that following this guide does not prevent you from being disputed or guara
 
 ## Suggested Data Sources
 
-The sources and calculation for this query type is specified by the Ampleforth protocol. See the [Telliot]([https://github.com/tellor-io/telliot-feeds](https://github.com/tellor-io/telliot-feeds/blob/main/src/telliot_feeds/sources/ampleforth/ampl_usd_vwap.py)) codebase for an example implementation.
+The sources and calculation for this query type is specified by the Ampleforth protocol. See the [Telliot](https://github.com/tellor-io/telliot-feeds/blob/main/src/telliot_feeds/sources/ampleforth/ampl_usd_vwap.py) codebase for an example implementation.
