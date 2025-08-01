@@ -12,14 +12,12 @@ The `TRBBridge` query type allows users to bridge the TRB token between Ethereum
 A query's parameters may change for each instance of a query type.
 
 The `TRBBridge` query type's parameters are defined as:
-```
 1. toLayer
     - description: true if going from Ethereum to Layer, false if going the opposite direction
     - value type: `bool`
 2. depositId
     - description: the corresponding deposit ID of each transaction
     - value type: `uint256`
-```
 
 ## Response Type
 
@@ -62,9 +60,7 @@ You can use [this tool](https://querybuilder.tellor.io/) to generate query IDs.
 
 
 ## JSON Representation
-The JSON representation of your new query type is needed to construct query objects in a variety of languages. It contains the essential components of your query: type name, parameters in an ordered list and their corresponding value types, as well as the expected response type for the query.
 
-the JSON representation of a `TRBBridge` query:
 ```json
 {
     "type": "TRBBridge",
@@ -88,7 +84,7 @@ the JSON representation of a `TRBBridge` query:
 
 ## Example
 
-to query a deposit event from Ethereum to Layer of 68 TRB corresponding to deposit ID 421:
+To query a deposit event from Ethereum to Layer of 68 TRB corresponding to deposit ID 421:
 
 ```s
 bytes queryData = abi.encode("TRBBridge", abi.encode(true,421));
@@ -120,14 +116,16 @@ Note that following this guide does not prevent you from being disputed or guara
 
 Make sure to...
 - wait until at least 100 ethereum blocks have been built on top of the deposit transaction's block before reporting
-- again, do not report a block that has not been finalized
+- again, do not report deposits that have insufficient confirmations or you will be disputed
 - use valid addresses.  A wrong address as the destinaton can result in loss of funds
+- report the response parameters as read from the bridge contract (including the correct `tip` parameter)
+- after a deposit's aggregate report has reached a consensus of reporters, do not report the same deposit again
 
 ## Suggested Data Sources
 
 All the reporters need is a node and the `eth_call` RPC method! 
 
-Deposit info should be read from the TRB token bridge contract on Ethereum. Only deposits from the TRB token bridge contract on Ethereum mainnet (evm chain id 1) should be reported to tellor mainnet (cosmos chain id tellor-1). The Ethereum mainnet bridge contract is deployed at address [0x5589e306b1920F009979a50B88caE32aecD471E4](https://etherscan.io/address/0x5589e306b1920f009979a50b88cae32aecd471e4). 
+Deposit info should be read from the TRB token bridge contract on Ethereum. Only deposits from the TRB token bridge contract on Ethereum mainnet (evm chain id 1) should be reported to tellor mainnet (cosmos chain id tellor-1). The Ethereum mainnet token bridge contract is deployed at address [0x5589e306b1920F009979a50B88caE32aecD471E4](https://etherscan.io/address/0x5589e306b1920f009979a50b88cae32aecd471e4). 
 
 Deposit info can be read from the `deposits` function of the TRB token bridge contract on Ethereum.
 
