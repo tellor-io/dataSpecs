@@ -51,7 +51,7 @@ bytes queryData = abi.encode("TRBBridge", abi.encode(toLayer,depositId));
 
 The Query ID is a query's unique identifier. It's important because many kinds of data pass through the Tellor ecosystem.
 
-To generate a query ID, get the `bytes32` value of the `keccak` hash of the query data (defined above). For example, in Solidity:
+To generate a query ID, get the `bytes32` value of the `keccak256` hash of the query data (defined above). For example, in Solidity:
 ```s
 bytes32 queryId = keccak256(queryData);
 ```
@@ -112,12 +112,12 @@ this example response in bytes is...
 
 ## Dispute Considerations
 
-Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data. 
+Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized.  This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unnecessary disputes and at the same time encourage monitoring and punishment of bad data. 
 
 Make sure to...
 - wait until at least 100 ethereum blocks have been built on top of the deposit transaction's block before reporting
 - again, do not report deposits that have insufficient confirmations or you will be disputed
-- use valid addresses.  A wrong address as the destinaton can result in loss of funds
+- use valid addresses.  A wrong address as the destination can result in loss of funds
 - report the response parameters as read from the bridge contract (including the correct `tip` parameter)
 - after a deposit's aggregate report has reached a consensus of reporters, do not report the same deposit again
 
