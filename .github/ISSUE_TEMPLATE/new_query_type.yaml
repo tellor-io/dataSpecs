@@ -1,115 +1,210 @@
-name: New Data Request Form
-description: Fill out this form to request new data on Tellor
-title: "[New Data Request Form]: "
+name: New Query Type
+description: Propose a new query type on Tellor Layer (not a SpotPrice pair).
+title: "New Query Type Request for [type name]"
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this new data request form!
+        This form proposes a new query type for Tellor Layer. Filing it is intake; the type is not live until it is registered on Layer (`register-spec`). The team can help if needed.
+
+        Just need a price pair (btc/usd, eth/eur, etc.)? `SpotPrice` already exists. Close this and use New Spot Price instead.
   - type: input
     id: contact
     attributes:
       label: Contact Details
       description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com
+      placeholder: ex. email@example.com, @discord/github_handle
     validations:
       required: true
   - type: input
-    id: spot-price-check
+    id: target-network
     attributes:
-      label: Just need a new Spot Price?
-      description: Which asset currency pair? How frequent do you want updates? Which API exchanges do you want data from?
-      placeholder: ex. BTC/USD. Every 1 hours. Binance, coinbase.
-  - type: markdown
+      label: Where do you need this data?
+      description: Layer is always where it is reported. List consumer chains (EVM or otherwise) if it will be read off Layer.
+      placeholder: ex. Layer only, or ethereum, base, robinhood, etc.
+    validations:
+      required: true
+  - type: input
+    id: frequency
     attributes:
-      value: |
-        **Advanced requests below...**
+      label: How often should it update?
+      description: How often reporters should submit. On Layer that is tipping cadence unless this queryId later joins the cyclelist (separate from this form).
+      placeholder: ex. every 20 min, or on 0.5% deviation, or once per event
   - type: input
     id: type-name
     attributes:
       label: Query Type Name
-      description: A unique name of your new Query type. 
-      placeholder: (e.g. SpotPrice, Snapshot)
+      description: Choose a new, unregistered PascalCase name. Existing specification names include SpotPrice and EVMCall; TRBBridge is a legacy specification name. Layer compares names case-insensitively.
+      placeholder: Enter a new, unregistered PascalCase name
     validations:
-      required: false
+      required: true
   - type: textarea
     id: query-type-description
     attributes:
       label: Description
-      description: A general description of the Query type, including its purpose and suggested use cases.
+      description: Purpose of the type and suggested use cases.
     validations:
-      required: false
+      required: true
   - type: markdown
-    id: query-parameters-explanation
     attributes:
-      value: >
-        ## Query Parameters |
+      value: |
+        ## Query Parameters
 
-        A query's parameters may change for each instance of your query type. For example, a `SpotPrice` query has both an `asset` and `currency` parameter. One instance of a `SpotPrice` query could have parameter values of `eth` (asset) and `usd` (currency), while another's `currency` parameter value might be `eur`. Query parameters should be styled in `mixedCase`, matching Solidity styling. The definition of your new query type's parameters must each include:
-          - Parameter name (a string)
-          - Description and value specification
-          - Valid ABI type
-          - The parameter order required for the query data bytes (more on this later)
+        Parameters vary per instance of the type. Names should be `mixedCase`. Types are Ethereum ABI types; Layer uses the same encoding so values can be bridged to EVM without a second spec.
 
-        For example, the `SpotPrice` query type's parameters are defined as:
-        
+        Each parameter needs:
+        - Name
+        - Description / allowed values
+        - ABI type (`string`, `uint256`, `bool`, `bytes`, etc.)
+        - Order (encode order for query data below)
+
+        Example (`SpotPrice`):
+
         ```
-        
         1. asset
-            - description: Asset ID (e.g. BTC)
-            - value type: `string`
+            - description: Asset ID (e.g. btc)
+            - value type: string
         2. currency
-            - description: Selected currency (e.g. USD)
-            - value type: `string`
+            - description: Selected currency (e.g. usd)
+            - value type: string
         ```
 
-        For a query with no parameters, `QueryWithNoParameters`, one should always include a single empty bytes argument with the name `phantom` as a convention:
+        For a type with no semantic parameters, include a single empty bytes argument named `phantom`:
 
         ```
         1. phantom
-          - description: Empty bytes, always used for query types with no arguments
-          - value type: `bytes`
+            - description: Empty bytes, always used for query types with no arguments
+            - value type: bytes
         ```
   - type: textarea
     id: your-query-parameters
     attributes:
       label: Your query parameters
-      description: place your query parameters with their description + solidity data types here
-      placeholder: "- query paremeter (description, solidity value type)..."
+      description: Name, description, ABI type, in encode order. Use the format from the example above.
+      placeholder: |-
+        1. parameter-name1
+            - description: ...
+            - value type: string
+        2. parameter-name2
+            - description: ...
+            - value type: string
+    validations:
+      required: true
   - type: markdown
-    id: response-type-explanation
     attributes:
-      value: > 
+      value: |
+        ## Query Data / Query ID
+
+        Use nested ABI encoding with the parameters in the order above. Use the canonical PascalCase Query Type Name exactly; capitalization affects queryData and queryId.
+
+        Example (`SpotPrice`, btc/usd):
+
+        ```
+        queryData = abi.encode("SpotPrice", abi.encode("btc", "usd"))
+        queryId   = keccak256(queryData)
+        ```
+
+        Give concrete parameter values below. Ask the team or use [queryidstation](https://tellor.io/queryidstation/) to generate and verify queryData and queryId from your type name, ABI types, and values. You do not need to calculate hex. For more complex patterns, see existing specs such as `EVMCall` in dataSpecs.
+  - type: textarea
+    id: concrete-query-example
+    attributes:
+      label: Concrete query example
+      description: Give one exact value for each parameter in the ABI order above. Quote strings and give complete array or tuple values where needed. For no-arg types, use phantom = 0x (empty bytes).
+      placeholder: |-
+        1. asset (string): "btc"
+        2. currency (string): "usd"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
         ## Response Type
 
-        Specify the ABI type as a valid ETH ABI grammar string(e.g uint256, bytes32, bytes, etc), as well as a boolean signifying whether the reponse will be packed or not when encoded to bytes. More on valid types [here](https://docs.soliditylang.org/en/v0.8.13/types.html).
+        This is the type of the reported value, registered on Layer as `response_value_type`. Reporters ABI-encode it the same way so it decodes on Layer and on EVM (`abi.encode`, not `abi.encodePacked`).
 
-        For example, the `SpotPrice`'s response type is an unpacked 256 bit value with 18 decimals of precision:
-        
+        Layer accepts types such as `uint256`, `int256`, `string`, `bool`, `address`, `bytes`, and arrays of those (`uint256[]`, `string[]`, etc.). Choose an aggregation method that matches the response type; see Aggregation below.
+
+        Do not use `ufixed256x18` or `bytes32`; those are not valid Layer registry types. Prices with 18 decimals use `uint256`; the decimals are a spec convention.
+
+        Example (`SpotPrice` on Layer):
+
         ```
-        
-        - abi_type: ufixed256x18 (18 decimals of precision)
-        - packed: false
+        - response_value_type: uint256
+        - precision: 18 decimals (e.g. $99.90 → 99900000000000000000)
+        - encoding: abi.encode(uint256 value)
         ```
   - type: textarea
     id: your-response-type
     attributes:
       label: Your response type
-      description: place your response type with their description + solidity data types here
-      placeholder: "- response type (description, solidity value type)..."
+      description: Layer response_value_type, plus precision/encoding notes.
+      placeholder: |-
+        - response_value_type: uint256
+        - precision: 18 decimals
+        - encoding: abi.encode(uint256 value)
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Aggregation
+
+        On Layer, submissions in a queryId's reporting window are stake-weighted into one official value (even if you only consume on EVM).
+
+        Spec fields:
+        - `aggregation_method`: `weighted-median` (unsigned scalar integers only, e.g. `uint256` prices) or `weighted-mode` (exact categorical/discrete values)
+        - `report_block_window`: Layer blocks in the window (`SpotPrice` uses `2`)
+
+        If unsure which method fits your response type, choose "Not sure" below. Consumer checks (e.g. 2/3 power, optimistic delay) are your contract's policy, not part of the query type.
+  - type: dropdown
+    id: aggregation-method
+    attributes:
+      label: Aggregation method
+      description: How Layer should combine reporters' submissions for this type.
+      options:
+        - weighted-median (unsigned scalar integers only, e.g. uint256 prices)
+        - weighted-mode (exact categorical or discrete values)
+        - Not sure / need maintainer guidance
+    validations:
+      required: true
+  - type: input
+    id: report-block-window
+    attributes:
+      label: Report block window
+      description: Layer blocks in the reporting window before aggregation. Must be a whole number and cannot exceed the current registry max_report_buffer_window. SpotPrice uses 2; slow or manual data may need more time.
+      placeholder: ex. 2
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Dispute considerations
+
+        Layer disputes a reporter, not a floating value. This section guides reporters and voters; it does not stop a dispute or guarantee a report. Be specific enough that an honest reporter knows what "correct" means.
   - type: textarea
     id: dispute-considerations
     attributes:
-      label: Dispute Considerations
-      description: How should the data be formatted? How should it be measured? When should it be disputed?
-      placeholder: "Note that following this guide does not prevent you from being disputed or guarantee reporters will properly put a value on-chain. Tellor is decentralized. This repo is a start to the education necessary for a fully decentralized oracle, but please focus on communication and working with reporters to prevent unneccesary disputes and at the same time encourage monitoring and punishment of bad data."
+      label: How should this data be judged?
+      description: How to fetch it, how to encode it, and when a submission is wrong. What if an API is down or sources disagree?
+      placeholder: "SpotPrice example: Compare multiple price sources where possible. Do not report if a reasonable market price cannot be determined. A reported value must be reasonable enough for community consensus."
+    validations:
+      required: true
   - type: textarea
     id: suggested-data-sources
     attributes:
-      label: Suggested Data Sources
-      placeholder: "Where can reporters retrieve the query's response? Are there APIs available so reporters can programmatically retrieve the data for your query's expected response? Are there multiple possible sources for the expected response?" 
+      label: Suggested data sources
+      description: Where reporters can retrieve the response programmatically. Prefer multiple sources.
+      placeholder: ex. APIs, contracts, or official pages. Note anything that can break (illiquid market, one oracle, timezone).
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Additional instances, expected volume, or why this type is needed.
+      placeholder: Optional
   - type: textarea
     id: feedback
     attributes:
       label: Form Feedback
-      description: Was anything on this form confusing or hard to understand? Please let us know here!
+      description: Was anything on this form confusing or hard to understand?
