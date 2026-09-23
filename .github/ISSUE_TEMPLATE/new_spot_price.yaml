@@ -1,0 +1,61 @@
+name: New Spot Price
+description: Request a new SpotPrice pair (BTC/USD, etc).
+title: "Spot price feed request for [pair]"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request reporting support for an asset/currency pair under the existing `SpotPrice` spec. Suggest update frequency and data sources. This does not change the SpotPrice ABI, aggregation method, or shared reporting window. Check existing feeds at https://feeds.tellor.io/.
+
+        If you need a different kind of data, fill out New Query Type instead.
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: ex. email@example.com, @discord/github_handle
+    validations:
+      required: true
+  - type: input
+    id: pair
+    attributes:
+      label: Asset / currency pair
+      description: Lowercase IDs, same as query params (asset, currency). Add more than one pair if needed.
+      placeholder: ex. btc/usd, or eth/usd + trb/usd
+    validations:
+      required: true
+  - type: input
+    id: target-network
+    attributes:
+      label: Where will you use these feeds?
+      description: Reports are submitted on Layer. List the consumer chains for relay and integration planning. Consumer chains do not change the SpotPrice queryId.
+      placeholder: ex. Layer only, Ethereum, Base, Arbitrum, or another chain
+    validations:
+      required: true
+  - type: input
+    id: update-frequency
+    attributes:
+      label: How fresh does it need to be?
+      description: On Layer this is either cyclelist rotation or how often you'll tip. Be concrete if you can.
+      placeholder: ex. every ~5 min, or once an hour is fine, or on 0.5% deviation
+    validations:
+      required: true
+  - type: textarea
+    id: data-sources
+    attributes:
+      label: Suggested data sources
+      description: Suggest exchanges or APIs reporters can consult. Use multiple sources where possible. Explain how to handle disagreements and note unusual conditions (wrapped asset, index, illiquid pair).
+      placeholder: ex. Binance, Coinbase, Kraken. Compare sources; do not report if a reasonable market price cannot be determined.
+    validations:
+      required: true
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Unusual market hours, expected volume, dispute notes, or why this pair matters.
+      placeholder: Optional
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Form Feedback
+      description: Was anything on this form confusing or hard to understand?
