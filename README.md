@@ -10,18 +10,18 @@ This repository contains specifications of data requested from, reported to, and
 ## For Tellor Users:
 
 ### **Price data**:
-First check if the price data is already being reported [here](https://github.com/tellor-io/telliot-feeds/tree/main/src/telliot_feeds/feeds). If it is not, [please fill this out.](https://github.com/tellor-io/dataSpecs/issues/new/choose)
+First check if the price data is already being reported [here](https://feeds.tellor.io/). If it is not, [please fill this out.](https://github.com/tellor-io/dataSpecs/issues/new/choose)
 
-Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.herokuapp.com/). After, use that ID to [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain. Then retrieve the reported spot price from the oracle [like this](https://docs.tellor.io/tellor/getting-data/introduction).
+Need a spot price from Tellor? Generate a unique identifier, or query ID, for the `asset/currency` pair using [this tool](https://queryidbuilder.tellor.io). After, use that ID to [pay reporters](https://docs.tellor.io/tellor/command-line-usage/leveraging-layerd/creating-transactions#sending-a-tip-data-request) to put that data on-chain. Then retrieve the reported spot price from the oracle [like this](https://docs.tellor.io/tellor/using-tellor-data/integrating-tellor-data).
 
 ### **Custom data**:
 First, check in [`/types`](./types/) if there's already a query type that defines the data you need.
 
-If not, [create a new query type](#create-new-query-type), [pay reporters](https://github.com/tellor-io/autoPay) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/getting-data/introduction).
+If not, [create a new query type](#create-new-query-type), [pay reporters](https://docs.tellor.io/tellor/command-line-usage/leveraging-layerd/creating-transactions#sending-a-tip-data-request) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/using-tellor-data/integrating-tellor-data).
 
 ## For Tellor Reporters:
 To find out what data to report, there's two options:
-- Use our [reporter client](https://github.com/tellor-io/telliot-feed-examples) to automatically report the expected response of queries that Tellor users are funding.
+- Use our [reporter client](https://github.com/tellor-io/layer-daemons) to automatically report the expected response of queries that Tellor users are funding.
 - Check for newly funded queries, then refer to that query's expected response in [`/types`](./types/) for the required data to report. Be sure to read the dispute considerations section for that query.
 
 ### Encoding Practices
@@ -45,7 +45,7 @@ To create a new Query, or specification, for custom data you need from Tellor or
 After creating the new query type in this repo, [here](https://github.com/tellor-io/telliot-feeds/issues/new/choose) are some next steps for getting reporters to support your data.
 
 ## Contribute<a name="how2contribute"> </a>  
-Join our [discord](https://discord.gg/DxSG2bPECw), help us with issues here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
+Join our [discord](https://discord.gg/tellor), help us with issues here on Github, or feel free to reach out anytime [info@tellor.io](mailto:info@tellor.io).
 
 
 ## Maintainers <a name="maintainers"> </a> 
@@ -54,4 +54,4 @@ This repository is maintained by the [Tellor team](https://github.com/orgs/tello
 
 ## Copyright
 
-Tellor Inc. 2022
+Tellor Inc. 2026
