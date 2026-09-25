@@ -1,17 +1,17 @@
 ## Type Name
 
-`TRBBridge`
+`TRBBridgeV2`
 
 
 ## Description
 
-The `TRBBridge` query type allows users to bridge the TRB token between Ethereum mainnet and Tellor Layer. The data type works by indicating a deposit ID and direction (`bool toLayer` whether you are going to Tellor Layer or not). The deposit ID is associated with the deposit (or withdrawal) in the TRB bridge on each of the two chains.  The data type will then return the ETH address, layer address, total amount, and tip amount. Bridging from Ethereum to Layer is considered a deposit, and bridging from Layer to Ethereum is considered a withdrawal. 
+The `TRBBridgeV2` query type allows users to bridge the TRB token between Ethereum mainnet and Tellor Layer. The data type works by indicating a deposit ID and direction (`bool toLayer` whether you are going to Tellor Layer or not). The deposit ID is associated with the deposit (or withdrawal) in the TRB bridge on each of the two chains.  The data type will then return the ETH address, layer address, total amount, and tip amount. Bridging from Ethereum to Layer is considered a deposit, and bridging from Layer to Ethereum is considered a withdrawal. 
 
 ## Query Parameters
 
 A query's parameters may change for each instance of a query type.
 
-The `TRBBridge` query type's parameters are defined as:
+The `TRBBridgeV2` query type's parameters are defined as:
 1. toLayer
     - description: true if going from Ethereum to Layer, false if going the opposite direction
     - value type: `bool`
@@ -40,11 +40,11 @@ Response should return abi-encoded bytes corresponding to the eth address, layer
 ## Query Data
 
 
-To get the query data of an example instance of a `TRBBridge` deposit query using Solidity:
+To get the query data of an example instance of a `TRBBridgeV2` deposit query using Solidity:
 ```s
 bool toLayer = true;
 uint256 depositId = 9;
-bytes queryData = abi.encode("TRBBridge", abi.encode(toLayer,depositId));
+bytes queryData = abi.encode("TRBBridgeV2", abi.encode(toLayer,depositId));
 ```
 
 ## Query ID
@@ -63,7 +63,7 @@ You can use [this tool](https://querybuilder.tellor.io/) to generate query IDs.
 
 ```json
 {
-    "type": "TRBBridge",
+    "type": "TRBBridgeV2",
     "abi": [
         {
             "type": "bool",
@@ -87,13 +87,13 @@ You can use [this tool](https://querybuilder.tellor.io/) to generate query IDs.
 To query a deposit event from Ethereum to Layer of 68 TRB corresponding to deposit ID 421:
 
 ```s
-bytes queryData = abi.encode("TRBBridge", abi.encode(true,421));
+bytes queryData = abi.encode("TRBBridgeV2", abi.encode(true,421));
 bytes32 queryId = keccak256(queryData);
 ```
 
-the queryData: `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000954524242726964676500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000001a5`
+the queryData: `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000b54524242726964676556320000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000001a5`
 
-this queryId is `0x9f7d83f1e1acbb2b714b424cb14bc7d94fe507d4c1202181345adb88f209504d`
+this queryId is `0xc6ffabcd6c03127b08187d6f333a5615dbc7aa2d2404d59d1e3d28bc820d668d`
 
 to format the response...
 
