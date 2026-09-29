@@ -13,7 +13,7 @@ This repository contains specifications of data requested from, reported to, and
 First check if the price data is already being reported [here](https://feeds.tellor.io/). If it is not, [please fill this out.](https://github.com/tellor-io/dataSpecs/issues/new?template=new_spot_price.yaml)
 
 ### **Custom data**:
-First, check in [`/types`](./types/) if there's already a query type that defines the data you need.
+First, check in [`/01_Data Types`](https://github.com/tellor-io/dataSpecs/tree/main/01_Data%20Types) if there's already a query type that defines the data you need.
 
 If not, please this fill this out [create a new query type](#create-new-query-type), [pay reporters](https://docs.tellor.io/tellor/command-line-usage/leveraging-layerd/creating-transactions#sending-a-tip-data-request) to put that data on-chain, and retrieve that data from a Tellor oracle [like this](https://docs.tellor.io/tellor/using-tellor-data/integrating-tellor-data).
 
