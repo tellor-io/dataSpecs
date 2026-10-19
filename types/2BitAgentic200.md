@@ -5,32 +5,30 @@
 
 ## Description
 
-The `2BitAgentic200` query type enables general purpose agentic reporting on tellor layer. 
-Each query of this type should represent a natural-language
-statement which can be evaluated as **true**, **false**, or **invalid** (not evaluable)
-in exchange to the user's tip. 
+The `2BitAgentic200` query type enables general purpose agentic reporting on tellor layer.
+Users may create a tip for a `2BitAgentic200`
+Each query of this type represents a natural-language
+statement which can be easily evaluated as **true**, **false**, or **invalid** (not evaluable).
 
-A Hermes agent running the `tellor-2bit-reporter` skill's tip listener is designed to perform the following workflow when a 2BitAgentic tip is "heard" by it's tip_listener:
+Agents running the `2bit-reporter` skill's tip listener perform the following workflow as soon as a 2BitAgentic query tip hits the chain:
 1. Decode and "normalize" the tipped query statement
-2. Detect and filter for indirect prompt injection. 
+2. Detect and filter for indirect prompt injection.
 3. If no injection is detected, agent is prompted to evaluate the validity of the user's statement.
 4. Reports a verdict of `0` (invalid), `1` (true), or `2` (false).
 
-The `200` in the query type name is the `report_block_window` (200 blocks ≈ 11 min at
-~3.35 s/block). The family convention is `2BitAgentic<window>`; other
-submission windows are separate query types (e.g. `2BitAgentic100`,
-`2BitAgentic500`).
+5. All 2bit data reported to tellor layer is publicly aggregated and checked by the tellor dispute system. All values reported to tellor are disputable for 24 hours, and successful disputers may earn the reporter's stake.
 
-Because the verdict is one of three discrete states, the query aggregates
+The `200` in the query type name is the `report_block_window`. This query type may be useful as a family convention allowing other block windows to be communicated: `2BitAgentic100` for a 100 block window, `2BitAgentic500` for a 500 block window, etc. Different block windows can be useful for different types of research and more subjective evaluable statements.
+
+Verdict may only be one of three discrete states. The query aggregates
 with **weighted-mode** (the state backed by the most total reporter power
 wins).
-
 
 ## Query Parameters
 
 The `2BitAgentic200` query type has a single parameter:
 ```
-1. statement
+1. evaluable_statement
     - description: the natural-language statement to be evaluated as true, false, or invalid
     - value type: `string`
 ```
@@ -38,23 +36,6 @@ The `2BitAgentic200` query type has a single parameter:
 The statement should be a single, self-contained claim that can be
 evaluated without additional context (e.g. `"the sky is blue"`,
 `"water boils at 100 C at sea level"`).
-
-
-## Example (Prediction Market)
-
-A prediction market is created on September 30th 2026 for whether or not Elon Musk will announce that he is running for president by January 1st 2027. When the market is created, the 2Bit eval statement is recorded with the creation event: "Elon Musk publicly announced that he is running for president in the 2028 election in a press release or X post dated between September 30th 2026 and January 1st 2027" 
-
-When the market expires on January 1st, the user creates a tip with the exact eval statement included as part of the Query Data:
-
-```s
-string memory _statement = "Elon Musk publicly announced that he is running for president in the 2028 election in a press release or X post dated between September 30th 2026 and January 1st 2027";
-bytes memory _queryData = abi.encode("2BitAgentic200", abi.encode(_statement));
-bytes32 _queryId = keccak256(_queryData);
-```
-
-- queryData:
-  `0x324269744167656e746963323030000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000a6456c6f6e204d75736b207075626c69636c7920616e6e6f756e63656420746861742068652069732072756e6e696e6720666f7220707265736964656e7420696e20746865203230323820656c656374696f6e20696e20612070726573732072656c65617365206f72205820706f7374206461746564206265747765656e2053657074656d6265722033307468203230323620616e64204a616e7561727920317374203230323700000000000000000000000000000000000000000000000000`
-- queryId: `0x75863674997c6d94f62cb20770136753fb1780505b6167756119c61bf69e9b11`
 
 ## Response Type
 
@@ -96,6 +77,10 @@ bytes memory _queryDataArgs = abi.encode(_statement);
 bytes memory _queryData = abi.encode("2BitAgentic200", _queryDataArgs);
 ```
 
+For the `"the sky is blue"` example, the ABI-encoded query data is:
+
+`0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000e324269744167656e74696332303000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000f74686520736b7920697320626c75650000000000000000000000000000000000`
+
 
 ## Query ID
 
@@ -108,6 +93,10 @@ bytes32 queryId = keccak256(queryData);
 
 You can use [this tool](https://tellor.io/queryidstation/) to generate query
 IDs.
+
+For the `"the sky is blue"` example, the Query ID is:
+
+`0x752779a8f6f8ff67c2ac001d4a82926ad3fe31a44d0b89afeca8f0d8645c6550`
 
 
 ## JSON Representation
@@ -136,31 +125,40 @@ uint8 verdict = TellorOracle.getLatestValue(_queryId);
 bool statementIsTrue = (verdict == 1);
 ```
 
+## Example Use Case: Prediction Market
+
+A prediction market is created on September 30th 2026 for whether or not Elon Musk will announce that he is running for president by January 1st 2027. When the market is created, the 2Bit eval statement is recorded with the creation event: "Elon Musk publicly announced that he is running for president in the 2028 election in a press release or X post dated between September 30th 2026 and January 1st 2027" 
+
+When the market expires on January 1st, the user creates a tip with the exact eval statement included as part of the Query Data:
+
+```s
+string memory _statement = "Elon Musk publicly announced that he is running for president in the 2028 election in a press release or X post dated between September 30th 2026 and January 1st 2027";
+bytes memory _queryData = abi.encode("2BitAgentic200", abi.encode(_statement));
+bytes32 _queryId = keccak256(_queryData);
+```
+
+- queryData:
+  `0x00000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000e324269744167656e7469633230300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000a6456c6f6e204d75736b207075626c69636c7920616e6e6f756e63656420746861742068652069732072756e6e696e6720666f7220707265736964656e7420696e20746865203230323820656c656374696f6e20696e20612070726573732072656c65617365206f72205820706f7374206461746564206265747765656e2053657074656d6265722033307468203230323620616e64204a616e756172792031737420323032370000000000000000000000000000000000000000000000000000`
+- queryId: `0x6d6aeed0e7ac824156aadc242c8aff1524525cbe11947e64c28d8fd566e52f72`
+
+If the statement is **false** (Musk did not make such an announcement in the
+window), the reporter's response is the ABI-encoded value for verdict `2`:
+
+- response: `0x0000000000000000000000000000000000000000000000000000000000000002`
+
 
 ## Dispute Considerations
 
-- A reporter can be disputed for reporting a verdict that is clearly
-  contradicted by well-known, verifiable facts (e.g. reporting "the sky is
-  blue" as false without a stated context that makes it false).
-- **invalid** is a valid escape hatch: if the statement is genuinely
-  ambiguous or not a factual claim, reporting `0` (invalid) is preferable to
-  guessing true/false.
-- Make the statement as clear and self-contained as possible. Vague or
-  context-dependent statements are more likely to be disputed or to
-  legitimately resolve to invalid.
-- Reporters should base the verdict on reputable, citable sources (for the
-  agentic POC: web search results). When sources strongly agree, report the
-  matching verdict; when they are inconclusive, report invalid.
+- **Reporters should not stake more TRB than they are willing to lose**
+  **when reporting Tellor 2bit data!**
+- A report should be disputed for reporting any verdict that is clearly
+  contradicted by well-known, verifiable facts.
+- Users should make their statements as clear and self-contained as possible. Vague or
+  context-dependent statements may legitimately resolve to "invalid".
 
 
 ## Suggested Data Sources
 
-For the agentic POC, the primary source is **web search** performed by the
-Hermes agent. Reporters may also use:
-- general knowledge for well-established facts
-- reputable reference sites (Wikipedia, official standards bodies,
-  news archives) reachable via web search
-- any other tool available to the Hermes instance
-
 There is no single canonical API for arbitrary natural-language statements,
-so the exact source varies per statement.
+so the exact source varies per statement. Users can include suggested sources in the body of their
+tip's evaluable statement.
